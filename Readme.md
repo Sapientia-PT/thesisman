@@ -10,12 +10,12 @@ Este projecto vai usar Java17+ e Postgres, mas esses vão estar disponíveis den
 
 ### Windows
 
-Instalar [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) e [Python 3](https://www.python.org/ftp/python/3.11.2/python-3.11.2-amd64.exe)
+Instalar [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) e [Python 3](https://www.python.org/ftp/python/3.11.2/python-3.11.2-amd64.exe))
 
 ### Ubuntu
 
 ```
-sudo apt-get python3 python3-pip
+sudo apt-get install python3 python3-pip
 ```
 
 Seguir [esta página](https://docs.docker.com/engine/install/ubuntu/) e os quatro passos listados [aqui](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
