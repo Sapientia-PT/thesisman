@@ -1,0 +1,24 @@
+Coisas que estão por fazer!
+
+    No fim:
+    -> Criar uma pasta docs, onde colocará um único documento PDF, com todos os desenhos resultantes do projeto.
+
+    Desenhos:
+    -> Desenhar o modelo de domínio que modele o problema (e colocar na pasta docs).
+    -> Desenhar o SSD para o caso de uso K.
+    -> Desenhar um esboço do diagrama de classes que mostre a divisão em camadas.
+
+    Software:
+    -> Implementar o código correspondente ao diagrama de classes.
+    -> Anotar as classes relevantes com as anotações JPA, de forma a fazer o melhor mapeamento possível.
+    -> Gerar a base de dados a partir das anotações escritas.
+
+    Relatório:
+    -> Justificar no relatório o porquê de cada decisão tomada neste mapeamento.
+    -> Critérios de Avaliação:
+        •Descrição da arquitectura em camadas.
+        •Qualidade do Modelo de Domínio.
+        •Qualidade do Diagrama de Classes.
+        •Qualidade do SSD pedido.
+        •Qualidade do Mapeamento JPA
+        •Qualidade da justificação das decisões de mapeamento, de acordo com os padrões descritos na aula.
