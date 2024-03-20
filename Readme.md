@@ -1,5 +1,10 @@
 # Projecto de Referência de SpringBoot
 
+## Authors
+Guilherme Gouveia
+João Miguel
+Rafael Correia
+
 ## O que fazer
 
 Este projecto serve para verificar que todas as dependências necessárias ao projecto estão a funcionar.
