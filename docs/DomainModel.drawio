@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-03-20T18:33:44.927Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="pVEgVYcA7v_5M3NAacCy" version="24.0.7" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-20T18:44:44.676Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="650zRfYiPKjjtiAJ5GVE" version="24.0.7" type="device">
   <diagram name="Page-1" id="X4RA0sWJOlGw3QUm6S05">
-    <mxGraphModel dx="1050" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1235" dy="1714" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -130,7 +130,7 @@
           <mxGeometry x="650" y="10" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="JnHYzQc8gZoaptGCAMhL-2" value="Júri" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="680" y="110" width="100" height="50" as="geometry" />
+          <mxGeometry x="440" y="-140" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="JnHYzQc8gZoaptGCAMhL-4" value="Tema" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="520" y="755" width="100" height="50" as="geometry" />
@@ -170,6 +170,15 @@
               <mxPoint x="375" y="240" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="JnHYzQc8gZoaptGCAMhL-15" value="Arguente" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="510" y="-60" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JnHYzQc8gZoaptGCAMhL-17" value="Docente (Orientador Interno)" style="html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="-70" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JnHYzQc8gZoaptGCAMhL-21" value="Presidente" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="600" y="-140" width="100" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
