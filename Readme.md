@@ -1,11 +1,11 @@
 # Projecto de Referência de SpringBoot
 
 ## Authors
-Guilherme Gouveia
+Guilherme Gouveia   - 58236
 
-João Miguel
+João Miguel         - 58195
 
-Rafael Correia
+Rafael Correia      - 58176
 
 ## O que fazer
 
