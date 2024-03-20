@@ -2,7 +2,9 @@
 
 ## Authors
 Guilherme Gouveia
+
 João Miguel
+
 Rafael Correia
 
 ## O que fazer
