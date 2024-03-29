@@ -1,0 +1,31 @@
+P1. O Administrador, responsável por resolver problemas na atribuição de temas de tese tem as mesmas permissões que um docente? Ou seja, um Administrador pode ser alguém que submete temas e orienta teses? E o Docente arguente, membro do Júri, pode também orientar teses e submeter temas?
+R1. Podem assumir que o administrador tem as mesmas permissões que um docente (mas tem ainda mais!). Na prática o administrador é um professor que é coordenador do mestrado em questão. Portanto a resposta é sim a todos os pontos. Nota ainda que o Administrador pode alterar qualquer proposta de tese, não só as suas, como um docente.
+
+P2. Um utilizador Empresarial, que submete temas para projetos com empresas é o mesmo que o orientador externo, ou têm permissóes diferentes?
+R2. Quando um utilizador empresarial tem uma das suas propostas escolhidas, passas a ser o orientador externo dessa tese.
+
+----
+
+P1. Os docentes podem submeter vários temas? E cada docente só orienta uma proposta?
+R1. Cada docente pode submeter várias propostas, e orientar vários alunos (mas não mais do que o número de propostas)
+
+P2. Antes da defesa final, quantas vezes os alunos podem entregar documento e marcar defesa se a nota for inferior a 10?
+R2. Para a defesa da *proposta de* tese, podem um número infinito de vezes. Mas para *tese final*, apenas uma.
+
+P3. No enunciado diz-se que “O júri é composto pelo orientador interno, bem como um outro docente (arguente). A inserção da nota é da responsabilidade do orientador interno.”, quanto aos temas submetidos pelos utilizadores empresariais, vamos ter um orientador interno para cada tema e os orientadores externos não vão avaliar defesas?
+R3. Orientador interno = orientador da faculdade. Os externos não fazem oficialmente parte do júri, não. (Na realidade é preciso doutoramento para fazer parte do júri, coisa que na indústria é muito raro).
+
+----
+
+P1. Os utilizadores empresariais também podem submeter várias propostas?
+R1. Sim
+
+P2. O tipo de tese (dissertação/projeto) é decidido quando os docentes e os utilizadores empresariais submetem as propostas? Se não, quem decide o tipo?
+R2. Sim, mas se é proposto por empresa será implicitamente um projeto
+
+P3. Se a proposta foi submetida pelo utilizador empresarial, como podemos saber quem é o docente que orienta a proposta?
+R3. Pode ser indicado pelo utilizador empresarial se já estiver definido, ou ser indicado mais tarde.
+
+----
+
+Nota: Não pretendemos implementar casos de uso, mas pretendemos que o modelo de domínio e mapeamento para a BD permite fazer todos os casos de uso.
