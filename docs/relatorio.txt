@@ -1,0 +1,16 @@
+RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
+---------------------------------------
+- Gestão do trabalho de equipa:
+	* Fase inicial, Modelo de Domínio levou colaboração coletiva de cada elemento
+	* Primeira análise e desenho feito em conjunto, para depois cada um ter um trabalho mais autónomo e correto
+---------------------------------------
+- Decisões de Trabalho Importantes:
+	* Separação das "Empresas" e "Utilizador Empresarial" em duas entidades distintas
+	| Empresa fica com acesso a este mesmo objeto assim como a classificação de um "Orientador Externo"
+	| (Orientador Externo é um Utilizador cujo tema foi escolhido)
+	* "Mestrado" como atributo de "Aluno" em vez de entidade
+	| Neste projeto em específico, não faz sentido haver uma entidade que represente Mestrados
+	* "Nota" como atributo de "Defesa de Proposta" em vez de entidade
+	| Poderíamos ter várias notas repetidas sem necessidade (muitas classes iguais/parecidas)
+	* "Orientador Interno" existe sempre quando "Júri" existe
+	| Logo, como Júri avalia a "defesa de proposta", esse docente consegue inserir nota, sem precisar de uma relação direta
