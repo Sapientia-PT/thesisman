@@ -14,3 +14,6 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	| Poderíamos ter várias notas repetidas sem necessidade (muitas classes iguais/parecidas)
 	* "Orientador Interno" existe sempre quando "Júri" existe
 	| Logo, como Júri avalia a "defesa de proposta", esse docente consegue inserir nota, sem precisar de uma relação direta
+	* "Estado" irá ser representado por um ENUM (pendente, reprovado ou concluido)
+	| É um atributo de "Aluno"
+	* Uma "Sala" pode estar "reservada" para 0 ou mais "Defesas Presenciais" desde que as suas datas não coincidam
