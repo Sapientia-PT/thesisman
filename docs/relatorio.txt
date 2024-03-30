@@ -12,8 +12,9 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	| Neste projeto em específico, não faz sentido haver uma entidade que represente Mestrados
 	* "Nota" como atributo de "Defesa de Proposta" em vez de entidade
 	| Poderíamos ter várias notas repetidas sem necessidade (muitas classes iguais/parecidas)
-	* "Orientador Interno" existe sempre quando "Júri" existe
-	| Logo, como Júri avalia a "defesa de proposta", esse docente consegue inserir nota, sem precisar de uma relação direta
+	* "Orientador Interno" existe sempre quando "Juri" existe
+	| Logo, como Juri avalia a "Defesa de Proposta", esse docente consegue inserir nota, sem precisar de uma relação direta
 	* "Estado" irá ser representado por um ENUM (pendente, reprovado ou concluido)
 	| É um atributo de "Aluno"
-	* Uma "Sala" pode estar "reservada" para 0 ou mais "Defesas Presenciais" desde que as suas datas não coincidam
+	* Uma "Sala" pode estar "reservada" para 0 ou mais "Defesas Presenciais" desde que as suas datas não coidnciam
+	* Uma "Sala" tem um atributo "horarios" que mostra os blocos disponíveis para marcação de defesas presenciais
