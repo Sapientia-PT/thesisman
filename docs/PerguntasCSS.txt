@@ -1,5 +1,10 @@
-P1. O Administrador, responsável por resolver problemas na atribuição de temas de tese tem as mesmas permissões que um docente? Ou seja, um Administrador pode ser alguém que submete temas e orienta teses? E o Docente arguente, membro do Júri, pode também orientar teses e submeter temas?
-R1. Podem assumir que o administrador tem as mesmas permissões que um docente (mas tem ainda mais!). Na prática o administrador é um professor que é coordenador do mestrado em questão. Portanto a resposta é sim a todos os pontos. Nota ainda que o Administrador pode alterar qualquer proposta de tese, não só as suas, como um docente.
+P1. O Administrador, responsável por resolver problemas na atribuição de temas de tese tem as mesmas permissões que um docente?
+Ou seja, um Administrador pode ser alguém que submete temas e orienta teses?
+E o Docente arguente, membro do Júri, pode também orientar teses e submeter temas?
+R1. Podem assumir que o administrador tem as mesmas permissões que um docente (mas tem ainda mais!).
+Na prática o administrador é um professor que é coordenador do mestrado em questão.
+Portanto a resposta é sim a todos os pontos.
+Nota ainda que o Administrador pode alterar qualquer proposta de tese, não só as suas, como um docente.
 
 P2. Um utilizador Empresarial, que submete temas para projetos com empresas é o mesmo que o orientador externo, ou têm permissóes diferentes?
 R2. Quando um utilizador empresarial tem uma das suas propostas escolhidas, passas a ser o orientador externo dessa tese.
@@ -12,15 +17,19 @@ R1. Cada docente pode submeter várias propostas, e orientar vários alunos (mas
 P2. Antes da defesa final, quantas vezes os alunos podem entregar documento e marcar defesa se a nota for inferior a 10?
 R2. Para a defesa da *proposta de* tese, podem um número infinito de vezes. Mas para *tese final*, apenas uma.
 
-P3. No enunciado diz-se que “O júri é composto pelo orientador interno, bem como um outro docente (arguente). A inserção da nota é da responsabilidade do orientador interno.”, quanto aos temas submetidos pelos utilizadores empresariais, vamos ter um orientador interno para cada tema e os orientadores externos não vão avaliar defesas?
-R3. Orientador interno = orientador da faculdade. Os externos não fazem oficialmente parte do júri, não. (Na realidade é preciso doutoramento para fazer parte do júri, coisa que na indústria é muito raro).
+P3. No enunciado diz-se que “O júri é composto pelo orientador interno, bem como um outro docente (arguente).
+A inserção da nota é da responsabilidade do orientador interno.”, quanto aos temas submetidos pelos utilizadores empresariais,
+vamos ter um orientador interno para cada tema e os orientadores externos não vão avaliar defesas?
+R3. Orientador interno = orientador da faculdade. Os externos não fazem oficialmente parte do júri, não.
+(Na realidade é preciso doutoramento para fazer parte do júri, coisa que na indústria é muito raro).
 
 ----
 
 P1. Os utilizadores empresariais também podem submeter várias propostas?
 R1. Sim
 
-P2. O tipo de tese (dissertação/projeto) é decidido quando os docentes e os utilizadores empresariais submetem as propostas? Se não, quem decide o tipo?
+P2. O tipo de tese (dissertação/projeto) é decidido quando os docentes e os utilizadores empresariais submetem as propostas?
+Se não, quem decide o tipo?
 R2. Sim, mas se é proposto por empresa será implicitamente um projeto
 
 P3. Se a proposta foi submetida pelo utilizador empresarial, como podemos saber quem é o docente que orienta a proposta?
@@ -28,4 +37,53 @@ R3. Pode ser indicado pelo utilizador empresarial se já estiver definido, ou se
 
 ----
 
-Nota: Não pretendemos implementar casos de uso, mas pretendemos que o modelo de domínio e mapeamento para a BD permite fazer todos os casos de uso.
+P1. Um docente pode submeter propostas para um projeto ou apenas para dissertações?
+No caso de ser a primeira opção, seria o docente a especificar o utilizador empresarial ou seria este que se iria auto atribuir à proposta?
+R1. Utilizadores internos (professores) submetem apenas para dissertações. Utilizadores empresariais submetem apenas propostas para projectos.
+
+
+P2. Para além disso, no contexto da aplicação, o presidente do júri é um docente ou é outra pessoa?
+Caso seja outra pessoa, quais permissões teria?
+R2. O presidente do júri é sempre um docente.
+
+----
+
+P1. Devemos implementar o que está no diagrama de classes, mas implementar os handlers quase que é implementar os casos de uso,
+que não é para esta fase do trabalho.
+R1. Não é preciso para esta meta, mas podem já adiantar trabalho.
+
+----
+
+P1. A responsabilidade pela nomeação de um arguente para o Júri de uma defesa (seja de proposta ou da tese final) é do Orientador interno?
+R1. Sim
+
+P2. O Júri é sempre o mesmo para todas as defesas de propostas de uma tese ou a cada defesa de proposta pode haver um arguente diferente?
+Caso seja sempre o mesmo, ele é também o arguente da defesa final da tese?
+R2. Normalmente é o mesmo, mas devemos aceitar diferenças. O que acontece se o arguente morrer?
+O aluno deixaria de poder terminar a tese, certo? Não me parece muito justo.
+
+----
+
+P1. Deveremos dividir por diferentes entidades os vários processos/eventos que são retratados no enunciado ou podemos assumir que
+como são acontecimentos cíclicos não necessitam de qualquer representação específica (apesar da sua periodicidade)?
+R1. Não sei se percebi a pergunta.
+Todos os casos de uso devem ser tratados por alguma classe.
+Se são chamados pelo utilizador, ou por algum sistema de relógio é irrelevante para já.
+
+----
+
+P1. O nosso grupo tinha a seguinte dúvida, no diagrama de classes os repositórios deveriam ligar às entidades a que eles se referem?
+R1. Sim, nem que seja a ligação que indica que essa classe usa a classe da entidade respectiva.
+
+----
+
+P1. Tendo em conta esta frase no enunciado do trabalho:
+"Nesta entrega não se pretende ainda a realização dos casos de uso, nem nenhuma interface de interacção"
+Isto significa que nós não temos de nos preocupar ainda com a api REST, nem os respetivos controllers?
+Ou seja, só nos temos que preocupar em modelar o problema na base de dados (usando JPA)?
+E como tal só nos temos de preocupar com as entities no diagrama de classes e no código em si?
+R1. Tal e qual!
+
+----
+
+! Não pretendemos implementar casos de uso, mas pretendemos que o modelo de domínio e mapeamento para a BD permite fazer todos os casos de uso. !
