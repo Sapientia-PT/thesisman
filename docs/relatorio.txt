@@ -3,8 +3,10 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 - Gestão do trabalho de equipa:
 	* Fase inicial, Modelo de Domínio levou colaboração coletiva de cada elemento
 	* Primeira análise e desenho feito em conjunto, para depois cada um ter um trabalho mais autónomo e correto
+	* SSD feito com base no Modelo de Domínio efetuado
+	* Esboço do Diagrama de Classes com base nos Padrões que escolhemos e do Modelo de Domínio
 ---------------------------------------
-- Decisões de Trabalho Importantes:
+- Modelo de Domínio:
 	* Separação das "Empresas" e "Utilizador Empresarial" em duas entidades distintas
 	| Empresa fica com acesso a este mesmo objeto assim como a classificação de um "Orientador Externo"
 	| (Orientador Externo é um Utilizador cujo tema foi escolhido)
@@ -23,3 +25,7 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	* Ao contrário de "Docente", uma "Empresa" não tem subtipos, mas contém na verdade "Trabalhadores" e "Orientadores Externos"
 	* "Utilizador Empresarial" não precisa de submeter nenhum tema mas faz parte da "Empresa" na mesma
 	* "Aluno" pode não fazer nenhum documento, caso decida cancelar a candidatura
+---------------------------------------
+- Diagrama de Classes:
+	* Decidimos aplicar o padrão "Data Mapper" (JPA) com o "Domain Model" na camada de Negócio
+	* Assumimos que a classe "Aluno" é imutável (implicações no acesso à base de dados)
