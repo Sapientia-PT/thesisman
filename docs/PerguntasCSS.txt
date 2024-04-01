@@ -86,4 +86,46 @@ R1. Tal e qual!
 
 ----
 
+P1. Na parte do enunciado: "No caso do aluno não ter nota igual ou superior a 10, fica reprovado à tese, e terá de realizar outra no ano
+lectivo seguinte.", o aluno pode fazer apenas 2 defesas de proposta ou as que quiser/conseguir?
+R1. Defesa da proposta, quantas precisar até passar.
+Defesa final, só pode fazer uma.
+
+----
+
+P1. Os utilizadores do tipo docente ou administrador (visto que poderia ser um coodernador de mestrado)
+podem orientar várias teses de alunos em simultâneo. No caso dos utilizadores empresariais também se aplica?
+R1. Todos podem orientar qualquer número de teses.
+
+----
+
+P1. Deve o handler que surge do caso de uso K (p. ex. MarcacaoDefesaHandler) ser incluído no diagrama de classes?
+Além disso, devem os restantes handlers para os outros casos de uso ser incluídos no diagrama de classes,
+apesar de não ser pedido que se desenhe mais SSD's além do K?
+R1. Vão precisar deles mais tarde, mas não necessariamente para esta meta. Eu recomendava incluírem, mas não é obrigatório listarem todos.
+
+P2. Ainda relacionado com os handlers, se for necessário colocá-los a todos no diagrama, deve o login dum estudante
+ser um handler diferente dum docente ou dum utilizador empresarial?
+R2. Pode ficar no mesmo.
+
+P3. Visto que estamos a usar o modelo de domínio como o padrão para a camada de negócio (corrija-me se estou errado,
+mas o enunciado dá a entender que este é o padrão a ser usado), estou correto em assumir que o JPA é análogo a usarmos
+o padrão Data Mapper para a camada de dados, em vez do Row Data Gateway ou o Table Data Gateway?
+R3. Estás correcto.
+
+P4. O nosso grupo está a ter muitas dificuldades em entender como representar a camada de dados no diagrama de classes.
+Se o Spring Data JPA gera a base de dados e mecanismos de interface entre o código Java da camada de negócio
+e a base de dados (pelo que entendi), como devemos representar a ligação entre a camada de negócio e a de dados?
+Para ilustrar a nossa dúvida, coloquei a imagem abaixo, que é relativo ao caso de estudo SaleSys.
+É este o tipo de diagrama que é esperado, com as conexões a classes do `javax.persistence`?
+R4. O JPA faz o mapeamento fora do código (apenas são geradas classes durante a compilação). Como tal não é preciso colocar.
+
+P5. É necessário representar a camada de apresentação no diagrama de classes, visto que não foi abordada em aula?
+R5. Não nesta meta.
+
+P6. É necessário mostrar o modelo de dados associado à estrutura JPA que criámos?
+R6. Não é preciso, mas devem fazer para consumo próprio. Podem também colocar na pasta da documentação.
+
+----
+
 ! Não pretendemos implementar casos de uso, mas pretendemos que o modelo de domínio e mapeamento para a BD permite fazer todos os casos de uso. !
