@@ -22,3 +22,4 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	| Todos estes são docentes, mas com características diferentes que os tornam únicos
 	* Ao contrário de "Docente", uma "Empresa" não tem subtipos, mas contém na verdade "Trabalhadores" e "Orientadores Externos"
 	* "Utilizador Empresarial" não precisa de submeter nenhum tema mas faz parte da "Empresa" na mesma
+	* "Aluno" faz pelo menos 2 documentos pois assumimos que não há dessistências (proposta de tese + final)
