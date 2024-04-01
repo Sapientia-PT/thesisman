@@ -29,3 +29,4 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 - Diagrama de Classes:
 	* Decidimos aplicar o padrão "Data Mapper" (JPA) com o "Domain Model" na camada de Negócio
 	* Assumimos que a classe "Aluno" é imutável (implicações no acesso à base de dados)
+	* Vamos ter que guardar "Alunos","Docentes","Empresas","Temas" e "Teses"
