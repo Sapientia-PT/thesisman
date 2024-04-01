@@ -21,3 +21,4 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	* "Docente" é uma entidade com 3 subtipos "Administrador", "Orientador Interno" e "Arguente".
 	| Todos estes são docentes, mas com características diferentes que os tornam únicos
 	* Ao contrário de "Docente", uma "Empresa" não tem subtipos, mas contém na verdade "Trabalhadores" e "Orientadores Externos"
+	* "Utilizador Empresarial" não precisa de submeter nenhum tema mas faz parte da "Empresa" na mesma
