@@ -54,4 +54,29 @@ public class Horario {
     public void setSala(Sala sala) {
         this.sala = sala;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        var that = (Aluno) obj;
+        return Objects.equals(this.horaInicio, that.horaInicio) &&
+                Objects.equals(this.horaFim, that.horaFim) &&
+                Objects.equals(this.sala, that.sala);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(horaInicio, horaFim, sala);
+    }
+
+    @Override
+    public String toString() {
+        return "Horario[" +
+                "horaInicio=" + horaInicio + ", " +
+                "horaFim=" + horaFim + ", " +
+                "sala=" + sala + ']';
+    }
 }
