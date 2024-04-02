@@ -14,6 +14,7 @@ public final class Aluno {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(unique = true)
     @NonNull
     private int nrAluno;
 
