@@ -7,33 +7,33 @@ import jakarta.persistence.Id;
 import org.springframework.lang.NonNull;
 
 @Entity
-public class Docente {
+public class Mestrado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NonNull
-    private long nrDocente;
+    private long idMestrado;
 
     @NonNull
     private String nome;
 
-    public Docente(long nrDocente, @NonNull String nome) {
-        this.nrDocente = nrDocente;
+    public Mestrado(long idMestrado, @NonNull String nome) {
+        this.idMestrado = idMestrado;
         this.nome = nome;
     }
 
-    public Docente() {
+    public Mestrado() {
 
     }
 
-    public long getNrDocente() {
-        return nrDocente;
+    public long getIdMestrado() {
+        return idMestrado;
     }
 
-    public void setNrDocente(long nrDocente) {
-        this.nrDocente = nrDocente;
+    public void setIdMestrado(long idMestrado) {
+        this.idMestrado = idMestrado;
     }
 
     @NonNull

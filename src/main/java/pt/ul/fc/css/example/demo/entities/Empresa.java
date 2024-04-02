@@ -19,6 +19,15 @@ public class Empresa {
     @NonNull
     private String nome;
 
+    public Empresa(long nrEmpresa, @NonNull String nome) {
+        this.nrEmpresa = nrEmpresa;
+        this.nome = nome;
+    }
+
+    public Empresa() {
+
+    }
+
     public long getNrEmpresa() {
         return nrEmpresa;
     }

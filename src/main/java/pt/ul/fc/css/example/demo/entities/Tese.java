@@ -1,0 +1,68 @@
+package pt.ul.fc.css.example.demo.entities;
+
+import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
+
+import java.util.List;
+
+@Entity
+public class Tese {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NonNull
+    private float nrTese;
+
+    @OneToOne
+    private Tema tema;
+
+    private int nota;
+
+    @OneToMany
+    private List<Documento> documentos;
+
+    public Tese(float nrTese, Tema tema, int nota, List<Documento> documentos) {
+        this.nrTese = nrTese;
+        this.tema = tema;
+        this.nota = nota;
+        this.documentos = documentos;
+    }
+
+    public Tese() {
+
+    }
+
+    public float getNrTese() {
+        return nrTese;
+    }
+
+    public void setNrTese(float nrTese) {
+        this.nrTese = nrTese;
+    }
+
+    public Tema getTema() {
+        return tema;
+    }
+
+    public void setTema(Tema tema) {
+        this.tema = tema;
+    }
+
+    public int getNota() {
+        return nota;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
+    }
+}

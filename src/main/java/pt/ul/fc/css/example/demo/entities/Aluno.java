@@ -1,9 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 import pt.ul.fc.css.example.demo.datatypes.EstadoAluno;
@@ -25,7 +22,19 @@ public final class Aluno {
 
     private float media;
 
+    @Enumerated(EnumType.STRING)
     private EstadoAluno estadoAluno;
+
+    public Aluno(int nrAluno, @NonNull String nome, float media, EstadoAluno estadoAluno) {
+        this.nrAluno = nrAluno;
+        this.nome = nome;
+        this.media = media;
+        this.estadoAluno = estadoAluno;
+    }
+
+    public Aluno() {
+
+    }
 
     public int getNrAluno() {
         return nrAluno;
