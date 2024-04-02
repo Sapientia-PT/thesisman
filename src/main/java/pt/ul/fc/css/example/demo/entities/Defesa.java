@@ -9,6 +9,7 @@ public class Defesa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private long nrDefesa;
 
     @OneToOne

@@ -1,9 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -14,6 +11,7 @@ public class Docente {
     private long id;
 
     @NonNull
+    @Column(unique = true)
     private long nrDocente;
 
     @NonNull
