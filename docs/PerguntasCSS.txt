@@ -128,4 +128,13 @@ R6. Não é preciso, mas devem fazer para consumo próprio. Podem também coloca
 
 ----
 
+P1. Quando estamos a representar classes que queremos definir como "entity",
+no diagrama de classes somos obrigados a incluir os getters e setters?
+Ou podemos definir de alguma forma que é uma entidade (p.ex com um "@Entity")?
+R1. Como aprenderam em DCO, não são obrigados a nada.
+Os diagramas de classes são usados para comunicar, depende do que querem comunicar.
+UML permite adicionar anotações extra ao vosso diagrama para representarem coisas que a linguagem não suporta nativamente.
+
+----
+
 ! Não pretendemos implementar casos de uso, mas pretendemos que o modelo de domínio e mapeamento para a BD permite fazer todos os casos de uso. !

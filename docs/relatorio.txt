@@ -34,3 +34,5 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	* Decidimos aplicar o padrão "Data Mapper" (JPA) com o "Domain Model" na camada de Negócio
 	* Assumimos que a classe "Aluno" é imutável (implicações no acesso à base de dados)
 	* Vamos ter que guardar "Alunos","Docentes","Empresas","Temas" e "Teses"
+	* Reparamos que faria mais sentido termos um atributo que diz o tipo (ENUM) do documento
+	| Anteriormente, separávamos em dois objetos "Proposta de Tese" e "Documento Final"
