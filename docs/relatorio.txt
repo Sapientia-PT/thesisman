@@ -46,3 +46,4 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	| Esta decisão tem impacto no desenho previamente feito
 	* Para os 'ENUMS', preferimos guardar como texto (-eficiente, +estável) ao invés de índices
 	* Criamos Testes Unitários para verificar o acesso à base de dados (repositórios das entidades)
+	* Assumimos que as empresas têm nomes diferentes (unique)
