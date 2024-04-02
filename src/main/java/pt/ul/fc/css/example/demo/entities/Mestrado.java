@@ -16,6 +16,7 @@ public class Mestrado {
     @NonNull
     private long idMestrado;
 
+    @Column(unique = true)
     @NonNull
     private String nome;
 
