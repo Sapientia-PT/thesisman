@@ -36,3 +36,7 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	* Vamos ter que guardar "Alunos","Docentes","Empresas","Temas" e "Teses"
 	* Reparamos que faria mais sentido termos um atributo que diz o tipo (ENUM) do documento
 	| Anteriormente, separávamos em dois objetos "Proposta de Tese" e "Documento Final"
+	* Decidimos que o "Data Mapper" estará na camada de "Business"
+	| Camada de dados fica abstraída pelo mapeador
+	| https://s3.studentvip.com.au/notes/36940-sample.pdf?v=1583643819
+	| https://github.com/richard-jp-leguen/glorified-typings/blob/master/ta-material/soen343-f2010/tut-73.implementing-data-mapper.md
