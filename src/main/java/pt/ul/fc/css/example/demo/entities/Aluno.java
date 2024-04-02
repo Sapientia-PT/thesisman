@@ -15,7 +15,7 @@ public final class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long id;
 
     @NonNull
     private int nrAluno;
@@ -75,13 +75,13 @@ public final class Aluno {
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, nome);
+        return Objects.hash(id, nome);
     }
 
     @Override
     public String toString() {
         return "Aluno[" +
-                "id=" + Id + ", " +
+                "id=" + id + ", " +
                 "nome=" + nome + ", " +
                 "media=" + media + ", " +
                 "estado=" + estadoAluno + ']';
