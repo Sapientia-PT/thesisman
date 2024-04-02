@@ -31,7 +31,7 @@ public class AlunoTests {
     }
 
     @Test
-    void isRepoEmpty(){ assertTrue(alunoRepo.count() > 0); }
+    void isRepoNotEmpty(){ assertTrue(alunoRepo.count() > 0); }
 
     @Test
     void isSize3(){ assertEquals(3, alunoRepo.count()); }
