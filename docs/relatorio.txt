@@ -45,3 +45,4 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	* Decidimos criar uma classe "Horário" que representa blocos de horários que serão usados pelas "Salas"
 	| Esta decisão tem impacto no desenho previamente feito
 	* Para os 'ENUMS', preferimos guardar como texto (-eficiente, +estável) ao invés de índices
+	* Criamos Testes Unitários para verificar o acesso à base de dados (repositórios das entidades)
