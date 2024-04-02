@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class ProjectPhase1Tests {
+public class AlunoTests {
 
     @Autowired private AlunoRepository alunoRepo;
 
