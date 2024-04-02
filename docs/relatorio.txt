@@ -40,3 +40,8 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	| Camada de dados fica abstraída pelo mapeador
 	| https://s3.studentvip.com.au/notes/36940-sample.pdf?v=1583643819
 	| https://github.com/richard-jp-leguen/glorified-typings/blob/master/ta-material/soen343-f2010/tut-73.implementing-data-mapper.md
+---------------------------------------
+- Implementação:
+	* Decidimos criar uma classe "Horário" que representa blocos de horários que serão usados pelas "Salas"
+	| Esta decisão tem impacto no desenho previamente feito
+	* Para os 'ENUMS', preferimos guardar como texto (-eficiente, +estável) ao invés de índices
