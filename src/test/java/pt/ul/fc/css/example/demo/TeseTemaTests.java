@@ -25,9 +25,8 @@ public class TeseTemaTests {
         Tema tema2 = temaRepository.save(new Tema("Dança do Tango aplicada", "Dançar", 200));
         Tema tema3 = temaRepository.save(new Tema("Geologia astróloga", "Dançar", 300));
 
-        teseRepository.save(new Tese(1, tema1, 10, List.of(new Documento(1, "nome1", 10, TipoDocumento.PROPOSTA_DE_TESE))));
-        teseRepository.save(tema2);
-        teseRepository.save(tema3);
+        // Create teses below
+
     }
 
     @AfterEach
