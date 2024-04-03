@@ -78,4 +78,5 @@ public class Tese {
     public void setTipoTese(TipoTese tipoTese) {
         this.tipoTese = tipoTese;
     }
+
 }

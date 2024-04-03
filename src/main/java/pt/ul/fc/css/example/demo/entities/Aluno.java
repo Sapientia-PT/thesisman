@@ -26,11 +26,15 @@ public final class Aluno {
     @Enumerated(EnumType.STRING)
     private EstadoAluno estadoAluno;
 
-    public Aluno(int nrAluno, @NonNull String nome, float media, EstadoAluno estadoAluno) {
+    @OneToOne
+    private Tese tese;
+
+    public Aluno(int nrAluno, @NonNull String nome, float media, EstadoAluno estadoAluno, Tese tese) {
         this.nrAluno = nrAluno;
         this.nome = nome;
         this.media = media;
         this.estadoAluno = estadoAluno;
+        this.tese = tese;
     }
 
     public Aluno() {
@@ -71,6 +75,14 @@ public final class Aluno {
 
     public void setEstadoAluno(EstadoAluno estadoAluno) {
         this.estadoAluno = estadoAluno;
+    }
+
+    public Tese getTese() {
+        return tese;
+    }
+
+    public void setTese(Tese tese) {
+        this.tese = tese;
     }
 
     @Override
