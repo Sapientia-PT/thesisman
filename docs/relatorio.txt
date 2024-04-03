@@ -47,3 +47,6 @@ RELATÓRIO TÉCNICO DE TOMADA DE DECISÕES
 	* Para os 'ENUMS', preferimos guardar como texto (-eficiente, +estável) ao invés de índices
 	* Criamos Testes Unitários para verificar o acesso à base de dados (repositórios das entidades)
 	* Assumimos que as empresas têm nomes diferentes (unique)
+	* Deixaremos os "Controllers" para quando precisarmos de controlar chamadas Web (http requests)
+	* "Facade" para abstrair complexidade da aplicação
+	* Alguns "Services" para ajudar no processo de validação de dados (que serão enviados mais tarde para a base de dados)
