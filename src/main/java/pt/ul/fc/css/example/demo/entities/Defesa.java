@@ -15,6 +15,14 @@ public class Defesa {
     @OneToOne
     private Documento documento;
 
+    public Defesa(long nrDefesa, Documento documento) {
+        this.nrDefesa = nrDefesa;
+    }
+
+    public Defesa() {
+
+    }
+
     public long getNrDefesa() {
         return nrDefesa;
     }
