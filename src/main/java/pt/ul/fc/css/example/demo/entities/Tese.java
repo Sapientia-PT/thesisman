@@ -2,6 +2,7 @@ package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
+import pt.ul.fc.css.example.demo.datatypes.TipoTese;
 
 import java.util.List;
 
@@ -23,11 +24,15 @@ public class Tese {
     @OneToMany
     private List<Documento> documentos;
 
-    public Tese(float nrTese, Tema tema, int nota, List<Documento> documentos) {
+    @Enumerated(EnumType.STRING)
+    private TipoTese tipoTese;
+
+    public Tese(float nrTese, Tema tema, int nota, List<Documento> documentos, TipoTese tipoTese) {
         this.nrTese = nrTese;
         this.tema = tema;
         this.nota = nota;
         this.documentos = documentos;
+        this.tipoTese = tipoTese;
     }
 
     public Tese() {
@@ -64,5 +69,13 @@ public class Tese {
 
     public void setDocumentos(List<Documento> documentos) {
         this.documentos = documentos;
+    }
+
+    public TipoTese getTipoTese() {
+        return tipoTese;
+    }
+
+    public void setTipoTese(TipoTese tipoTese) {
+        this.tipoTese = tipoTese;
     }
 }
