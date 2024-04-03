@@ -17,6 +17,7 @@ public class Defesa {
 
     public Defesa(long nrDefesa, Documento documento) {
         this.nrDefesa = nrDefesa;
+        this.documento = documento;
     }
 
     public Defesa() {
