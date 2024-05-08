@@ -13,6 +13,7 @@ public class Defesa {
     private long nrDefesa;
 
     @OneToOne
+    @JoinColumn(name = "documento_id")
     private Documento documento;
 
     public Defesa(long nrDefesa, Documento documento) {
