@@ -14,7 +14,9 @@ public class Horario {
   @NonNull private Time horaInicio;
   @NonNull private Time horaFim;
 
-  @ManyToOne private Sala sala;
+  @ManyToOne
+  @JoinColumn(name = "sala_id")
+  private Sala sala;
 
   public Horario(@NonNull Time horaInicio, @NonNull Time horaFim, Sala sala) {
     this.horaInicio = horaInicio;
