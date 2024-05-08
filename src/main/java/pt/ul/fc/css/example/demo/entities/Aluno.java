@@ -15,7 +15,6 @@ public final class Aluno {
     private long id;
 
     @Column(unique = true)
-    @NonNull
     private int nrAluno;
 
     @NonNull
@@ -27,6 +26,7 @@ public final class Aluno {
     private EstadoAluno estadoAluno;
 
     @OneToOne
+    @JoinColumn(name = "tese_id")
     private Tese tese;
 
     public Aluno(int nrAluno, @NonNull String nome, float media, EstadoAluno estadoAluno, Tese tese) {
