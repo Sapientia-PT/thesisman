@@ -12,8 +12,7 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NonNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private long nrEmpresa;
 
     @NonNull
@@ -31,6 +30,14 @@ public class Empresa {
 
     public Empresa() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getNrEmpresa() {
