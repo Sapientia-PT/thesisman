@@ -2,8 +2,6 @@ package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
-
-import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -19,9 +17,13 @@ public class Sala {
     @OneToMany(mappedBy = "sala")
     private List<Horario> horarios;
 
-    public Sala(long nrSala, List<Horario> horarios) {
+    @OneToMany(mappedBy = "sala")
+    private List<DefesaPresencial> defesasPresenciais;
+
+    public Sala(long nrSala, List<Horario> horarios, List<DefesaPresencial> defesasPresenciais) {
         this.nrSala = nrSala;
         this.horarios = horarios;
+        this.defesasPresenciais = defesasPresenciais;
     }
 
     public Sala() {

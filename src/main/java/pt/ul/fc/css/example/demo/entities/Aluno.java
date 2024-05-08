@@ -3,8 +3,6 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
-import pt.ul.fc.css.example.demo.datatypes.EstadoAluno;
-
 import java.util.Objects;
 
 @Entity
@@ -22,18 +20,13 @@ public final class Aluno {
 
     private float media;
 
-    @Enumerated(EnumType.STRING)
-    private EstadoAluno estadoAluno;
-
-    @OneToOne
-    @JoinColumn(name = "tese_id")
+    @OneToOne(mappedBy = "aluno")
     private Tese tese;
 
-    public Aluno(int nrAluno, @NonNull String nome, float media, EstadoAluno estadoAluno, Tese tese) {
+    public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese) {
         this.nrAluno = nrAluno;
         this.nome = nome;
         this.media = media;
-        this.estadoAluno = estadoAluno;
         this.tese = tese;
     }
 
@@ -69,14 +62,6 @@ public final class Aluno {
         this.media = media;
     }
 
-    public EstadoAluno getEstadoAluno() {
-        return estadoAluno;
-    }
-
-    public void setEstadoAluno(EstadoAluno estadoAluno) {
-        this.estadoAluno = estadoAluno;
-    }
-
     public Tese getTese() {
         return tese;
     }
@@ -105,7 +90,6 @@ public final class Aluno {
         return "Aluno[" +
                 "id=" + id + ", " +
                 "nome=" + nome + ", " +
-                "media=" + media + ", " +
-                "estado=" + estadoAluno + ']';
+                "media=" + media + "]";
     }
 }
