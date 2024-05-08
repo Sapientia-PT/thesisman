@@ -17,11 +17,12 @@ public class Tese {
     private float nrTese;
 
     @OneToOne
+    @JoinColumn(name = "tema_id")
     private Tema tema;
 
     private int nota;
 
-    @OneToMany
+    @OneToMany(mappedBy = "tese")
     private List<Documento> documentos;
 
     @Enumerated(EnumType.STRING)

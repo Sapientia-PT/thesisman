@@ -23,6 +23,10 @@ public class Documento {
     @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
 
+    @ManyToOne
+    @JoinColumn(name = "tese_id")
+    private Tese tese;
+
     public Documento(long nrDocumento, String nome, float nota, TipoDocumento tipoDocumento) {
         this.nrDocumento = nrDocumento;
         this.nome = nome;
