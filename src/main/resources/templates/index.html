@@ -10,9 +10,12 @@
 <body>
     <h1>Temas:</h1>
 
-    <ul>
-        <li th:each="tema : ${temas}" th:text="${tema.getTitulo()}"></li>
-    </ul>
+    <div>
+        <div th:each="tema : ${temas}">
+            <p th:text="${tema.getTitulo()}"></p>
+            <p th:if="${tema.aluno != null}" th:text="${tema.aluno.nome}"></p>
+        </div>
+    </div>
 </body>
 
 </html>
