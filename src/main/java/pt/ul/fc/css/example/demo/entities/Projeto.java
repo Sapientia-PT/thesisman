@@ -21,4 +21,12 @@ public class Projeto extends Tese {
     public Projeto() {
 
     }
+
+    public OrientadorExterno getOrientadorExterno() {
+        return orientadorExterno;
+    }
+
+    public void setOrientadorExterno(OrientadorExterno orientadorExterno) {
+        this.orientadorExterno = orientadorExterno;
+    }
 }
