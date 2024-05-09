@@ -7,7 +7,7 @@ import pt.ul.fc.css.example.demo.entities.*;
 
 import java.util.List;
 
-public interface TeseRepository extends JpaRepository<Tese, Long> {
+public interface DissertacaoRepository extends JpaRepository<Dissertacao, Long> {
 
     Tese findByNrTese(float nrTese);
 

@@ -7,7 +7,7 @@ import pt.ul.fc.css.example.demo.entities.*;
 
 import java.util.List;
 
-public interface TeseRepository extends JpaRepository<Tese, Long> {
+public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
     Tese findByNrTese(float nrTese);
 
@@ -21,5 +21,7 @@ public interface TeseRepository extends JpaRepository<Tese, Long> {
 
     @Query("SELECT p.tese FROM PropostaTese p WHERE p = :propostaTese")
     Tese findByPropostaTese(@Param("propostaTese") PropostaTese propostaTese);
+
+    List<Projeto> findByOrientadorExterno(OrientadorExterno orientadorExterno);
 
 }

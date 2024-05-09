@@ -1,17 +1,14 @@
 package pt.ul.fc.css.example.demo.business.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.datatypes.Regime;
-import pt.ul.fc.css.example.demo.entities.Defesa;
-import pt.ul.fc.css.example.demo.entities.Juri;
-import pt.ul.fc.css.example.demo.entities.PropostaTese;
+import pt.ul.fc.css.example.demo.entities.*;
 
 import java.util.List;
 
-public interface DefesaRepository extends JpaRepository<Defesa, Long> {
+public interface DefesaPresencialRepository extends JpaRepository<DefesaPresencial, Long> {
 
     Defesa findByNrDefesa(long nrDefesa);
 
@@ -23,5 +20,8 @@ public interface DefesaRepository extends JpaRepository<Defesa, Long> {
     List<Defesa> findByDuracaoMinutos(int duracaoMinutos);
 
     Defesa findByJuri(Juri juri);
+
+    @Query("SELECT s.defesasPresenciais FROM Sala s WHERE s = :sala")
+    List<DefesaPresencial> findBySala(@Param("sala") Sala sala);
 
 }
