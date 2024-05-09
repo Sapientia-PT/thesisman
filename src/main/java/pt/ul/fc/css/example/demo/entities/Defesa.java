@@ -1,7 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
 import pt.ul.fc.css.example.demo.datatypes.Regime;
 
 @Entity
