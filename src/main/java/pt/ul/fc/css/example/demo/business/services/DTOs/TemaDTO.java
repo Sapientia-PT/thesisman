@@ -1,6 +1,7 @@
 package pt.ul.fc.css.example.demo.business.services.DTOs;
 
 import org.springframework.stereotype.Component;
+import pt.ul.fc.css.example.demo.entities.Aluno;
 
 @Component
 public class TemaDTO {
@@ -18,6 +19,8 @@ public class TemaDTO {
     private String titulo;
     private String descricao;
     private float remunMensal;
+
+    private Aluno aluno;
 
     public String getTitulo() {
         return titulo;
@@ -41,5 +44,13 @@ public class TemaDTO {
 
     public void setRemunMensal(float remunMensal) {
         this.remunMensal = remunMensal;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 }

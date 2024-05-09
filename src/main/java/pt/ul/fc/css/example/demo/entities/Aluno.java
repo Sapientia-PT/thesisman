@@ -3,6 +3,7 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,15 +28,32 @@ public final class Aluno {
     @OneToMany(mappedBy = "aluno")
     private List<Tema> temasEscolhidos;
 
-    public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese) {
+    public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese, List<Tema> temasEscolhidos) {
         this.nrAluno = nrAluno;
         this.nome = nome;
         this.media = media;
         this.tese = tese;
+        this.temasEscolhidos = temasEscolhidos;
     }
 
     public Aluno() {
+        this.temasEscolhidos = new ArrayList<>();
+    }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Tema> getTemasEscolhidos() {
+        return temasEscolhidos;
+    }
+
+    public void setTemasEscolhidos(List<Tema> temasEscolhidos) {
+        this.temasEscolhidos = temasEscolhidos;
     }
 
     public int getNrAluno() {

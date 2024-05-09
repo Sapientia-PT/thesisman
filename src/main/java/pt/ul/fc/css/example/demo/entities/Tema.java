@@ -21,10 +21,11 @@ public class Tema {
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
 
-    public Tema(@NonNull String titulo, String descricao, float remunMensal) {
+    public Tema(@NonNull String titulo, String descricao, float remunMensal, Aluno aluno) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.remunMensal = remunMensal;
+        this.aluno = aluno;
     }
 
     public Tema() {
@@ -62,5 +63,13 @@ public class Tema {
 
     public void setRemunMensal(float remunMensal) {
         this.remunMensal = remunMensal;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 }
