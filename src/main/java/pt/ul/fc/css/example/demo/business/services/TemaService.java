@@ -35,22 +35,43 @@ public class TemaService {
     }
 
     public void candidatarTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws ApplicationException {
-        Optional<Aluno> optionalAluno = alunoRepository.findById(alunoDTO.getId());
-        if (!optionalAluno.isPresent())
-            throw new ApplicationException("Aluno not found");
-
-        Optional<Tema> optionalTema = temaRepository.findById(temaDTO.getId());
-        if (!optionalTema.isPresent()) {
-            throw new ApplicationException("Tema not found");
-        }
-
-        Aluno aluno = optionalAluno.get();
-        Tema tema = optionalTema.get();
+        Aluno aluno = findAlunoById(alunoDTO.getId());
+        Tema tema = findTemaById(temaDTO.getId());
 
         aluno.getTemasCandidatados().add(tema);
         tema.setAluno(aluno);
 
+        updateAlunoTema(aluno, tema);
+    }
+
+    public void cancelarCandidaturaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws ApplicationException {
+        Aluno aluno = findAlunoById(alunoDTO.getId());
+        Tema tema = findTemaById(temaDTO.getId());
+
+        aluno.getTemasCandidatados().remove(tema);
+        tema.setAluno(null);
+
+        updateAlunoTema(aluno, tema);
+    }
+
+    private Aluno findAlunoById(Long id) throws ApplicationException {
+        Optional<Aluno> optionalAluno = alunoRepository.findById(id);
+        if (!optionalAluno.isPresent())
+            throw new ApplicationException("Aluno not found");
+        return optionalAluno.get();
+    }
+
+
+    private Tema findTemaById(Long id) throws ApplicationException {
+        Optional<Tema> optionalTema = temaRepository.findById(id);
+        if (!optionalTema.isPresent())
+            throw new ApplicationException("Tema not found");
+        return optionalTema.get();
+    }
+
+    private void updateAlunoTema(Aluno aluno, Tema tema){
         alunoRepository.save(aluno);
         temaRepository.save(tema);
     }
+
 }
