@@ -3,7 +3,7 @@ package pt.ul.fc.css.example.demo.business.handlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
-import pt.ul.fc.css.example.demo.business.services.NullTitleException;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.entities.Tema;
 
 @Component

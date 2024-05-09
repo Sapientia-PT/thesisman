@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pt.ul.fc.css.example.demo.business.services.NullTitleException;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
 
 @Controller
