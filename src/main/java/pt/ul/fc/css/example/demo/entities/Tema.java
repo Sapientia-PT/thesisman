@@ -30,6 +30,14 @@ public class Tema {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @NonNull
     public String getTitulo() {
         return titulo;
