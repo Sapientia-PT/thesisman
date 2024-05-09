@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
-import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.entities.Aluno;
-import pt.ul.fc.css.example.demo.entities.Tema;
-import pt.ul.fc.css.example.demo.entities.Tese;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +39,7 @@ public class AlunoHandler {
         alunoDTO.setNome(a.getNome());
         alunoDTO.setMedia(a.getMedia());
         alunoDTO.setTese(a.getTese());
-        alunoDTO.setTemasEscolhidos(a.getTemasEscolhidos());
+        alunoDTO.setTemasEscolhidos(a.getTemasCandidatados());
         return alunoDTO;
     }
 }

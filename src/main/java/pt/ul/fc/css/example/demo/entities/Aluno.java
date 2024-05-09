@@ -26,18 +26,18 @@ public final class Aluno {
     private Tese tese;
 
     @OneToMany(mappedBy = "aluno")
-    private List<Tema> temasEscolhidos;
+    private List<Tema> temasCandidatados;
 
-    public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese, List<Tema> temasEscolhidos) {
+    public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese, List<Tema> temasCandidatados) {
         this.nrAluno = nrAluno;
         this.nome = nome;
         this.media = media;
         this.tese = tese;
-        this.temasEscolhidos = temasEscolhidos;
+        this.temasCandidatados = temasCandidatados;
     }
 
     public Aluno() {
-        this.temasEscolhidos = new ArrayList<>();
+        this.temasCandidatados = new ArrayList<>();
     }
 
     public long getId() {
@@ -48,12 +48,12 @@ public final class Aluno {
         this.id = id;
     }
 
-    public List<Tema> getTemasEscolhidos() {
-        return temasEscolhidos;
+    public List<Tema> getTemasCandidatados() {
+        return temasCandidatados;
     }
 
-    public void setTemasEscolhidos(List<Tema> temasEscolhidos) {
-        this.temasEscolhidos = temasEscolhidos;
+    public void setTemasCandidatados(List<Tema> temasCandidatados) {
+        this.temasCandidatados = temasCandidatados;
     }
 
     public int getNrAluno() {

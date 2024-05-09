@@ -35,7 +35,7 @@ public class TemaService {
         return temaHandler.getTemas();
     }
 
-    public void atribuirTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws ApplicationException {
+    public void candidatarTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws ApplicationException {
         Optional<Aluno> optionalAluno = alunoRepository.findById(alunoDTO.getId());
         if (!optionalAluno.isPresent())
             throw new ApplicationException("Aluno not found");
@@ -48,7 +48,7 @@ public class TemaService {
         Aluno aluno = optionalAluno.get();
         Tema tema = optionalTema.get();
 
-        aluno.getTemasEscolhidos().add(tema);
+        aluno.getTemasCandidatados().add(tema);
         tema.setAluno(aluno);
 
         alunoRepository.save(aluno);

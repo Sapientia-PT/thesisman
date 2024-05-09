@@ -34,7 +34,7 @@ public class WebController {
             TemaDTO tema1 = temaService.createTema("Republica das bananas", "Bananas!", 1000);
             TemaDTO tema2 = temaService.createTema("Macacos", "Ooga Booga", 42);
             AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
-            temaService.atribuirTemaAluno(tema1, aluno1);
+            temaService.candidatarTemaAluno(tema1, aluno1);
             return "init";
         } catch (ApplicationException e){
             throw new RuntimeException(e);
