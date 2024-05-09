@@ -3,6 +3,7 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,6 +23,9 @@ public final class Aluno {
 
     @OneToOne(mappedBy = "aluno")
     private Tese tese;
+
+    @OneToMany(mappedBy = "aluno")
+    private List<Tema> temasEscolhidos;
 
     public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese) {
         this.nrAluno = nrAluno;

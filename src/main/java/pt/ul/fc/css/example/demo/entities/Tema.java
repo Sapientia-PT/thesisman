@@ -1,9 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -19,6 +16,10 @@ public class Tema {
     private String descricao;
 
     private float remunMensal;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
 
     public Tema(@NonNull String titulo, String descricao, float remunMensal) {
         this.titulo = titulo;
