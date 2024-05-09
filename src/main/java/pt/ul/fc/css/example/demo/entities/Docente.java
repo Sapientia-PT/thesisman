@@ -12,11 +12,9 @@ public class Docente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NonNull
     @Column(unique = true)
     private long nrDocente;
 
-    @NonNull
     private String nome;
 
     @OneToMany(mappedBy = "docente")
@@ -29,7 +27,7 @@ public class Docente {
     }
 
     public Docente() {
-
+        
     }
 
     public long getNrDocente() {

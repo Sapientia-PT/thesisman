@@ -1,8 +1,5 @@
 package pt.ul.fc.css.example.demo.business.services.DTOs;
 
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.entities.Tema;
 import pt.ul.fc.css.example.demo.entities.Tese;

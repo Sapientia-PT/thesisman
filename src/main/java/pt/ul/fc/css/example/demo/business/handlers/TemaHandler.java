@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
-import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.entities.Tema;
 
 import java.util.ArrayList;

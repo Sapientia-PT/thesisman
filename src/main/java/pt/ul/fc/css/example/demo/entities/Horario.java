@@ -11,8 +11,8 @@ public class Horario {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NonNull private Time horaInicio;
-  @NonNull private Time horaFim;
+  private Time horaInicio;
+  private Time horaFim;
 
   @ManyToOne
   @JoinColumn(name = "sala_id")

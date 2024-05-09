@@ -10,7 +10,6 @@ public class Tema {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NonNull
     private String titulo;
 
     private String descricao;

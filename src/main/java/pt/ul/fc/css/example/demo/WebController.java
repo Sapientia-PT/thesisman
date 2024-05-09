@@ -1,14 +1,12 @@
 package pt.ul.fc.css.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
-import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 
@@ -32,7 +30,7 @@ public class WebController {
     public String initTest(Model model) {
         try{
             TemaDTO tema1 = temaService.createTema("Republica das bananas", "Bananas!", 1000);
-            TemaDTO tema2 = temaService.createTema("Macacos", "Ooga Booga", 42);
+            temaService.createTema("Macacos", "Ooga Booga", 42);
             AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
             temaService.candidatarTemaAluno(tema1, aluno1);
             return "init";

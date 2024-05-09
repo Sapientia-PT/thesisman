@@ -15,7 +15,6 @@ public class Empresa {
     @Column(unique = true, nullable = false)
     private long nrEmpresa;
 
-    @NonNull
     @Column(unique = true)
     private String nome;
 

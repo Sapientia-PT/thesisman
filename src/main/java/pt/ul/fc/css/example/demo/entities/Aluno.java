@@ -17,7 +17,6 @@ public final class Aluno {
     @Column(unique = true)
     private int nrAluno;
 
-    @NonNull
     private String nome;
 
     private float media;

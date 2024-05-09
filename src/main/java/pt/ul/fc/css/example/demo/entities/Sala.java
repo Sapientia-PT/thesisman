@@ -1,7 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
 import java.util.List;
 
 @Entity
@@ -11,7 +10,6 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NonNull
     private long nrSala;
 
     @OneToMany(mappedBy = "sala")
