@@ -1,17 +1,18 @@
 package pt.ul.fc.css.example.demo.business.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
 import pt.ul.fc.css.example.demo.business.handlers.TemaHandler;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.entities.Tema;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class TemaService {
 
     @Autowired
