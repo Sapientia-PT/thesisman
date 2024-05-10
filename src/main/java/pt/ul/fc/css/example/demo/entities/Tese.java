@@ -1,39 +1,43 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
-import pt.ul.fc.css.example.demo.datatypes.TipoTese;
 
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Tese {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NonNull
     private float nrTese;
+
+    private int nota;
 
     @OneToOne
     @JoinColumn(name = "tema_id")
     private Tema tema;
 
-    private int nota;
+    @OneToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
+    @ManyToOne
+    @JoinColumn(name = "docente_id")
+    private Docente docente;
 
     @OneToMany(mappedBy = "tese")
-    private List<Documento> documentos;
+    private List<PropostaTese> propostasTese;
 
-    @Enumerated(EnumType.STRING)
-    private TipoTese tipoTese;
-
-    public Tese(float nrTese, Tema tema, int nota, List<Documento> documentos, TipoTese tipoTese) {
+    public Tese(float nrTese, int nota, Tema tema, Aluno aluno, Docente docente, List<PropostaTese> propostasTese) {
         this.nrTese = nrTese;
-        this.tema = tema;
         this.nota = nota;
-        this.documentos = documentos;
-        this.tipoTese = tipoTese;
+        this.tema = tema;
+        this.aluno = aluno;
+        this.docente = docente;
+        this.propostasTese = propostasTese;
     }
 
     public Tese() {
@@ -56,6 +60,30 @@ public class Tese {
         this.tema = tema;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
+
+    public List<PropostaTese> getPropostasTese() {
+        return propostasTese;
+    }
+
+    public void setPropostasTese(List<PropostaTese> propostasTese) {
+        this.propostasTese = propostasTese;
+    }
+
     public int getNota() {
         return nota;
     }
@@ -63,21 +91,4 @@ public class Tese {
     public void setNota(int nota) {
         this.nota = nota;
     }
-
-    public List<Documento> getDocumentos() {
-        return documentos;
-    }
-
-    public void setDocumentos(List<Documento> documentos) {
-        this.documentos = documentos;
-    }
-
-    public TipoTese getTipoTese() {
-        return tipoTese;
-    }
-
-    public void setTipoTese(TipoTese tipoTese) {
-        this.tipoTese = tipoTese;
-    }
-
 }

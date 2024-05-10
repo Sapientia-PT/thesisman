@@ -1,24 +1,43 @@
-Coisas que estão por fazer!
+Entidade Utilizador a qual cada entidade, que precise de iniciar sessão, extenderia?
 
-    No fim:
-    -> Criar uma pasta docs, onde colocará um único documento PDF, com todos os desenhos resultantes do projeto.
+-----------------------------------------------------------------------------------------------------------------------
 
-    Desenhos:
-    -> Desenhar o modelo de domínio que modele o problema (e colocar na pasta docs).
-    -> Desenhar o SSD para o caso de uso K.
-    -> Desenhar um esboço do diagrama de classes que mostre a divisão em camadas.
+UtilizadorService:
+    Login com autenticação da universidade (Nota: vamos fazer mock desta funcionalidade e qualquer palavra passe será aceite)
+    Registo de utilizadores empresariais
+    Login de utilizadores empresariais
 
-    Software:
-    -> Implementar o código correspondente ao diagrama de classes.
-    -> Anotar as classes relevantes com as anotações JPA, de forma a fazer o melhor mapeamento possível.
-    -> Gerar a base de dados a partir das anotações escritas.
+TemaService:
+    Submissão de temas por parte dos utilizadores empresariais
+    Submissão de temas por parte dos docentes
+    Listar os temas disponíveis neste ano lectivo, por parte dos alunos
+    Candidatura a um tema (limite de 5), por parte dos alunos
+    Cancelamento da candidatura a um tema
 
-    Relatório:
-    -> Justificar no relatório o porquê de cada decisão tomada neste mapeamento.
-    -> Critérios de Avaliação:
-        •Descrição da arquitectura em camadas.
-        •Qualidade do Modelo de Domínio.
-        •Qualidade do Diagrama de Classes.
-        •Qualidade do SSD pedido.
-        •Qualidade do Mapeamento JPA
-        •Qualidade da justificação das decisões de mapeamento, de acordo com os padrões descritos na aula.
+TeseService:
+    Atribuição dos temas aos alunos (da parte do administrador)
+    Submissão do documento de proposta de tese, por parte dos alunos
+    Submissão do documento final de tese, por parte dos alunos
+    Registo da nota da defesa da proposta de tese, por parte do presidente do júri.
+    Marcação da Defesa da proposta de tese, por parte do orientador da tese
+    Registo da nota da defesa da proposta de tese, por parte do orientador da tese
+    Marcação da Defesa de tese, por parte do orientador da tese, incluindo a nomeação do júri.
+
+EstatisticaService:
+    Recolha de estatísticas sobre taxa de sucesso dos alunos.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Por cima dos casos de uso anteriores, pretende-se implementar a interface gráfica que permita aos uti-
+lizadores realizarem os casos de uso.
+
+A autenticação deve ser implementada de forma independente, sem integrar com a autenticação da FCUL.
+
+Pretendemos que os docentes e os utilizadores empresariais consigam fazer todos os casos de uso através do
+browser, numa interface web, com renderização server-side.
+
+Pretende-se que os alunos tenham uma aplicação JavaFX dedicada para este fim, onde se podem autenticar
+e ter acesso à lista de temas disponíveis, e escolher o seu top 5.
+Para além disso, caso já tenham iniciado uma tese, poderão submeter os documentos intermédio e final.
+
+Esta aplicação deve comunicar com o servidor através de uma interface REST, implementada para o efeito.

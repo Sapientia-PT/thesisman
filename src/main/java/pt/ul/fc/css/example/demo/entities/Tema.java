@@ -1,9 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -13,21 +10,33 @@ public class Tema {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NonNull
     private String titulo;
 
     private String descricao;
 
     private float remunMensal;
 
-    public Tema(@NonNull String titulo, String descricao, float remunMensal) {
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
+    public Tema(@NonNull String titulo, String descricao, float remunMensal, Aluno aluno) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.remunMensal = remunMensal;
+        this.aluno = aluno;
     }
 
     public Tema() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @NonNull
@@ -53,5 +62,13 @@ public class Tema {
 
     public void setRemunMensal(float remunMensal) {
         this.remunMensal = remunMensal;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 }

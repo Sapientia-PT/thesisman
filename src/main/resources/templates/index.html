@@ -8,7 +8,14 @@
 </head>
 
 <body>
-    <h1>Olá Mundo!</h1>
+    <h1>Temas:</h1>
+
+    <div>
+        <div th:each="tema : ${temas}">
+            <p th:text="${tema.getTitulo()}"></p>
+            <p th:if="${tema.aluno != null}" th:text="${tema.aluno.nome}"></p>
+        </div>
+    </div>
 </body>
 
 </html>

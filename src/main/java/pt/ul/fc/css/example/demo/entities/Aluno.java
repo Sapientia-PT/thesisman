@@ -3,8 +3,8 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
-import pt.ul.fc.css.example.demo.datatypes.EstadoAluno;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,28 +17,42 @@ public final class Aluno {
     @Column(unique = true)
     private int nrAluno;
 
-    @NonNull
     private String nome;
 
     private float media;
 
-    @Enumerated(EnumType.STRING)
-    private EstadoAluno estadoAluno;
-
-    @OneToOne
-    @JoinColumn(name = "tese_id")
+    @OneToOne(mappedBy = "aluno")
     private Tese tese;
 
-    public Aluno(int nrAluno, @NonNull String nome, float media, EstadoAluno estadoAluno, Tese tese) {
+    @OneToMany(mappedBy = "aluno")
+    private List<Tema> temasCandidatados;
+
+    public Aluno(int nrAluno, @NonNull String nome, float media, Tese tese, List<Tema> temasCandidatados) {
         this.nrAluno = nrAluno;
         this.nome = nome;
         this.media = media;
-        this.estadoAluno = estadoAluno;
         this.tese = tese;
+        this.temasCandidatados = temasCandidatados;
     }
 
     public Aluno() {
+        this.temasCandidatados = new ArrayList<>();
+    }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Tema> getTemasCandidatados() {
+        return temasCandidatados;
+    }
+
+    public void setTemasCandidatados(List<Tema> temasCandidatados) {
+        this.temasCandidatados = temasCandidatados;
     }
 
     public int getNrAluno() {
@@ -69,14 +83,6 @@ public final class Aluno {
         this.media = media;
     }
 
-    public EstadoAluno getEstadoAluno() {
-        return estadoAluno;
-    }
-
-    public void setEstadoAluno(EstadoAluno estadoAluno) {
-        this.estadoAluno = estadoAluno;
-    }
-
     public Tese getTese() {
         return tese;
     }
@@ -105,7 +111,6 @@ public final class Aluno {
         return "Aluno[" +
                 "id=" + id + ", " +
                 "nome=" + nome + ", " +
-                "media=" + media + ", " +
-                "estado=" + estadoAluno + ']';
+                "media=" + media + "]";
     }
 }
