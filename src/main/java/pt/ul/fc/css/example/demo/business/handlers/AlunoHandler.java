@@ -2,6 +2,7 @@ package pt.ul.fc.css.example.demo.business.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
@@ -21,6 +22,10 @@ public class AlunoHandler {
     aluno.setMedia(media);
 
     return dtofy(alunoRepository.save(aluno));
+  }
+
+  public Optional<AlunoDTO> getAluno(Long id) {
+    return alunoRepository.findById(id).map(this::dtofy);
   }
 
   public List<AlunoDTO> getAlunos() {
