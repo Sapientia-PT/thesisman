@@ -1,7 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
 
 @Entity
 public class Tema {
@@ -10,7 +9,7 @@ public class Tema {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @NonNull private String titulo;
+  private String titulo;
 
   private String descricao;
 
