@@ -1,8 +1,8 @@
 package pt.ul.fc.css.example.demo.business.handlers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
@@ -32,16 +32,14 @@ public class TemaHandler {
   }
 
   public List<TemaDTO> getTemas() {
-    ArrayList<TemaDTO> temas = new ArrayList<>();
-    for (Tema tema : temaRepository.findAll()) temas.add(dtofy(tema));
-    return temas;
+    return temaRepository.findAll().stream().map(this::dtofy).collect(Collectors.toList());
   }
 
   public void deleteTema(Long id) {
     temaRepository.deleteById(id);
   }
 
-  public Optional<TemaDTO> replaceTema(Long id, TemaDTO newTemaData) {
+  public Optional<TemaDTO> updateTema(Long id, TemaDTO newTemaData) {
     Optional<Tema> oldTema = temaRepository.findById(id);
     oldTema.ifPresent(
         tema -> {
