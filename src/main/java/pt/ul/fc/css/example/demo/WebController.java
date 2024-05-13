@@ -13,29 +13,26 @@ import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 @Controller
 public class WebController {
 
-    @Autowired
-    TemaService temaService;
+  @Autowired TemaService temaService;
 
-    @Autowired
-    UtilizadorService utilizadorService;
+  @Autowired UtilizadorService utilizadorService;
 
-    @RequestMapping("/")
-    public String getIndex(Model model) {
-        model.addAttribute("temas", temaService.getTemas());
-        return "index";
+  @RequestMapping("/")
+  public String getIndex(Model model) {
+    model.addAttribute("temas", temaService.getTemas());
+    return "index";
+  }
+
+  @RequestMapping("/init")
+  public String initTest(Model model) {
+    try {
+      TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
+      temaService.submeterTema("Macacos", "Ooga Booga", 42);
+      AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
+      temaService.candidatarTemaAluno(tema1, aluno1);
+      return "init";
+    } catch (ApplicationException e) {
+      throw new RuntimeException(e);
     }
-
-
-    @RequestMapping("/init")
-    public String initTest(Model model) {
-        try{
-            TemaDTO tema1 = temaService.createTema("Republica das bananas", "Bananas!", 1000);
-            temaService.createTema("Macacos", "Ooga Booga", 42);
-            AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
-            temaService.candidatarTemaAluno(tema1, aluno1);
-            return "init";
-        } catch (ApplicationException e){
-            throw new RuntimeException(e);
-        }
-    }
+  }
 }
