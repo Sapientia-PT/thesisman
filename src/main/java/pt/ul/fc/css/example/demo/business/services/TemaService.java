@@ -9,7 +9,7 @@ import pt.ul.fc.css.example.demo.business.handlers.TemaAlunoHandler;
 import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
-import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.MaximoTemasException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.entities.Tema;
@@ -37,12 +37,13 @@ public class TemaService {
     return dtofy(submeterTemaHandler.createTema(titulo, descricao, remunMensal));
   }
 
-  public void candidatarTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws ApplicationException {
+  public void candidatarTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
+      throws NotFoundException, MaximoTemasException {
     temaAlunoHandler.candidatarTemaAluno(temaDTO, alunoDTO);
   }
 
   public void cancelarCandidaturaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
-      throws ApplicationException {
+      throws NotFoundException {
     temaAlunoHandler.cancelarCandidaturaAluno(temaDTO, alunoDTO);
   }
 
