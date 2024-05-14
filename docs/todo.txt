@@ -25,6 +25,7 @@ TeseService:
 
 EstatisticaService:
     Recolha de estatísticas sobre taxa de sucesso dos alunos.
+    Taxa de sucesso por dissertação vs projeto
 
 -----------------------------------------------------------------------------------------------------------------------
 
