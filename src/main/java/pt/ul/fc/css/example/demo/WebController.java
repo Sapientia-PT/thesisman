@@ -20,8 +20,25 @@ public class WebController {
 
   @RequestMapping("/")
   public String getIndex(Model model) {
+    return "redirect:/temas";
+  }
+
+  @RequestMapping("/temas")
+  public String temas(Model model) {
     model.addAttribute("temas", temaService.getTemas());
-    return "index";
+    return "temas";
+  }
+
+  @RequestMapping("/aprovados")
+  public String aprovados(Model model) {
+    model.addAttribute("alunosAprovados", estatisticaService.calcularNumeroAlunosAprovados());
+    return "aprovados";
+  }
+
+  @RequestMapping("/reprovados")
+  public String reprovados(Model model) {
+    model.addAttribute("alunosReprovados", estatisticaService.calcularNumeroAlunosReprovados());
+    return "reprovados";
   }
 
   @RequestMapping("/init")
@@ -35,17 +52,5 @@ public class WebController {
     } catch (ApplicationException e) {
       throw new RuntimeException(e);
     }
-  }
-
-  @RequestMapping("/aprovados")
-  public String aprovados(Model model) {
-    model.addAttribute("alunosAprovados", estatisticaService.calcularNumeroAlunosAprovados());
-    return "aprovados";
-  }
-
-  @RequestMapping("/reprovados")
-  public String reprovados(Model model) {
-    model.addAttribute("alunosReprovados", estatisticaService.calcularNumeroAlunosReprovados());
-    return "reprovados";
   }
 }
