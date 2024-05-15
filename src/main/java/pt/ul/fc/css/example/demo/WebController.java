@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
@@ -29,8 +28,8 @@ public class WebController {
     try {
       TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       temaService.submeterTema("Macacos", "Ooga Booga", 42);
-      AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
-      temaService.candidatarTemaAluno(tema1, aluno1);
+      String aluno1Token = utilizadorService.createAluno("João", 58195, 20.0f);
+      temaService.candidatarTemaAluno(tema1, utilizadorService.getAluno(58195));
       return "init";
     } catch (ApplicationException e) {
       throw new RuntimeException(e);
