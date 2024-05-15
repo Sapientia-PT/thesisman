@@ -26,12 +26,16 @@ public class Defesa {
   @JoinColumn(name = "sala_id")
   private Sala sala;
 
-  public Defesa(PropostaTese propostaTese, int duracaoMinutos, Juri juri, Time hora, Sala sala) {
+  private int nota;
+
+  public Defesa(
+      PropostaTese propostaTese, int duracaoMinutos, Juri juri, Time hora, Sala sala, int nota) {
     this.propostaTese = propostaTese;
     this.duracaoMinutos = duracaoMinutos;
     this.juri = juri;
     this.hora = hora;
     this.sala = sala;
+    this.nota = nota;
   }
 
   public Defesa() {}
@@ -82,5 +86,13 @@ public class Defesa {
 
   public void setSala(Sala sala) {
     this.sala = sala;
+  }
+
+  public int getNota() {
+    return nota;
+  }
+
+  public void setNota(int nota) {
+    this.nota = nota;
   }
 }
