@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt_PT">
+
+<head>
+    <meta charset="ISO-8859-1" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Spring Boot Application</title>
+</head>
+
+<body>
+    <h1>Alunos:</h1>
+
+    <div class="container">
+        <div th:each="aluno : ${alunos}" class="aluno">
+            <p th:text="${aluno.getNome()}"></p>
+            <p th:if="${aluno.tema != null}" class="tema">
+                Tema: <span class="tema-titulo" th:text="${aluno.tema.titulo}"></span>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

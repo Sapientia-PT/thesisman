@@ -23,6 +23,12 @@ public class WebController {
     return "redirect:/temas";
   }
 
+  @RequestMapping("/alunos")
+  public String alunos(Model model) {
+    model.addAttribute("alunos", utilizadorService.getAlunos());
+    return "alunos";
+  }
+
   @RequestMapping("/temas")
   public String temas(Model model) {
     model.addAttribute("temas", temaService.getTemas());
