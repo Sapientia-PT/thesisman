@@ -18,7 +18,7 @@ public class PropostaTeseHandler {
   @Autowired private TeseRepository teseRepository;
   @Autowired private DefesaRepository defesaRepository;
 
-  public void submeterPropostaTese(Tese tese) throws NotFoundException {
+  public void submeterPropostaTese(Tese tese, int duracaoMinutos) throws NotFoundException {
     Optional<Tese> repoTese = teseRepository.findById(tese.getId());
 
     if (repoTese.isEmpty()) throw new NotFoundException("No tese found");
@@ -26,6 +26,7 @@ public class PropostaTeseHandler {
     Tese foundTese = repoTese.get();
 
     Defesa defesa = new Defesa();
+    defesa.setDuracaoMinutos(duracaoMinutos);
     PropostaTese propostaTese = new PropostaTese();
 
     propostaTese.setTese(foundTese);

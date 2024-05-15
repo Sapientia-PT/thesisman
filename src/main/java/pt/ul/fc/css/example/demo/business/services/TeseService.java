@@ -20,6 +20,10 @@ public class TeseService {
   }
 
   public void submeterPropostaTese(Tese tese) throws NotFoundException {
-    propostaTeseHandler.submeterPropostaTese(tese);
+    propostaTeseHandler.submeterPropostaTese(tese, 60);
+  }
+
+  public void submeterDocumentoFinal(Tese tese) throws NotFoundException {
+    propostaTeseHandler.submeterPropostaTese(tese, 90);
   }
 }
