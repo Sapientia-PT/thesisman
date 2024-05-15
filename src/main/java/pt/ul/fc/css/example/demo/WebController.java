@@ -42,4 +42,10 @@ public class WebController {
     model.addAttribute("alunosAprovados", estatisticaService.calcularNumeroAlunosAprovados());
     return "aprovados";
   }
+
+  @RequestMapping("/reprovados")
+  public String reprovados(Model model) {
+    model.addAttribute("alunosReprovados", estatisticaService.calcularNumeroAlunosReprovados());
+    return "reprovados";
+  }
 }
