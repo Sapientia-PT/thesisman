@@ -3,29 +3,28 @@ Entidade Utilizador a qual cada entidade, que precise de iniciar sessão, extend
 -----------------------------------------------------------------------------------------------------------------------
 
 UtilizadorService:
-    Login com autenticação da universidade (Nota: vamos fazer mock desta funcionalidade e qualquer palavra passe será aceite)
-    Registo de utilizadores empresariais
-    Login de utilizadores empresariais
+    A. Login com autenticação da universidade (Nota: vamos fazer mock desta funcionalidade e qualquer palavra passe será aceite)
+    B. Registo de utilizadores empresariais
+    C. Login de utilizadores empresariais
 
 TemaService:
-    Submissão de temas por parte dos utilizadores empresariais
-    Submissão de temas por parte dos docentes
-    Listar os temas disponíveis neste ano lectivo, por parte dos alunos
-    Candidatura a um tema (limite de 5), por parte dos alunos
-    Cancelamento da candidatura a um tema
+    D. Submissão de temas por parte dos docentes
+    E. Submissão de temas por parte dos utilizadores empresariais
+    F. Listar os temas disponíveis neste ano lectivo, por parte dos alunos
+    G. Candidatura a um tema (limite de 5), por parte dos alunos
+    H. Cancelamento da candidatura a um tema
 
 TeseService:
-    Atribuição dos temas aos alunos (da parte do administrador)
-    Submissão do documento de proposta de tese, por parte dos alunos
-    Submissão do documento final de tese, por parte dos alunos
-    Registo da nota da defesa da proposta de tese, por parte do presidente do júri.
-    Marcação da Defesa da proposta de tese, por parte do orientador da tese
-    Registo da nota da defesa da proposta de tese, por parte do orientador da tese
-    Marcação da Defesa de tese, por parte do orientador da tese, incluindo a nomeação do júri.
+    I. Atribuição dos temas aos alunos (da parte do administrador)
+    J. Submissão do documento de proposta de tese, por parte dos alunos
+    K. Marcação da Defesa da proposta de tese, por parte do orientador da tese
+    L. Registo da nota da defesa da proposta de tese, por parte do orientador da tese
+    M. Submissão do documento final de tese, por parte dos alunos
+    N. Marcação da Defesa de tese, por parte do orientador da tese, incluindo a nomeação do júri
+    O. Registo da nota da defesa da proposta de tese, por parte do presidente do júri
 
 EstatisticaService:
-    Recolha de estatísticas sobre taxa de sucesso dos alunos.
-    Taxa de sucesso por dissertação vs projeto
+    P. Recolha de estatísticas sobre taxa de sucesso dos alunos. (e.g. Taxa de sucesso por dissertação vs projeto)
 
 -----------------------------------------------------------------------------------------------------------------------
 
