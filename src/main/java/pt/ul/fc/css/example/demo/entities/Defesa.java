@@ -1,89 +1,86 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
-import pt.ul.fc.css.example.demo.datatypes.Regime;
+import java.sql.Time;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Defesa {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-    @Column(unique = true)
-    private long nrDefesa;
+  @OneToOne(mappedBy = "defesa")
+  private PropostaTese propostaTese;
 
-    @OneToOne(mappedBy = "defesa")
-    private PropostaTese propostaTese;
+  @Column(nullable = false)
+  private int duracaoMinutos;
 
-    @Enumerated(EnumType.STRING)
-    private Regime regime;
+  @OneToOne
+  @JoinColumn(name = "juri_id")
+  private Juri juri;
 
-    @Column(nullable = false)
-    private int duracaoMinutos;
+  private Time hora;
 
-    @OneToOne
-    @JoinColumn(name = "juri_id")
-    private Juri juri;
+  @ManyToOne
+  @JoinColumn(name = "sala_id")
+  private Sala sala;
 
-    public Defesa(long nrDefesa, PropostaTese propostaTese, Regime regime, int duracaoMinutos, Juri juri) {
-        this.nrDefesa = nrDefesa;
-        this.propostaTese = propostaTese;
-        this.regime = regime;
-        this.duracaoMinutos = duracaoMinutos;
-        this.juri = juri;
-    }
+  public Defesa(PropostaTese propostaTese, int duracaoMinutos, Juri juri, Time hora, Sala sala) {
+    this.propostaTese = propostaTese;
+    this.duracaoMinutos = duracaoMinutos;
+    this.juri = juri;
+    this.hora = hora;
+    this.sala = sala;
+  }
 
-    public Defesa() {
+  public Defesa() {}
 
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public PropostaTese getPropostaTese() {
+    return propostaTese;
+  }
 
-    public long getNrDefesa() {
-        return nrDefesa;
-    }
+  public void setPropostaTese(PropostaTese propostaTese) {
+    this.propostaTese = propostaTese;
+  }
 
-    public void setNrDefesa(long nrDefesa) {
-        this.nrDefesa = nrDefesa;
-    }
+  public int getDuracaoMinutos() {
+    return duracaoMinutos;
+  }
 
-    public PropostaTese getPropostaTese() {
-        return propostaTese;
-    }
+  public void setDuracaoMinutos(int duracaoMinutos) {
+    this.duracaoMinutos = duracaoMinutos;
+  }
 
-    public void setPropostaTese(PropostaTese propostaTese) {
-        this.propostaTese = propostaTese;
-    }
+  public Juri getJuri() {
+    return juri;
+  }
 
-    public Regime getRegime() {
-        return regime;
-    }
+  public void setJuri(Juri juri) {
+    this.juri = juri;
+  }
 
-    public void setRegime(Regime regime) {
-        this.regime = regime;
-    }
+  public Time getHora() {
+    return hora;
+  }
 
-    public int getDuracaoMinutos() {
-        return duracaoMinutos;
-    }
+  public void setHora(Time hora) {
+    this.hora = hora;
+  }
 
-    public void setDuracaoMinutos(int duracaoMinutos) {
-        this.duracaoMinutos = duracaoMinutos;
-    }
+  public Sala getSala() {
+    return sala;
+  }
 
-    public Juri getJuri() {
-        return juri;
-    }
-
-    public void setJuri(Juri juri) {
-        this.juri = juri;
-    }
+  public void setSala(Sala sala) {
+    this.sala = sala;
+  }
 }
