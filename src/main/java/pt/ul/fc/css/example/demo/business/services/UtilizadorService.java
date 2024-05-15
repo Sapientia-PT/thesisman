@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import pt.ul.fc.css.example.demo.business.handlers.AlunoHandler;
 import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.UserAlreadyExistsException;
 import pt.ul.fc.css.example.demo.entities.Aluno;
 
 @Service
@@ -16,12 +17,25 @@ public class UtilizadorService {
 
   @Autowired private AlunoHandler alunoHandler;
 
-  public List<AlunoDTO> getAlunos() {
-    return alunoHandler.getAlunos().stream().map(this::dtofy).collect(Collectors.toList());
+  @Autowired private TokenService tokenService;
+
+  public String createAluno(String nome, int nrAluno, float media)
+      throws UserAlreadyExistsException {
+    Aluno aluno = alunoRepository.findByNrAluno(nrAluno);
+    if (aluno != null)
+      throw new UserAlreadyExistsException("Aluno with nrAluno " + nrAluno + " already exists");
+
+    String generatedToken = tokenService.generateToken();
+    alunoHandler.createAluno(nome, generatedToken, nrAluno, media);
+    return generatedToken;
   }
 
-  public AlunoDTO createAluno(int nrAluno, String nome, float media) {
-    return dtofy(alunoHandler.createAluno(nrAluno, nome, media));
+  public AlunoDTO getAluno(int nrAluno) {
+    return dtofy(alunoRepository.findByNrAluno(nrAluno));
+  }
+
+  public List<AlunoDTO> getAlunos() {
+    return alunoRepository.findAll().stream().map(this::dtofy).collect(Collectors.toList());
   }
 
   private AlunoDTO dtofy(Aluno a) {
