@@ -19,21 +19,19 @@ public class WebController {
 
   @RequestMapping("/")
   public String getIndex(Model model) {
-    model.addAttribute("temas", temaService.getTemas());
-    return "index";
+    return "redirect:/temas";
   }
 
-  @RequestMapping("/init")
-  public String initTest(Model model) {
-    try {
-      TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
-      temaService.submeterTema("Macacos", "Ooga Booga", 42);
-      String aluno1Token = utilizadorService.createAluno("João", 58195, 20.0f);
-      temaService.candidatarTemaAluno(tema1, utilizadorService.getAluno(58195));
-      return "init";
-    } catch (ApplicationException e) {
-      throw new RuntimeException(e);
-    }
+  @RequestMapping("/alunos")
+  public String alunos(Model model) {
+    model.addAttribute("alunos", utilizadorService.getAlunos());
+    return "alunos";
+  }
+
+  @RequestMapping("/temas")
+  public String temas(Model model) {
+    model.addAttribute("temas", temaService.getTemas());
+    return "temas";
   }
 
   @RequestMapping("/aprovados")
@@ -46,5 +44,18 @@ public class WebController {
   public String reprovados(Model model) {
     model.addAttribute("alunosReprovados", estatisticaService.calcularNumeroAlunosReprovados());
     return "reprovados";
+  }
+
+  @RequestMapping("/init")
+  public String initTest(Model model) {
+    try {
+      TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
+      temaService.submeterTema("Macacos", "Ooga Booga", 42);
+      AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
+      temaService.candidatarTemaAluno(tema1, aluno1);
+      return "init";
+    } catch (ApplicationException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
