@@ -2,46 +2,32 @@ package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
 import java.util.List;
-import org.springframework.lang.NonNull;
 
 @Entity
-public class Docente {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
+public class Docente extends Utilizador {
 
   @Column(unique = true)
-  private long nrDocente;
-
-  private String nome;
+  private int nrDocente;
 
   @OneToMany(mappedBy = "docente")
   private List<Tese> teses;
 
-  public Docente(long nrDocente, @NonNull String nome, List<Tese> teses) {
+  public Docente(String nome, String token, int nrDocente, List<Tese> teses) {
+    super(nome, token);
     this.nrDocente = nrDocente;
-    this.nome = nome;
     this.teses = teses;
   }
 
-  public Docente() {}
+  public Docente() {
+    super();
+  }
 
-  public long getNrDocente() {
+  public int getNrDocente() {
     return nrDocente;
   }
 
-  public void setNrDocente(long nrDocente) {
+  public void setNrDocente(int nrDocente) {
     this.nrDocente = nrDocente;
-  }
-
-  @NonNull
-  public String getNome() {
-    return nome;
-  }
-
-  public void setNome(@NonNull String nome) {
-    this.nome = nome;
   }
 
   public List<Tese> getTeses() {
