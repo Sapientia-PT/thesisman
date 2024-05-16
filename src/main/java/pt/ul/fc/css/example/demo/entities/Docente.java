@@ -7,12 +7,12 @@ import java.util.List;
 public class Docente extends Utilizador {
 
   @Column(unique = true)
-  private long nrDocente;
+  private int nrDocente;
 
   @OneToMany(mappedBy = "docente")
   private List<Tese> teses;
 
-  public Docente(String nome, String token, long nrDocente, List<Tese> teses) {
+  public Docente(String nome, String token, int nrDocente, List<Tese> teses) {
     super(nome, token);
     this.nrDocente = nrDocente;
     this.teses = teses;
@@ -22,11 +22,11 @@ public class Docente extends Utilizador {
     super();
   }
 
-  public long getNrDocente() {
+  public int getNrDocente() {
     return nrDocente;
   }
 
-  public void setNrDocente(long nrDocente) {
+  public void setNrDocente(int nrDocente) {
     this.nrDocente = nrDocente;
   }
 
