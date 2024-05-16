@@ -51,8 +51,8 @@ public class WebController {
     try {
       TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       temaService.submeterTema("Macacos", "Ooga Booga", 42);
-      AlunoDTO aluno1 = utilizadorService.createAluno(58195, "João", 20.0f);
-      temaService.candidatarTemaAluno(tema1, aluno1);
+      String alunoToken = utilizadorService.createAluno("João", 58195, 20.0f);
+      temaService.candidatarTemaAluno(tema1, utilizadorService.getAluno(58195));
       return "init";
     } catch (ApplicationException e) {
       throw new RuntimeException(e);
