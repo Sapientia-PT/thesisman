@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class AlunosApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(AlunosApplication.class.getResource("auth-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 310, 200);
         stage.setTitle("AlunosFX");
         stage.setScene(scene);
         stage.setResizable(false);
