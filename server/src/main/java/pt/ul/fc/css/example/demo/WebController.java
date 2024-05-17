@@ -34,16 +34,11 @@ public class WebController {
     return "temas";
   }
 
-  @RequestMapping("/aprovados")
-  public String aprovados(Model model) {
+  @RequestMapping("/estatisticas")
+  public String estatisticas(Model model) {
     model.addAttribute("alunosAprovados", estatisticaService.calcularNumeroAlunosAprovados());
-    return "aprovados";
-  }
-
-  @RequestMapping("/reprovados")
-  public String reprovados(Model model) {
     model.addAttribute("alunosReprovados", estatisticaService.calcularNumeroAlunosReprovados());
-    return "reprovados";
+    return "estatisticas";
   }
 
   @RequestMapping("/init")
