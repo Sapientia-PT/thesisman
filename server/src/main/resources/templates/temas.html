@@ -13,8 +13,8 @@
     <div class="container">
         <div th:each="tema : ${temas}" class="element">
             <p class="element-title" th:text="${tema.getTitulo()}"></p>
-            <p th:if="${tema.aluno != null}" class="object">
-                Aluno: <span th:text="${tema.aluno.nome}"></span>
+            <p th:if="${tema.getAluno() != null}" class="object">
+                Aluno: <span th:text="${tema.getAluno().getNome()}"></span>
             </p>
         </div>
     </div>
