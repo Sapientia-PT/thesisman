@@ -22,25 +22,25 @@ h1 {
     margin-top: 20px;
 }
 
-.aluno {
+.object {
     padding: 10px;
     border-bottom: 1px solid #e0e0e0;
 }
 
-.aluno:last-child {
+.object:last-child {
     border-bottom: none;
 }
 
-.aluno p {
+.object p {
     margin: 5px 0;
 }
 
-.tema {
+.element {
     font-style: italic;
     color: gray;
 }
 
-.tema-titulo {
+.element-title {
     font-weight: bold;
     color: #333;
 }
