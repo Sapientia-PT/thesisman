@@ -49,6 +49,8 @@ public class WebController {
   @RequestMapping("/init")
   public String initTest(Model model) {
     try {
+      // TODO: implement clear data
+      // create some data
       TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       temaService.submeterTema("Macacos", "Ooga Booga", 42);
       String alunoToken = utilizadorService.createAluno("João", 58195, 20.0f);

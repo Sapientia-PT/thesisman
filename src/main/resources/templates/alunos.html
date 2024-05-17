@@ -13,9 +13,11 @@
     <div class="container">
         <div th:each="aluno : ${alunos}" class="aluno">
             <p th:text="${aluno.getNome()}"></p>
-            <p th:if="${aluno.tema != null}" class="tema">
-                Tema: <span class="tema-titulo" th:text="${aluno.tema.titulo}"></span>
-            </p>
+            <p th:text="${aluno.getNrAluno()}"></p>
+            <p th:text="${aluno.getMedia()}"></p>
+            <div th:each="tema : ${aluno.getTemasCandidatados()}" class="tema">
+                <li th:text="${tema.getTitulo()}"></li>
+            </div>
         </div>
     </div>
 </body>
