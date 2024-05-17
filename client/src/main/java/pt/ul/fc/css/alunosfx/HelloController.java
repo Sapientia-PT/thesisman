@@ -1,4 +1,4 @@
-package pt.ul.fc.css.alunosfx.alunosfx;
+package pt.ul.fc.css.alunosfx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

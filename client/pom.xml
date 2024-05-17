@@ -64,7 +64,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>pt.ul.fc.css.alunosfx.alunosfx/pt.ul.fc.css.alunosfx.alunosfx.HelloApplication</mainClass>
+              <mainClass>pt.ul.fc.css.alunosfx/pt.ul.fc.css.alunosfx.HelloApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
