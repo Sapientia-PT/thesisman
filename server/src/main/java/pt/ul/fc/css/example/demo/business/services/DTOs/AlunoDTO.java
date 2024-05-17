@@ -24,10 +24,6 @@ public class AlunoDTO {
 
   private float media;
 
-  private Tese tese;
-
-  private List<Tema> temasCandidatados;
-
   public int getNrAluno() {
     return nrAluno;
   }
@@ -50,21 +46,5 @@ public class AlunoDTO {
 
   public void setMedia(float media) {
     this.media = media;
-  }
-
-  public Tese getTese() {
-    return tese;
-  }
-
-  public void setTese(Tese tese) {
-    this.tese = tese;
-  }
-
-  public List<Tema> getTemasCandidatados() {
-    return temasCandidatados;
-  }
-
-  public void setTemasCandidatados(List<Tema> temasCandidatados) {
-    this.temasCandidatados = temasCandidatados;
   }
 }
