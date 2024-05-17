@@ -1,15 +1,11 @@
 # Projeto de Referência de SpringBoot
 
-## Authors
+## Autores
 Guilherme Gouveia   - 58176
 
 João Miguel         - 58195
 
 Rafael Correia      - 58236
-
-## O que fazer
-
-Este projeto serve para verificar que todas as dependências necessárias ao projeto estão a funcionar.
 
 ## Dependências
 
@@ -52,10 +48,12 @@ Este comando vai iniciar dois containers:
 
 ## Terceiro passo
 
-Abrir http://localhost:8080 num browser e verificar que aparece a string "Olá Mundo".
+Abrir http://localhost:8080 num browser e verificar que aparece uma página com os temas com alunos que se candidataram ao mesmo.
 
-Pode ainda confirmar que consegue ver um objeto JSON em http://localhost:8080/api/author/1
-
+Pode ainda confirmar que consegue ver:
+* http://localhost:8080/alunos Lista de todos os alunos
+* http://localhost:8080/aprovados Número de Alunos aprovados (média > 10)
+* http://localhost:8080/reprovados Número de Alunos reprovados (média < 10)
 
 # FAQ
 
