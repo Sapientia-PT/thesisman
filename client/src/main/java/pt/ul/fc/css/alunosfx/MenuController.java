@@ -1,9 +1,11 @@
 package pt.ul.fc.css.alunosfx;
 
-import javafx.application.Platform;
+import com.google.gson.Gson;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import pt.ul.fc.css.alunosfx.presentation.model.AlunoRead;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,43 +30,24 @@ public class MenuController {
     private void getNomeAluno() {
         String endpoint = "http://localhost:8080/api/aluno/" + nrAluno;
 
-        new Thread(() -> {
-            try {
-                URL url = new URL(endpoint);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
+        try {
+            URL url = new URL(endpoint);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
 
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String inputLine;
-                    StringBuilder response = new StringBuilder();
-
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
-
-                    // Parse JSON response manually
-                    String jsonResponse = response.toString();
-                    String nomeAlunoResponse = extractNomeFromJson(jsonResponse);
-
-                    // Update the UI on the JavaFX Application Thread
-                    Platform.runLater(() -> nomeAluno.setText(nomeAlunoResponse));
-                } else {
-                    System.out.println("GET request failed: " + responseCode);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            StringBuilder responseContent = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                responseContent.append(line);
             }
-        }).start();
-    }
+            reader.close();
 
-    // Simple method to extract 'nome' from JSON response
-    private String extractNomeFromJson(String jsonResponse) {
-        String nomeKey = "\"nome\":\"";
-        int startIndex = jsonResponse.indexOf(nomeKey) + nomeKey.length();
-        int endIndex = jsonResponse.indexOf("\"", startIndex);
-        return jsonResponse.substring(startIndex, endIndex);
+            Gson gson = new Gson();
+            AlunoRead aluno = gson.fromJson(responseContent.toString(), AlunoRead.class);
+            nomeAluno.setText(aluno.getNome());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
