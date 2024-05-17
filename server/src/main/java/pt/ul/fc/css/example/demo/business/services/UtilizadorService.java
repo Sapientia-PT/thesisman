@@ -93,6 +93,15 @@ public class UtilizadorService {
     return presidenteToDTO(presidenteRepository.findById(id).orElse(null));
   }
 
+  public void clearUtilizadores() {
+    alunoRepository.deleteAll();
+    docenteRepository.deleteAll();
+    empresaRepository.deleteAll();
+    orientadorExternoRepository.deleteAll();
+    administradorRepository.deleteAll();
+    presidenteRepository.deleteAll();
+  }
+
   private AdministradorDTO administradorToDTO(Administrador a) {
     if (a == null) return null;
     AdministradorDTO administradorDTO = new AdministradorDTO();
@@ -133,6 +142,7 @@ public class UtilizadorService {
     alunoDTO.setNome(a.getNome());
     alunoDTO.setNrAluno(a.getNrAluno());
     alunoDTO.setMedia(a.getMedia());
+    alunoDTO.setTemasCandidatados(a.getTemasCandidatados());
     return alunoDTO;
   }
 }

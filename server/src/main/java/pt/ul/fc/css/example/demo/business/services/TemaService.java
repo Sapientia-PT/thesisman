@@ -47,6 +47,10 @@ public class TemaService {
     temaAlunoHandler.cancelarCandidaturaAluno(temaDTO, alunoDTO);
   }
 
+  public void clearTemas() {
+    temaRepository.deleteAll();
+  }
+
   private TemaDTO dtofy(Tema c) {
     TemaDTO temaDTO = new TemaDTO();
     temaDTO.setId(c.getId());

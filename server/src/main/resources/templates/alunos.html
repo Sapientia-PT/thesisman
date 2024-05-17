@@ -12,7 +12,7 @@
 
     <div class="container">
         <div th:each="aluno : ${alunos}" class="object">
-            <p th:text="${aluno.getNome()}"></p>
+            <p th:text="${aluno.getNome()}" class="element-title"></p>
             <p th:text="${aluno.getNrAluno()}"></p>
             <p th:text="${aluno.getMedia()}"></p>
             <div th:each="tema : ${aluno.getTemasCandidatados()}" class="element">
