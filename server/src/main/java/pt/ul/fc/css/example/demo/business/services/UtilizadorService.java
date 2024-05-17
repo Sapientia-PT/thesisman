@@ -133,8 +133,6 @@ public class UtilizadorService {
     alunoDTO.setNome(a.getNome());
     alunoDTO.setNrAluno(a.getNrAluno());
     alunoDTO.setMedia(a.getMedia());
-    alunoDTO.setTese(a.getTese());
-    alunoDTO.setTemasCandidatados(a.getTemasCandidatados());
     return alunoDTO;
   }
 }
