@@ -21,7 +21,7 @@ TeseService:
     L. Registo da nota da defesa da proposta de tese, por parte do orientador da tese
     M. Submissão do documento final de tese, por parte dos alunos
     N. Marcação da Defesa de tese, por parte do orientador da tese, incluindo a nomeação do júri
-    O. Registo da nota da defesa da tese, por parte do presidente do júri
+    O. Registo da nota da defesa da proposta de tese, por parte do presidente do júri
 
 EstatisticaService:
     P. Recolha de estatísticas sobre taxa de sucesso dos alunos. (e.g. Taxa de sucesso por dissertação vs projeto)
