@@ -8,10 +8,12 @@ import pt.ul.fc.css.example.demo.entities.Tese;
 
 public interface DocenteRepository extends JpaRepository<Docente, Long> {
 
-    Docente findByNrDocente(long nrDocente);
-    Docente findByNome(String nome);
+  Docente findByNrDocente(long nrDocente);
 
-    @Query("SELECT t.docente FROM Tese t WHERE t = :tese")
-    Docente findByTese(@Param("tese") Tese tese);
+  Docente findByNome(String nome);
 
+  @Query("SELECT t.docente FROM Tese t WHERE t = :tese")
+  Docente findByTese(@Param("tese") Tese tese);
+
+  Docente findByToken(String token);
 }

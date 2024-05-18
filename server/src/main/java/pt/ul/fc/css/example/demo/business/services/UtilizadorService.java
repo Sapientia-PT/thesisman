@@ -40,6 +40,11 @@ public class UtilizadorService {
     return alunoToDTO(alunoRepository.findByNrAluno(nrAluno));
   }
 
+  public String getAlunoToken(int nrAluno) {
+    Aluno aluno = alunoRepository.findByNrAluno(nrAluno);
+    return aluno != null ? aluno.getToken() : null;
+  }
+
   public List<AlunoDTO> getAlunos() {
     return alunoRepository.findAll().stream().map(this::alunoToDTO).collect(Collectors.toList());
   }
@@ -91,6 +96,10 @@ public class UtilizadorService {
 
   public PresidenteDTO getPresidente(long id) {
     return presidenteToDTO(presidenteRepository.findById(id).orElse(null));
+  }
+
+  public boolean validateToken(String token) {
+    return utilizadorHandler.validateToken(token);
   }
 
   public void clearUtilizadores() {

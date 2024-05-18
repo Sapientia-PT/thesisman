@@ -60,4 +60,12 @@ public class UtilizadorHandler {
 
     presidenteRepository.save(presidente);
   }
+
+  public boolean validateToken(String token) {
+    return alunoRepository.findByToken(token) != null
+        || docenteRepository.findByToken(token) != null
+        || orientadorExternoRepository.findByToken(token) != null
+        || administradorRepository.findByToken(token) != null
+        || presidenteRepository.findByToken(token) != null;
+  }
 }
