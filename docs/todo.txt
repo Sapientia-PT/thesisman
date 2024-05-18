@@ -28,6 +28,14 @@ EstatisticaService:
 
 -----------------------------------------------------------------------------------------------------------------------
 
+Alunos: (JavaFX)
+A F G H J M
+
+Restantes Utilizadores: (Web)
+A B C D E I K L N N P
+
+-----------------------------------------------------------------------------------------------------------------------
+
 Por cima dos casos de uso anteriores, pretende-se implementar a interface gráfica que permita aos uti-
 lizadores realizarem os casos de uso.
 
