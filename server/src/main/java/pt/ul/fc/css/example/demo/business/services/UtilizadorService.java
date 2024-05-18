@@ -27,7 +27,7 @@ public class UtilizadorService {
 
   public String createAluno(String nome, int nrAluno, float media)
       throws UserAlreadyExistsException {
-    Aluno aluno = alunoRepository.findByNrAluno(nrAluno);
+    Aluno aluno = alunoRepository.findByNrConta(nrAluno);
     if (aluno != null)
       throw new UserAlreadyExistsException("Aluno with nrAluno " + nrAluno + " already exists");
 
@@ -37,12 +37,11 @@ public class UtilizadorService {
   }
 
   public AlunoDTO getAluno(int nrAluno) {
-    return alunoToDTO(alunoRepository.findByNrAluno(nrAluno));
+    return alunoToDTO(alunoRepository.findByNrConta(nrAluno));
   }
 
-  public String getAlunoToken(int nrAluno) {
-    Aluno aluno = alunoRepository.findByNrAluno(nrAluno);
-    return aluno != null ? aluno.getToken() : null;
+  public String getToken(int nrConta) {
+    return utilizadorHandler.getToken(nrConta);
   }
 
   public List<AlunoDTO> getAlunos() {
@@ -50,7 +49,7 @@ public class UtilizadorService {
   }
 
   public String createDocente(String nome, int nrDocente) throws UserAlreadyExistsException {
-    Docente docente = docenteRepository.findByNrDocente(nrDocente);
+    Docente docente = docenteRepository.findByNrConta(nrDocente);
     if (docente != null)
       throw new UserAlreadyExistsException(
           "Docente with nrDocente " + nrDocente + " already exists");
@@ -61,16 +60,29 @@ public class UtilizadorService {
   }
 
   public DocenteDTO getDocente(int nrDocente) {
-    return docenteToDTO(docenteRepository.findByNrDocente(nrDocente));
+    return docenteToDTO(docenteRepository.findByNrConta(nrDocente));
   }
 
-  public String createOrientadorExterno(String nome, long nrEmpresa) throws NotFoundException {
+  public EmpresaDTO createEmpresa(String nome, int nrEmpresa) {
+    Empresa empresa = empresaRepository.findByNrEmpresa(nrEmpresa);
+    if (empresa != null) return null;
+
+    utilizadorHandler.createEmpresa(nome, nrEmpresa);
+    return empresaToDTO(empresaRepository.findByNrEmpresa(nrEmpresa));
+  }
+
+  public EmpresaDTO getEmpresa(long id) {
+    return empresaToDTO(empresaRepository.findById(id).orElse(null));
+  }
+
+  public String createOrientadorExterno(String nome, int nrEmpresario, long nrEmpresa)
+      throws NotFoundException {
     Empresa empresa = empresaRepository.findByNrEmpresa(nrEmpresa);
     if (empresa == null)
       throw new NotFoundException("Empresa with nrEmpresa " + nrEmpresa + " not found");
 
     String generatedToken = tokenService.generateToken();
-    utilizadorHandler.createOrientadorExterno(nome, generatedToken, empresa);
+    utilizadorHandler.createOrientadorExterno(nome, generatedToken, nrEmpresario, empresa);
     return generatedToken;
   }
 
@@ -78,9 +90,9 @@ public class UtilizadorService {
     return orientadorExternoToDTO(orientadorExternoRepository.findById(id).orElse(null));
   }
 
-  public String createAdministrador(String nome) {
+  public String createAdministrador(String nome, int nrAdministrador) {
     String generatedToken = tokenService.generateToken();
-    utilizadorHandler.createAdministrador(nome, generatedToken);
+    utilizadorHandler.createAdministrador(nome, generatedToken, nrAdministrador);
     return generatedToken;
   }
 
@@ -88,9 +100,9 @@ public class UtilizadorService {
     return administradorToDTO(administradorRepository.findById(id).orElse(null));
   }
 
-  public String createPresidente(String nome) {
+  public String createPresidente(String nome, int nrPresidente) {
     String generatedToken = tokenService.generateToken();
-    utilizadorHandler.createPresidente(nome, generatedToken);
+    utilizadorHandler.createPresidente(nome, generatedToken, nrPresidente);
     return generatedToken;
   }
 
@@ -105,7 +117,6 @@ public class UtilizadorService {
   public void clearUtilizadores() {
     alunoRepository.deleteAll();
     docenteRepository.deleteAll();
-    empresaRepository.deleteAll();
     orientadorExternoRepository.deleteAll();
     administradorRepository.deleteAll();
     presidenteRepository.deleteAll();
@@ -116,6 +127,7 @@ public class UtilizadorService {
     AdministradorDTO administradorDTO = new AdministradorDTO();
     administradorDTO.setId(a.getId());
     administradorDTO.setNome(a.getNome());
+    administradorDTO.setNrAdministrador(a.getNrConta());
     return administradorDTO;
   }
 
@@ -124,7 +136,17 @@ public class UtilizadorService {
     PresidenteDTO presidenteDTO = new PresidenteDTO();
     presidenteDTO.setId(p.getId());
     presidenteDTO.setNome(p.getNome());
+    presidenteDTO.setNrPresidente(p.getNrConta());
     return presidenteDTO;
+  }
+
+  private EmpresaDTO empresaToDTO(Empresa e) {
+    if (e == null) return null;
+    EmpresaDTO empresaDTO = new EmpresaDTO();
+    empresaDTO.setId(e.getId());
+    empresaDTO.setNome(e.getNome());
+    empresaDTO.setNrEmpresa(e.getNrEmpresa());
+    return empresaDTO;
   }
 
   private OrientadorExternoDTO orientadorExternoToDTO(OrientadorExterno o) {
@@ -132,6 +154,7 @@ public class UtilizadorService {
     OrientadorExternoDTO orientadorExternoDTO = new OrientadorExternoDTO();
     orientadorExternoDTO.setId(o.getId());
     orientadorExternoDTO.setNome(o.getNome());
+    orientadorExternoDTO.setNrEmpresario(o.getNrConta());
     orientadorExternoDTO.setEmpresa(o.getEmpresa());
     return orientadorExternoDTO;
   }
@@ -140,7 +163,7 @@ public class UtilizadorService {
     DocenteDTO docenteDTO = new DocenteDTO();
     docenteDTO.setId(d.getId());
     docenteDTO.setNome(d.getNome());
-    docenteDTO.setNrDocente(d.getNrDocente());
+    docenteDTO.setNrDocente(d.getNrConta());
     docenteDTO.setTeses(d.getTeses());
     return docenteDTO;
   }
@@ -149,7 +172,7 @@ public class UtilizadorService {
     AlunoDTO alunoDTO = new AlunoDTO();
     alunoDTO.setId(a.getId());
     alunoDTO.setNome(a.getNome());
-    alunoDTO.setNrAluno(a.getNrAluno());
+    alunoDTO.setNrAluno(a.getNrConta());
     alunoDTO.setMedia(a.getMedia());
     return alunoDTO;
   }

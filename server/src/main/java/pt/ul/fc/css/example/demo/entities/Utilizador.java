@@ -18,16 +18,29 @@ public class Utilizador {
     return id;
   }
 
+  @Column(unique = true)
+  private int nrConta;
+
   private String nome;
 
   private String token;
 
-  public Utilizador(String nome, String token) {
+  public Utilizador(int nrConta, String nome, String token) {
+    this.nrConta = nrConta;
     this.nome = nome;
     this.token = token;
   }
 
   public Utilizador() {}
+
+  public int getNrConta() {
+    return nrConta;
+  }
+
+  public void setNrConta(int nrConta) {
+    if (nrConta <= 0) throw new IllegalArgumentException("Account number must be positive");
+    this.nrConta = nrConta;
+  }
 
   public String getNome() {
     return nome;

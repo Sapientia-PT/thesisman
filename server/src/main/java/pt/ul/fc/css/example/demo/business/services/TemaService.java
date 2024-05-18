@@ -55,7 +55,7 @@ public class TemaService {
     AlunoDTO alunoDTO = null;
     if (c.getAluno() != null) {
       alunoDTO = new AlunoDTO();
-      alunoDTO.setNrAluno(c.getAluno().getNrAluno());
+      alunoDTO.setNrAluno(c.getAluno().getNrConta());
       alunoDTO.setNome(c.getAluno().getNome());
       alunoDTO.setMedia(c.getAluno().getMedia());
     }

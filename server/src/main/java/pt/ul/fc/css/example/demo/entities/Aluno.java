@@ -7,9 +7,6 @@ import java.util.List;
 @Entity
 public final class Aluno extends Utilizador {
 
-  @Column(unique = true)
-  private int nrAluno;
-
   private float media;
 
   @OneToOne(mappedBy = "aluno")
@@ -19,14 +16,14 @@ public final class Aluno extends Utilizador {
   private List<Tema> temasCandidatados;
 
   public Aluno(
+      int nrConta,
       String nome,
       String token,
       int nrAluno,
       float media,
       Tese tese,
       List<Tema> temasCandidatados) {
-    super(nome, token);
-    this.nrAluno = nrAluno;
+    super(nrConta, nome, token);
     this.media = media;
     this.tese = tese;
     this.temasCandidatados = temasCandidatados;
@@ -43,17 +40,6 @@ public final class Aluno extends Utilizador {
 
   public void setTemasCandidatados(List<Tema> temasCandidatados) {
     this.temasCandidatados = temasCandidatados;
-  }
-
-  public int getNrAluno() {
-    return nrAluno;
-  }
-
-  public void setNrAluno(int nrAluno) {
-    if (nrAluno <= 0) {
-      throw new IllegalArgumentException("nrAluno must be positive");
-    }
-    this.nrAluno = nrAluno;
   }
 
   public float getMedia() {

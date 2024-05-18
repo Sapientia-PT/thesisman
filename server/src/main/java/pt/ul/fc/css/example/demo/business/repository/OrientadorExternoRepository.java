@@ -10,6 +10,8 @@ import pt.ul.fc.css.example.demo.entities.Projeto;
 
 public interface OrientadorExternoRepository extends JpaRepository<OrientadorExterno, Long> {
 
+  OrientadorExterno findByNrConta(long nrOrientadorExterno);
+
   @Query("SELECT e.orientadoresExternos FROM Empresa e WHERE e = :empresa")
   List<OrientadorExterno> findByEmpresa(@Param("empresa") Empresa empresa);
 

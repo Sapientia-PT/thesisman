@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registo</title>
+</head>
+<body>
+    <h1>Registro de Utilizador Empresarial</h1>
+    <form action="/doRegisto" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="nrConta">Número da Conta:</label>
+        <input type="text" id="nrConta" name="nrConta"><br><br>
+        <label for="nrEmpresa">Número da Empresa:</label>
+        <input type="text" id="nrEmpresa" name="nrEmpresa"><br><br>
+        <input type="submit" value="Registar">
+    </form>
+    <div th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>

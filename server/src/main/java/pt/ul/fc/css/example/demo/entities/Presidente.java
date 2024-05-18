@@ -9,8 +9,8 @@ public class Presidente extends Utilizador {
   @OneToOne(mappedBy = "presidente")
   private Juri juri;
 
-  public Presidente(Juri juri, String nome, String token) {
-    super(nome, token);
+  public Presidente(Juri juri, int nrConta, String nome, String token) {
+    super(nrConta, nome, token);
     this.juri = juri;
   }
 

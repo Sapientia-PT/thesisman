@@ -6,6 +6,8 @@ import pt.ul.fc.css.example.demo.entities.Presidente;
 
 public interface PresidenteRepository extends JpaRepository<Presidente, Long> {
 
+  Presidente findByNrConta(long nrPresidente);
+
   Presidente findByNome(String nome);
 
   Presidente findByJuri(Juri juri);

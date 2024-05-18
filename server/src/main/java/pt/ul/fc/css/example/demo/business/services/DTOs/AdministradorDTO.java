@@ -15,7 +15,17 @@ public class AdministradorDTO {
     Id = id;
   }
 
+  private int nrAdministrador;
+
   private String nome;
+
+  public int getNrAdministrador() {
+    return nrAdministrador;
+  }
+
+  public void setNrAdministrador(int nrAdministrador) {
+    this.nrAdministrador = nrAdministrador;
+  }
 
   public String getNome() {
     return nome;

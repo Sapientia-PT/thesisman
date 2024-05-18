@@ -6,28 +6,16 @@ import java.util.List;
 @Entity
 public class Docente extends Utilizador {
 
-  @Column(unique = true)
-  private int nrDocente;
-
   @OneToMany(mappedBy = "docente")
   private List<Tese> teses;
 
-  public Docente(String nome, String token, int nrDocente, List<Tese> teses) {
-    super(nome, token);
-    this.nrDocente = nrDocente;
+  public Docente(int nrConta, String nome, String token, int nrDocente, List<Tese> teses) {
+    super(nrConta, nome, token);
     this.teses = teses;
   }
 
   public Docente() {
     super();
-  }
-
-  public int getNrDocente() {
-    return nrDocente;
-  }
-
-  public void setNrDocente(int nrDocente) {
-    this.nrDocente = nrDocente;
   }
 
   public List<Tese> getTeses() {

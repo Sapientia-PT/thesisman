@@ -9,7 +9,7 @@ import pt.ul.fc.css.example.demo.entities.Tese;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-  Aluno findByNrAluno(int nrAluno);
+  Aluno findByNrConta(int nrAluno);
 
   List<Aluno> findByNome(String nome);
 

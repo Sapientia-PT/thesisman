@@ -16,9 +16,19 @@ public class OrientadorExternoDTO {
     Id = id;
   }
 
+  private int nrEmpresario;
+
   private String nome;
 
   private Empresa empresa;
+
+  public int getNrEmpresario() {
+    return nrEmpresario;
+  }
+
+  public void setNrEmpresario(int nrEmpresario) {
+    this.nrEmpresario = nrEmpresario;
+  }
 
   public String getNome() {
     return nome;

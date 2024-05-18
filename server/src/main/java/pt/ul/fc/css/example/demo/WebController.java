@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pt.ul.fc.css.example.demo.business.services.DTOs.EmpresaDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
@@ -30,9 +31,9 @@ public class WebController {
   }
 
   @PostMapping("/doLogin")
-  public String doLogin(@RequestParam("nrAluno") String nrAluno, Model model) {
+  public String doLogin(@RequestParam("nrConta") String nrConta, Model model) {
     try {
-      String userToken = utilizadorService.getAlunoToken(Integer.parseInt(nrAluno));
+      String userToken = utilizadorService.getToken(Integer.parseInt(nrConta));
       if (userToken != null) {
         model.addAttribute("token", userToken);
         return "redirect:/temas"; // TODO change this to the main page
@@ -43,6 +44,30 @@ public class WebController {
     } catch (NumberFormatException e) {
       model.addAttribute("error", "Invalid student number!");
       return "redirect:/login";
+    }
+  }
+
+  @RequestMapping("/registo")
+  public String registro(Model model) {
+    return "registo";
+  }
+
+  @PostMapping("/doRegisto")
+  public String doRegistro(
+      @RequestParam("username") String username,
+      @RequestParam("nrConta") String nrConta,
+      @RequestParam("nrEmpresa") String nrEmpresa,
+      Model model) {
+    try {
+      utilizadorService.createOrientadorExterno(
+          username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
+      return "redirect:/login";
+    } catch (ApplicationException e) {
+      model.addAttribute("error", "Error registrating user!");
+      return "redirect:/registo";
+    } catch (NumberFormatException e) {
+      model.addAttribute("error", "Enterprise number must be a number!");
+      return "redirect:/registo";
     }
   }
 
@@ -70,11 +95,12 @@ public class WebController {
     try {
       // clear existing data
       temaService.clearTemas();
-      utilizadorService.clearUtilizadores(); // TODO clear just alunos?
+      utilizadorService.clearUtilizadores();
       // create some initial data
       TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       TemaDTO tema2 = temaService.submeterTema("Macacos", "Ooga Booga", 42);
       String alunoToken = utilizadorService.createAluno("João", 58195, 20.0f);
+      EmpresaDTO empresa = utilizadorService.createEmpresa("Empresa", 12345);
       // associate the tema with the aluno
       temaService.candidatarTemaAluno(tema1, utilizadorService.getAluno(58195));
       return "init";

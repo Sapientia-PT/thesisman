@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 @Entity
 public class Administrador extends Utilizador {
 
-  public Administrador(String nome, String token) {
-    super(nome, token);
+  public Administrador(int nrConta, String nome, String token) {
+    super(nrConta, nome, token);
   }
 
   public Administrador() {

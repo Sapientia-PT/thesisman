@@ -13,8 +13,9 @@ public class OrientadorExterno extends Utilizador {
   @JoinColumn(name = "empresa_id")
   private Empresa empresa;
 
-  public OrientadorExterno(String nome, String token, List<Projeto> projetos, Empresa empresa) {
-    super(nome, token);
+  public OrientadorExterno(
+      int nrConta, String nome, String token, List<Projeto> projetos, Empresa empresa) {
+    super(nrConta, nome, token);
     this.projetos = projetos;
     this.empresa = empresa;
   }

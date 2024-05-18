@@ -14,7 +14,17 @@ public class PresidenteDTO {
     Id = id;
   }
 
+  private int nrPresidente;
+
   private String nome;
+
+  public int getNrPresidente() {
+    return nrPresidente;
+  }
+
+  public void setNrPresidente(int nrPresidente) {
+    this.nrPresidente = nrPresidente;
+  }
 
   public String getNome() {
     return nome;

@@ -10,6 +10,7 @@ public class UtilizadorHandler {
 
   @Autowired private AlunoRepository alunoRepository;
   @Autowired private DocenteRepository docenteRepository;
+  @Autowired private EmpresaRepository empresaRepository;
   @Autowired private OrientadorExternoRepository orientadorExternoRepository;
   @Autowired private AdministradorRepository administradorRepository;
   @Autowired private PresidenteRepository presidenteRepository;
@@ -19,7 +20,7 @@ public class UtilizadorHandler {
     Aluno aluno = new Aluno();
     aluno.setNome(nome);
     aluno.setToken(token);
-    aluno.setNrAluno(nrAluno);
+    aluno.setNrConta(nrAluno);
     aluno.setMedia(media);
 
     alunoRepository.save(aluno);
@@ -30,35 +31,67 @@ public class UtilizadorHandler {
     Docente docente = new Docente();
     docente.setNome(nome);
     docente.setToken(token);
-    docente.setNrDocente(nrDocente);
+    docente.setNrConta(nrDocente);
 
     docenteRepository.save(docente);
   }
 
-  public void createOrientadorExterno(String nome, String token, Empresa empresa) {
+  public void createEmpresa(String nome, int nrEmpresa) {
+
+    Empresa empresa = new Empresa();
+    empresa.setNome(nome);
+    empresa.setNrEmpresa(nrEmpresa);
+
+    empresaRepository.save(empresa);
+  }
+
+  public void createOrientadorExterno(
+      String nome, String token, int nrEmpresario, Empresa empresa) {
 
     OrientadorExterno orientadorExterno = new OrientadorExterno();
     orientadorExterno.setNome(nome);
     orientadorExterno.setToken(token);
+    orientadorExterno.setNrConta(nrEmpresario);
     orientadorExterno.setEmpresa(empresa);
 
     orientadorExternoRepository.save(orientadorExterno);
   }
 
-  public void createAdministrador(String nome, String token) {
+  public void createAdministrador(String nome, String token, int nrAdministrador) {
     Administrador administrador = new Administrador();
     administrador.setNome(nome);
     administrador.setToken(token);
+    administrador.setNrConta(nrAdministrador);
 
     administradorRepository.save(administrador);
   }
 
-  public void createPresidente(String nome, String token) {
+  public void createPresidente(String nome, String token, int nrPresidente) {
     Presidente presidente = new Presidente();
     presidente.setNome(nome);
     presidente.setToken(token);
+    presidente.setNrConta(nrPresidente);
 
     presidenteRepository.save(presidente);
+  }
+
+  public String getToken(int nrConta) {
+    Aluno aluno = alunoRepository.findByNrConta(nrConta);
+    if (aluno != null) return aluno.getToken();
+
+    Docente docente = docenteRepository.findByNrConta(nrConta);
+    if (docente != null) return docente.getToken();
+
+    OrientadorExterno orientadorExterno = orientadorExternoRepository.findByNrConta(nrConta);
+    if (orientadorExterno != null) return orientadorExterno.getToken();
+
+    Administrador administrador = administradorRepository.findByNrConta(nrConta);
+    if (administrador != null) return administrador.getToken();
+
+    Presidente presidente = presidenteRepository.findByNrConta(nrConta);
+    if (presidente != null) return presidente.getToken();
+
+    return null;
   }
 
   public boolean validateToken(String token) {

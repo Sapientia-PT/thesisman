@@ -8,7 +8,7 @@ import pt.ul.fc.css.example.demo.entities.Tese;
 
 public interface DocenteRepository extends JpaRepository<Docente, Long> {
 
-  Docente findByNrDocente(long nrDocente);
+  Docente findByNrConta(long nrDocente);
 
   Docente findByNome(String nome);
 
