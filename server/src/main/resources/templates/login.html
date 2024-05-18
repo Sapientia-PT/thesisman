@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt_PT">
+
+<head>
+    <meta charset="ISO-8859-1" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Spring Boot Application</title>
+</head>
+
+<body>
+    <h1>Login:</h1>
+
+    <div class="container">
+        <!-- Mock the login, all passwords works -->
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/doLogin" method="post">
+                <label for="username" class="element">Username:</label>
+                <input type="text" id="username" name="username" required />
+                <br />
+                <label for="password" class="element">Password:</label>
+                <input type="password" id="password" name="password" required />
+                <div class="object" style="justify-content: center; display: flex;">
+                    <input type="submit" value="Login" class="element-title" style="width: 100px;"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
