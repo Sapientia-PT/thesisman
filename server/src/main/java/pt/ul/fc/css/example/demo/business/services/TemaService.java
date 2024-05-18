@@ -52,12 +52,20 @@ public class TemaService {
   }
 
   private TemaDTO dtofy(Tema c) {
+    AlunoDTO alunoDTO = null;
+    if (c.getAluno() != null) {
+      alunoDTO = new AlunoDTO();
+      alunoDTO.setNrAluno(c.getAluno().getNrAluno());
+      alunoDTO.setNome(c.getAluno().getNome());
+      alunoDTO.setMedia(c.getAluno().getMedia());
+    }
+
     TemaDTO temaDTO = new TemaDTO();
     temaDTO.setId(c.getId());
     temaDTO.setTitulo(c.getTitulo());
     temaDTO.setDescricao(c.getDescricao());
     temaDTO.setRemunMensal(c.getRemunMensal());
-    temaDTO.setAluno(c.getAluno());
+    if (alunoDTO != null) temaDTO.setAluno(alunoDTO);
     return temaDTO;
   }
 }

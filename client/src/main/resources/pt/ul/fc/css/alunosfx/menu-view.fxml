@@ -22,6 +22,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ListView layoutX="48.0" layoutY="148.0" prefHeight="200.0" prefWidth="497.0" />
+      <ListView fx:id="listaTemas" layoutX="48.0" layoutY="148.0" prefHeight="200.0" prefWidth="497.0" />
    </children>
 </Pane>

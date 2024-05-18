@@ -1,25 +1,10 @@
-package pt.ul.fc.css.example.demo.business.services.DTOs;
+package pt.ul.fc.css.alunosfx.presentation.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class TemaDTO {
-
-  private long Id;
-
-  public long getId() {
-    return Id;
-  }
-
-  public void setId(long id) {
-    Id = id;
-  }
+public class TemaRead {
 
   private String titulo;
   private String descricao;
   private float remunMensal;
-
-  private AlunoDTO alunoDTO;
 
   public String getTitulo() {
     return titulo;
@@ -45,11 +30,8 @@ public class TemaDTO {
     this.remunMensal = remunMensal;
   }
 
-  public AlunoDTO getAluno() {
-    return alunoDTO;
-  }
-
-  public void setAluno(AlunoDTO alunoDTO) {
-    this.alunoDTO = alunoDTO;
+  @Override
+  public String toString() {
+    return titulo + ": " + descricao + " (" + remunMensal + ")";
   }
 }
