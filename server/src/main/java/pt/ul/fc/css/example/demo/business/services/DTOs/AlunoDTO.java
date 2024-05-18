@@ -1,8 +1,6 @@
 package pt.ul.fc.css.example.demo.business.services.DTOs;
 
-import java.util.List;
 import org.springframework.stereotype.Component;
-import pt.ul.fc.css.example.demo.entities.Tema;
 
 @Component
 public class AlunoDTO {
@@ -22,8 +20,6 @@ public class AlunoDTO {
   private String nome;
 
   private float media;
-
-  private List<Tema> temasCandidatados;
 
   public int getNrAluno() {
     return nrAluno;
@@ -47,13 +43,5 @@ public class AlunoDTO {
 
   public void setMedia(float media) {
     this.media = media;
-  }
-
-  public List<Tema> getTemasCandidatados() {
-    return temasCandidatados;
-  }
-
-  public void setTemasCandidatados(List<Tema> temasCandidatados) {
-    this.temasCandidatados = temasCandidatados;
   }
 }

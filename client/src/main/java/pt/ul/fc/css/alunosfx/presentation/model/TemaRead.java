@@ -29,4 +29,9 @@ public class TemaRead {
   public void setRemunMensal(float remunMensal) {
     this.remunMensal = remunMensal;
   }
+
+  @Override
+  public String toString() {
+    return titulo + ": " + descricao + " (" + remunMensal + ")";
+  }
 }
