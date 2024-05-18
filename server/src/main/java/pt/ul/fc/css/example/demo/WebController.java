@@ -34,26 +34,24 @@ public class WebController {
     return "temas";
   }
 
-  @RequestMapping("/aprovados")
-  public String aprovados(Model model) {
+  @RequestMapping("/estatisticas")
+  public String estatisticas(Model model) {
     model.addAttribute("alunosAprovados", estatisticaService.calcularNumeroAlunosAprovados());
-    return "aprovados";
-  }
-
-  @RequestMapping("/reprovados")
-  public String reprovados(Model model) {
     model.addAttribute("alunosReprovados", estatisticaService.calcularNumeroAlunosReprovados());
-    return "reprovados";
+    return "estatisticas";
   }
 
   @RequestMapping("/init")
   public String initTest(Model model) {
     try {
-      // TODO: implement clear data
-      // create some data
+      // clear existing data
+      temaService.clearTemas();
+      utilizadorService.clearUtilizadores(); // TODO clear just alunos?
+      // create some initial data
       TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
-      temaService.submeterTema("Macacos", "Ooga Booga", 42);
+      TemaDTO tema2 = temaService.submeterTema("Macacos", "Ooga Booga", 42);
       String alunoToken = utilizadorService.createAluno("João", 58195, 20.0f);
+      // associate the tema with the aluno
       temaService.candidatarTemaAluno(tema1, utilizadorService.getAluno(58195));
       return "init";
     } catch (ApplicationException e) {

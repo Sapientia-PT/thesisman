@@ -11,11 +11,11 @@
     <h1>Alunos:</h1>
 
     <div class="container">
-        <div th:each="aluno : ${alunos}" class="aluno">
-            <p th:text="${aluno.getNome()}"></p>
+        <div th:each="aluno : ${alunos}" class="object">
+            <p th:text="${aluno.getNome()}" class="element-title"></p>
             <p th:text="${aluno.getNrAluno()}"></p>
             <p th:text="${aluno.getMedia()}"></p>
-            <div th:each="tema : ${aluno.getTemasCandidatados()}" class="tema">
+            <div th:each="tema : ${aluno.getTemasCandidatados()}" class="element">
                 <li th:text="${tema.getTitulo()}"></li>
             </div>
         </div>
