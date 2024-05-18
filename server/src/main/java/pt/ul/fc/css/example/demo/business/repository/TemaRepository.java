@@ -1,16 +1,18 @@
 package pt.ul.fc.css.example.demo.business.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import pt.ul.fc.css.example.demo.entities.Tema;
-
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import pt.ul.fc.css.example.demo.entities.Tema;
 
 public interface TemaRepository extends JpaRepository<Tema, Long> {
 
-    List<Tema> findByTitulo(String titulo);
+  List<Tema> findByTitulo(String titulo);
 
-    List<Tema> findByDescricao(String descricao);
+  List<Tema> findByDescricao(String descricao);
 
-    List<Tema> findByRemunMensal(float remunMensal);
+  List<Tema> findByRemunMensal(float remunMensal);
 
+  @Query("SELECT t FROM Tema t Aluno a WHERE t.aluno = a AND a.nrAluno = ?1")
+  List<Tema> findByNrAluno(int nrAluno);
 }
