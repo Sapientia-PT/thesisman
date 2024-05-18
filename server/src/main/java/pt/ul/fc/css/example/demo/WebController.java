@@ -30,18 +30,20 @@ public class WebController {
   }
 
   @PostMapping("/doLogin")
-  public String doLogin(
-      @RequestParam("username") String username,
-      @RequestParam("password") String password,
-      Model model) {
-    // mock login validation: accept any password, but validate if username exists in the database
-    if (!username.isEmpty() && !password.isEmpty()) { // TODO Just for now
-      // TODO add user details to the model if needed
-      model.addAttribute("username", username);
-      return "redirect:/temas"; // TODO change this to the main page
+  public String doLogin(@RequestParam("nrAluno") String nrAluno, Model model) {
+    try {
+      String userToken = utilizadorService.getAlunoToken(Integer.parseInt(nrAluno));
+      if (userToken != null) {
+        model.addAttribute("token", userToken);
+        return "redirect:/temas"; // TODO change this to the main page
+      }
+      // If the student doesn't exist
+      model.addAttribute("error", "Student does not exist!");
+      return "redirect:/login";
+    } catch (NumberFormatException e) {
+      model.addAttribute("error", "Invalid student number!");
+      return "redirect:/login";
     }
-    // If login fails, redirect back to the login page
-    return "redirect:/login";
   }
 
   @RequestMapping("/alunos")
