@@ -13,6 +13,6 @@ public interface TemaRepository extends JpaRepository<Tema, Long> {
 
   List<Tema> findByRemunMensal(float remunMensal);
 
-  @Query("SELECT t FROM Tema t Aluno a WHERE t.aluno = a AND a.nrAluno = ?1")
+  @Query("SELECT t FROM Tema t JOIN t.aluno a WHERE a.nrAluno = ?1")
   List<Tema> findByNrAluno(int nrAluno);
 }
