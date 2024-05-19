@@ -3,7 +3,7 @@
     <head>
         <meta charset="ISO-8859-1" />
         <link href="css/style.css" rel="stylesheet" />
-        <title>Spring Boot Application</title>
+        <title>Login</title>
     </head>
     <body>
         <h1>Login:</h1>
@@ -11,15 +11,15 @@
             <!-- Mock the login, all passwords works -->
             <div class="object" style="justify-content: center; display: flex;">
                 <form action="/doLogin" method="post">
-                    <label for="username" class="element">Username:</label>
+                    <label for="username" class="element">Nome:</label>
                     <input type="text" id="username" name="nrConta" required /><br><br>
-                    <label for="password" class="element">Password:</label>
+                    <label for="password" class="element">Palavra Passe:</label>
                     <input type="password" id="password" /><br><br>
                     <input type="submit" value="Login" class="element-title" style="width: 100px;"/>
                 </form>
             </div>
             <form action="/registo" method="get">
-                <button class="element-title">Registar Empresarios</button>
+                <button class="element-title">Registar Empresários</button>
             </form>
         </div>
     </body>
