@@ -43,4 +43,16 @@ h1 {
 .element-title {
     font-weight: bold;
     color: #333;
+    background-color: darkcyan;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.element-title:hover {
+    background-color: #005f5f;
 }

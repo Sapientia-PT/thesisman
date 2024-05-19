@@ -1,1 +1,52 @@
-main
+<!DOCTYPE html>
+<html lang="pt_PT">
+
+<head>
+    <meta charset="ISO-8859-1" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Main Page</title>
+</head>
+
+<body>
+    <h1>Main Menu</h1>
+
+    <div class="container">
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/proporTema" method="get">
+                <input type="submit" value="Propor Tema" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/atribuirTema" method="get">
+                <input type="submit" value="Atribuir Tema (Admin)" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/marcarDefesaProposta" method="get">
+                <input type="submit" value="Marcação de Defesa da Proposta de Tese" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/registarNota" method="get">
+                <input type="submit" value="Registo de Nota" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/marcarDefesaFinal" method="get">
+                <input type="submit" value="Marcação de Defesa da Tese (final)" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/registarNotaFinal" method="get">
+                <input type="submit" value="Registo de Nota Final" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+        <div class="object" style="justify-content: center; display: flex;">
+            <form action="/estatisticas" method="get">
+                <input type="submit" value="Estatísticas" class="element-title" style="width: 300px; margin: 10px;" />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
