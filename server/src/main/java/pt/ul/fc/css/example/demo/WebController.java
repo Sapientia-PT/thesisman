@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pt.ul.fc.css.example.demo.business.services.DTOs.EmpresaDTO;
-import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
@@ -100,10 +98,10 @@ public class WebController {
   public String doProporTema(
       @RequestParam("titulo") String titulo,
       @RequestParam("descricao") String descricao,
-      @RequestParam("maxAlunos") String maxAlunos,
+      @RequestParam("renMensal") String renMensal,
       Model model) {
     try {
-      temaService.submeterTema(titulo, descricao, Integer.parseInt(maxAlunos));
+      temaService.submeterTema(titulo, descricao, Float.parseFloat(renMensal));
       return "redirect:/main";
     } catch (ApplicationException e) {
       model.addAttribute("error", "Error submitting theme!");
@@ -114,26 +112,31 @@ public class WebController {
     }
   }
 
+  // TODO
   @RequestMapping("/atribuirTema")
   public String atribuirTema(Model model) {
     return "atribuirTema";
   }
 
+  // TODO
   @RequestMapping("/marcarDefesaProposta")
   public String avaliarTema(Model model) {
     return "marcarDefesaProposta";
   }
 
+  // TODO
   @RequestMapping("/registarNota")
   public String registarNota(Model model) {
     return "registarNota";
   }
 
+  // TODO
   @RequestMapping("/marcarDefesaFinal")
   public String marcarDefesaFinal(Model model) {
     return "marcarDefesaFinal";
   }
 
+  // TODO
   @RequestMapping("/registarNotaFinal")
   public String registarNotaFinal(Model model) {
     return "registarNotaFinal";
@@ -152,16 +155,16 @@ public class WebController {
   }
 
   @RequestMapping("/init")
-  public String initTest(Model model) {
+  public String initTest() {
     try {
       // clear existing data
       temaService.clearTemas();
       utilizadorService.clearUtilizadores();
       // create some initial data
-      TemaDTO tema1 = temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
-      TemaDTO tema2 = temaService.submeterTema("Macacos", "Ooga Booga", 42);
-      String alunoToken = utilizadorService.createAluno("João", 58195, 20.0f);
-      EmpresaDTO empresa = utilizadorService.createEmpresa("Empresa", 12345);
+      temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
+      temaService.submeterTema("Macacos", "Ooga Booga", 42);
+      utilizadorService.createAluno("João", 58195, 20.0f);
+      utilizadorService.createEmpresa("Empresa", 12345);
       // associate the tema with the aluno
       return "init";
     } catch (ApplicationException e) {
