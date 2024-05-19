@@ -34,7 +34,7 @@ public class WebController {
       String userToken = utilizadorService.getToken(Integer.parseInt(nrConta));
       if (userToken != null) {
         model.addAttribute("token", userToken);
-        return "redirect:/main";
+        return "redirect:/menu";
       }
       // If the student doesn't exist
       model.addAttribute("error", "Student does not exist!");
@@ -70,9 +70,9 @@ public class WebController {
     }
   }
 
-  @RequestMapping("/main")
-  public String main(Model model) {
-    return "main";
+  @RequestMapping("/menu")
+  public String menu(Model model) {
+    return "menu";
   }
 
   // TODO Maybe remove later
@@ -102,7 +102,7 @@ public class WebController {
       Model model) {
     try {
       temaService.submeterTema(titulo, descricao, Float.parseFloat(remMensal));
-      return "redirect:/main";
+      return "redirect:/menu";
     } catch (ApplicationException e) {
       model.addAttribute("error", "Error submitting theme!");
       return "redirect:/submeterTema";
