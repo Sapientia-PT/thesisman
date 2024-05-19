@@ -146,6 +146,11 @@ public class WebController {
     return "estatisticas";
   }
 
+  @RequestMapping("/logout")
+  public String logout() {
+    return "redirect:/login";
+  }
+
   @RequestMapping("/init")
   public String initTest(Model model) {
     try {
