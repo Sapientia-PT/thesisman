@@ -91,6 +91,54 @@ public class WebController {
     return "temas";
   }
 
+  @RequestMapping("/proporTema")
+  public String proporTema(Model model) {
+    return "proporTema";
+  }
+
+  @PostMapping("/doProporTema")
+  public String doProporTema(
+      @RequestParam("titulo") String titulo,
+      @RequestParam("descricao") String descricao,
+      @RequestParam("maxAlunos") String maxAlunos,
+      Model model) {
+    try {
+      temaService.submeterTema(titulo, descricao, Integer.parseInt(maxAlunos));
+      return "redirect:/main";
+    } catch (ApplicationException e) {
+      model.addAttribute("error", "Error submitting theme!");
+      return "redirect:/submeterTema";
+    } catch (NumberFormatException e) {
+      model.addAttribute("error", "Maximum number of students must be a number!");
+      return "redirect:/submeterTema";
+    }
+  }
+
+  @RequestMapping("/atribuirTema")
+  public String atribuirTema(Model model) {
+    return "atribuirTema";
+  }
+
+  @RequestMapping("/marcarDefesaProposta")
+  public String avaliarTema(Model model) {
+    return "marcarDefesaProposta";
+  }
+
+  @RequestMapping("/registarNota")
+  public String registarNota(Model model) {
+    return "registarNota";
+  }
+
+  @RequestMapping("/marcarDefesaFinal")
+  public String marcarDefesaFinal(Model model) {
+    return "marcarDefesaFinal";
+  }
+
+  @RequestMapping("/registarNotaFinal")
+  public String registarNotaFinal(Model model) {
+    return "registarNotaFinal";
+  }
+
   @RequestMapping("/estatisticas")
   public String estatisticas(Model model) {
     model.addAttribute("alunosAprovados", estatisticaService.calcularNumeroAlunosAprovados());
