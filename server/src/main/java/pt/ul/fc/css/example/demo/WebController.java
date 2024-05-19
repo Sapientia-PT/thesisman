@@ -36,7 +36,7 @@ public class WebController {
       String userToken = utilizadorService.getToken(Integer.parseInt(nrConta));
       if (userToken != null) {
         model.addAttribute("token", userToken);
-        return "redirect:/temas"; // TODO change this to the main page
+        return "redirect:/main";
       }
       // If the student doesn't exist
       model.addAttribute("error", "Student does not exist!");
@@ -62,6 +62,7 @@ public class WebController {
       utilizadorService.createOrientadorExterno(
           username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
       return "redirect:/login";
+      // TODO: Right now, the app will crash if the user already exists
     } catch (ApplicationException e) {
       model.addAttribute("error", "Error registrating user!");
       return "redirect:/registo";
@@ -71,12 +72,19 @@ public class WebController {
     }
   }
 
+  @RequestMapping("/main")
+  public String main(Model model) {
+    return "main";
+  }
+
+  // TODO Maybe remove later
   @RequestMapping("/alunos")
   public String alunos(Model model) {
     model.addAttribute("alunos", utilizadorService.getAlunos());
     return "alunos";
   }
 
+  // TODO Maybe remove later
   @RequestMapping("/temas")
   public String temas(Model model) {
     model.addAttribute("temas", temaService.getTemas());
