@@ -36,7 +36,7 @@ public class WebController {
       String userToken = utilizadorService.getToken(Integer.parseInt(nrConta));
       if (userToken != null) {
         model.addAttribute("token", userToken);
-        return "redirect:/temas"; // TODO change this to the main page
+        return "redirect:/main";
       }
       // If the student doesn't exist
       model.addAttribute("error", "Student does not exist!");
@@ -69,6 +69,11 @@ public class WebController {
       model.addAttribute("error", "Enterprise number must be a number!");
       return "redirect:/registo";
     }
+  }
+
+  @RequestMapping("/main")
+  public String main(Model model) {
+    return "main";
   }
 
   @RequestMapping("/alunos")
