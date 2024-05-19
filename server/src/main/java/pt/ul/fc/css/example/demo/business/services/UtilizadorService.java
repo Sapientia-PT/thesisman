@@ -110,6 +110,10 @@ public class UtilizadorService {
     return presidenteToDTO(presidenteRepository.findById(id).orElse(null));
   }
 
+  public boolean validateTokenForEmpresarioOrDocente(String token) {
+    return utilizadorHandler.validateTokenForEmpresarioOrDocente(token);
+  }
+
   public boolean validateToken(String token) {
     return utilizadorHandler.validateToken(token);
   }

@@ -6,12 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 
 @Controller
+@SessionAttributes("token")
 public class WebController {
 
   @Autowired TemaService temaService;
@@ -91,7 +93,9 @@ public class WebController {
 
   @RequestMapping("/proporTema")
   public String proporTema(Model model) {
-    return "proporTema";
+    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
+      return "proporTema";
+    else return "redirect:/menu";
   }
 
   @PostMapping("/doProporTema")
@@ -121,19 +125,25 @@ public class WebController {
   // TODO
   @RequestMapping("/marcarDefesaProposta")
   public String avaliarTema(Model model) {
-    return "marcarDefesaProposta";
+    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
+      return "marcarDefesaProposta";
+    else return "redirect:/menu";
   }
 
   // TODO
   @RequestMapping("/registarNota")
   public String registarNota(Model model) {
-    return "registarNota";
+    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
+      return "registarNota";
+    else return "redirect:/menu";
   }
 
   // TODO
   @RequestMapping("/marcarDefesaFinal")
   public String marcarDefesaFinal(Model model) {
-    return "marcarDefesaFinal";
+    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
+      return "marcarDefesaFinal";
+    else return "redirect:/menu";
   }
 
   // TODO
