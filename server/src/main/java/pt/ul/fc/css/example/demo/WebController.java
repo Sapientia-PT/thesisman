@@ -62,6 +62,7 @@ public class WebController {
       utilizadorService.createOrientadorExterno(
           username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
       return "redirect:/login";
+      // TODO: Right now, the app will crash if the user already exists
     } catch (ApplicationException e) {
       model.addAttribute("error", "Error registrating user!");
       return "redirect:/registo";
@@ -76,12 +77,14 @@ public class WebController {
     return "main";
   }
 
+  // TODO Maybe remove later
   @RequestMapping("/alunos")
   public String alunos(Model model) {
     model.addAttribute("alunos", utilizadorService.getAlunos());
     return "alunos";
   }
 
+  // TODO Maybe remove later
   @RequestMapping("/temas")
   public String temas(Model model) {
     model.addAttribute("temas", temaService.getTemas());

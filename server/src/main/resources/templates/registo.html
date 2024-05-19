@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Registo</title>
-</head>
-<body>
-    <h1>Registo de Utilizador Empresarial</h1>
-    <form action="/doRegisto" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="nrConta">Número da Conta:</label>
-        <input type="text" id="nrConta" name="nrConta"><br><br>
-        <label for="nrEmpresa">Número da Empresa:</label>
-        <input type="text" id="nrEmpresa" name="nrEmpresa"><br><br>
-        <input type="submit" value="Registar">
-    </form>
-    <div th:if="${error}">
-        <p th:text="${error}"></p>
-    </div>
-</body>
+    <head>
+        <meta charset="ISO-8859-1" />
+        <link href="css/style.css" rel="stylesheet" />
+        <title>Registo</title>
+    </head>
+    <body>
+        <h1>Registo de Utilizador Empresarial:</h1>
+        <div class="container">
+            <div class="object" style="justify-content: center; display: flex;">
+                <form action="/doRegisto" method="post">
+                    <label for="username" class="element">Username:</label>
+                    <input type="text" id="username" name="username"><br><br>
+                    <label for="nrConta" class="element">Número da Conta:</label>
+                    <input type="text" id="nrConta" name="nrConta"><br><br>
+                    <label for="nrEmpresa" class="element">Número da Empresa:</label>
+                    <input type="text" id="nrEmpresa" name="nrEmpresa"><br><br>
+                    <input type="submit" value="Registar" class="element-title" style="width: 100px;">
+                </form>
+            </div>
+            <form action="/login" method="get">
+                <button class="element-title">Voltar</button>
+            </form>
+            <div th:if="${error}"> <!-- TODO Not working -->
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+    </body>
 </html>
