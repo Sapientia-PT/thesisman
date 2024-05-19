@@ -110,7 +110,6 @@ public class WebController {
       String alunoToken = utilizadorService.createAluno("João", 58195, 20.0f);
       EmpresaDTO empresa = utilizadorService.createEmpresa("Empresa", 12345);
       // associate the tema with the aluno
-      temaService.candidatarTemaAluno(tema1, utilizadorService.getAluno(58195));
       return "init";
     } catch (ApplicationException e) {
       throw new RuntimeException(e);
