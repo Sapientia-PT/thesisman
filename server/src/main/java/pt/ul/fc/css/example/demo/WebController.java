@@ -98,16 +98,16 @@ public class WebController {
   public String doProporTema(
       @RequestParam("titulo") String titulo,
       @RequestParam("descricao") String descricao,
-      @RequestParam("renMensal") String renMensal,
+      @RequestParam("remMensal") String remMensal,
       Model model) {
     try {
-      temaService.submeterTema(titulo, descricao, Float.parseFloat(renMensal));
+      temaService.submeterTema(titulo, descricao, Float.parseFloat(remMensal));
       return "redirect:/main";
     } catch (ApplicationException e) {
       model.addAttribute("error", "Error submitting theme!");
       return "redirect:/submeterTema";
     } catch (NumberFormatException e) {
-      model.addAttribute("error", "Maximum number of students must be a number!");
+      model.addAttribute("error", "Monthly pay must be a number!");
       return "redirect:/submeterTema";
     }
   }
