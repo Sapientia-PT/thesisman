@@ -3,7 +3,7 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilizador {
 
   @Id
