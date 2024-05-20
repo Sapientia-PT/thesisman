@@ -65,7 +65,6 @@ public class WebController {
       utilizadorService.createOrientadorExterno(
           username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
       return "redirect:/login";
-      // TODO: Right now, the app will crash if the user already exists
     } catch (NumberFormatException e) {
       redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
       return "redirect:/registo";
