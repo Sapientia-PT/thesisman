@@ -24,12 +24,12 @@ public class WebController {
   @Autowired EstatisticaService estatisticaService;
 
   @RequestMapping("/")
-  public String getIndex(Model model) {
+  public String getIndex() {
     return "redirect:/login";
   }
 
   @RequestMapping("/login")
-  public String login(Model model) {
+  public String login() {
     return "login";
   }
 
@@ -51,7 +51,7 @@ public class WebController {
   }
 
   @RequestMapping("/registo")
-  public String registro(Model model) {
+  public String registro() {
     return "registo";
   }
 
@@ -75,7 +75,7 @@ public class WebController {
   }
 
   @RequestMapping("/menu")
-  public String menu(Model model) {
+  public String menu() {
     return "menu";
   }
 
