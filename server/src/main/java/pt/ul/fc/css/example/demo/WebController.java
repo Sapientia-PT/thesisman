@@ -137,11 +137,14 @@ public class WebController {
   }
 
   // TODO
-  @RequestMapping("/listarDefesas")
-  public String listarDefesas(Model model) {
-    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
-      return "listarDefesas";
-    else return "redirect:/menu";
+  @RequestMapping("/listarPropostas")
+  public String listarPropostas(Model model) {
+    if (utilizadorService.validateTokenForEmpresarioOrDocente(
+        (String) model.getAttribute("token"))) {
+      model.addAttribute("propostas", teseService.getPropostas());
+      return "listarPropostas";
+    }
+    return "redirect:/menu";
   }
 
   // TODO
