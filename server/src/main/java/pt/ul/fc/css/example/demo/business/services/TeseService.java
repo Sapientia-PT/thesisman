@@ -11,7 +11,6 @@ import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.Defesa;
 import pt.ul.fc.css.example.demo.entities.Sala;
-import pt.ul.fc.css.example.demo.entities.Tese;
 
 @Service
 public class TeseService {
@@ -24,12 +23,12 @@ public class TeseService {
     temaAlunoHandler.atribuirTemaAluno(temaDTO, alunoDTO);
   }
 
-  public void submeterPropostaTese(Tese tese) throws NotFoundException {
-    propostaTeseHandler.submeterPropostaTese(tese, 60);
+  public void submeterPropostaTese(int nrAluno) throws NotFoundException {
+    propostaTeseHandler.submeterPropostaTese(nrAluno, 60);
   }
 
-  public void submeterDocumentoFinal(Tese tese) throws NotFoundException {
-    propostaTeseHandler.submeterPropostaTese(tese, 90);
+  public void submeterDocumentoFinal(int nrAluno) throws NotFoundException {
+    propostaTeseHandler.submeterPropostaTese(nrAluno, 90);
   }
 
   public void marcarDefesa(Time hora, Sala sala, Defesa defesa) throws NotFoundException {
