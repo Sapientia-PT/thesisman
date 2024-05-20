@@ -170,7 +170,7 @@ public class WebController {
       utilizadorService.createAluno("João", 58195, 20.0f);
       utilizadorService.createEmpresa("Empresa", 12345);
       // associate the tema with the aluno
-      return "init";
+      return "redirect:/login";
     } catch (ApplicationException e) {
       throw new RuntimeException(e);
     }
