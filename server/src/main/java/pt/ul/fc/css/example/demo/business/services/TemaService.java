@@ -23,10 +23,8 @@ public class TemaService {
   @Autowired private SubmeterTemaHandler submeterTemaHandler;
   @Autowired private TemaAlunoHandler temaAlunoHandler;
 
-  public TemaDTO getTema(Long id) throws NotFoundException {
-    Tema tema =
-        temaRepository.findById(id).orElseThrow(() -> new NotFoundException("Tema not found"));
-    return dtofy(tema);
+  public TemaDTO getTema(String titulo) {
+    return dtofy(temaRepository.findByTitulo(titulo));
   }
 
   public List<TemaDTO> getTemas() {

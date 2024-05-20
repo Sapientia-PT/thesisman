@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
+import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 
 @Controller
@@ -18,6 +19,7 @@ import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 public class WebController {
 
   @Autowired TemaService temaService;
+  @Autowired TeseService teseSerrvice;
   @Autowired UtilizadorService utilizadorService;
   @Autowired EstatisticaService estatisticaService;
 
@@ -110,12 +112,29 @@ public class WebController {
     }
   }
 
-  // TODO
   @RequestMapping("/atribuirTema")
   public String atribuirTema(Model model) {
     if (utilizadorService.validateTokenForAdministrador((String) model.getAttribute("token")))
       return "atribuirTema";
     else return "redirect:/menu";
+  }
+
+  @PostMapping("/doAtribuirTema")
+  public String doAtribuirTema(
+      @RequestParam("nrConta") String nrConta,
+      @RequestParam("titulo") String titulo,
+      RedirectAttributes redirectAttributes) {
+    try {
+      teseSerrvice.atribuirTemaALuno(
+          temaService.getTema(titulo), utilizadorService.getAluno(Integer.parseInt(nrConta)));
+      return "redirect:/menu";
+    } catch (NumberFormatException e) {
+      redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
+      return "redirect:/atribuirTema";
+    } catch (ApplicationException e) {
+      redirectAttributes.addFlashAttribute("error", e.getMessage());
+      return "redirect:/atribuirTema";
+    }
   }
 
   // TODO

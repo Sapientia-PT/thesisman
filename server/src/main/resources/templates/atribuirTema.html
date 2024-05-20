@@ -1,1 +1,30 @@
-atribuirTema
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO-8859-1" />
+        <link href="css/style.css" rel="stylesheet" />
+        <title>Atribuir Tema</title>
+    </head>
+    <body>
+        <h1>Atribuir Tema:</h1>
+        <div class="container">
+            <div class="object" style="justify-content: center; display: flex;">
+                <form action="/doAtribuirTema" method="post">
+                    <label for="nrConta" class="element">Número de Conta:</label>
+                    <input type="text" id="nrConta" name="nrConta" required><br><br>
+
+                    <label for="titulo" class="element">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required><br><br>
+
+                    <input type="submit" value="Atribuir" class="element-title" style="width: 100px;">
+                </form>
+            </div>
+            <form action="/menu" method="get">
+                <button class="element-title">Voltar</button>
+            </form>
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red"></p>
+            </div>
+        </div>
+    </body>
+</html>
