@@ -64,11 +64,11 @@ public class WebController {
           username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
       return "redirect:/login";
       // TODO: Right now, the app will crash if the user already exists
-    } catch (ApplicationException e) {
-      redirectAttributes.addFlashAttribute("error", "Enterprise does not exist!");
-      return "redirect:/registo";
     } catch (NumberFormatException e) {
       redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
+      return "redirect:/registo";
+    } catch (ApplicationException e) {
+      redirectAttributes.addFlashAttribute("error", e.getMessage());
       return "redirect:/registo";
     }
   }
@@ -101,11 +101,11 @@ public class WebController {
     try {
       temaService.submeterTema(titulo, descricao, Float.parseFloat(remMensal));
       return "redirect:/menu";
-    } catch (ApplicationException e) {
-      redirectAttributes.addFlashAttribute("error", "Error submitting theme!");
-      return "redirect:/proporTema";
     } catch (NumberFormatException e) {
       redirectAttributes.addFlashAttribute("error", "Monthly pay must be a number!");
+      return "redirect:/proporTema";
+    } catch (ApplicationException e) {
+      redirectAttributes.addFlashAttribute("error", e.getMessage());
       return "redirect:/proporTema";
     }
   }

@@ -9,7 +9,7 @@ public class Tema {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @Column(nullable = false)
+  @Column(unique = true, nullable = false)
   private String titulo;
 
   private String descricao;

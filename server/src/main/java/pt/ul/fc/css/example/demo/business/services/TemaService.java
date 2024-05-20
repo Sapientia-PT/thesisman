@@ -9,6 +9,7 @@ import pt.ul.fc.css.example.demo.business.handlers.TemaAlunoHandler;
 import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.DuplicateTitleException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.MaximoTemasException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
@@ -33,7 +34,7 @@ public class TemaService {
   }
 
   public TemaDTO submeterTema(String titulo, String descricao, float remunMensal)
-      throws NullTitleException {
+      throws NullTitleException, DuplicateTitleException {
     return dtofy(submeterTemaHandler.createTema(titulo, descricao, remunMensal));
   }
 
