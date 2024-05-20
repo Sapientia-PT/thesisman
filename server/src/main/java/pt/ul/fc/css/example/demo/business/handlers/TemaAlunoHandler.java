@@ -42,7 +42,7 @@ public class TemaAlunoHandler {
   public void cancelarCandidaturaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
       throws NotFoundException {
     Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
-    Optional<Tema> tema = temaRepository.findById(temaDTO.getId());
+    Optional<Tema> tema = temaRepository.findByTitulo(temaDTO.getTitulo());
 
     if (aluno.isEmpty()) throw new NotFoundException("Aluno not found");
     if (tema.isEmpty()) throw new NotFoundException("Tema not found");
