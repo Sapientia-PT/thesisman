@@ -3,77 +3,82 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Juri {
 
-    @Id
-    private Long id;
+  @Id private Long id;
 
-    @OneToOne(mappedBy = "juri")
-    private Defesa defesa;
+  @OneToOne private Defesa defesa;
 
-    @OneToOne
-    @JoinColumn(name = "orientador_id")
-    private OrientadorInterno orientadorInterno;
+  @ManyToOne
+  @JoinColumn(name = "orientador_id")
+  private Docente orientadorInterno;
 
-    @OneToOne
-    @JoinColumn(name = "arguente_id")
-    private Arguente arguente;
+  @ManyToOne
+  @JoinColumn(name = "arguente_id")
+  private Docente arguente;
 
-    @OneToOne
-    @JoinColumn(name = "presidente_id")
-    private Presidente presidente;
+  @ManyToOne
+  @JoinColumn(name = "presidente_id")
+  private Docente presidente;
 
-    public Juri(Defesa defesa, OrientadorInterno orientadorInterno, Arguente arguente, Presidente presidente) {
-        this.defesa = defesa;
-        this.orientadorInterno = orientadorInterno;
-        this.arguente = arguente;
-        this.presidente = presidente;
-    }
+  // Defesa de Tese (final)
+  public Juri(Defesa defesa, Docente orientadorInterno, Docente arguente, Docente presidente) {
+    this.defesa = defesa;
+    this.orientadorInterno = orientadorInterno;
+    this.arguente = arguente;
+    this.presidente = presidente;
+  }
 
-    public Juri() {
+  // Defesa de Proposta de Tese
+  public Juri(Defesa defesa, Docente orientadorInterno, Docente arguente) {
+    this.defesa = defesa;
+    this.orientadorInterno = orientadorInterno;
+    this.arguente = arguente;
+  }
 
-    }
+  public Juri() {}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public Defesa getDefesa() {
-        return defesa;
-    }
+  public Defesa getDefesa() {
+    return defesa;
+  }
 
-    public void setDefesa(Defesa defesa) {
-        this.defesa = defesa;
-    }
+  public void setDefesa(Defesa defesa) {
+    this.defesa = defesa;
+  }
 
-    public OrientadorInterno getOrientadorInterno() {
-        return orientadorInterno;
-    }
+  public Docente getOrientadorInterno() {
+    return orientadorInterno;
+  }
 
-    public void setOrientadorInterno(OrientadorInterno orientadorInterno) {
-        this.orientadorInterno = orientadorInterno;
-    }
+  public void setOrientadorInterno(Docente orientadorInterno) {
+    this.orientadorInterno = orientadorInterno;
+  }
 
-    public Arguente getArguente() {
-        return arguente;
-    }
+  public Docente getArguente() {
+    return arguente;
+  }
 
-    public void setArguente(Arguente arguente) {
-        this.arguente = arguente;
-    }
+  public void setArguente(Docente arguente) {
+    this.arguente = arguente;
+  }
 
-    public Presidente getPresidente() {
-        return presidente;
-    }
+  public Docente getPresidente() {
+    return presidente;
+  }
 
-    public void setPresidente(Presidente presidente) {
-        this.presidente = presidente;
-    }
+  public void setPresidente(Docente presidente) {
+    this.presidente = presidente;
+  }
 }

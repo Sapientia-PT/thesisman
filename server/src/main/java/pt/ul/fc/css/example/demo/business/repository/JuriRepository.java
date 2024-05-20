@@ -1,16 +1,16 @@
 package pt.ul.fc.css.example.demo.business.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pt.ul.fc.css.example.demo.entities.*;
 
 public interface JuriRepository extends JpaRepository<Juri, Long> {
 
-    Juri findByDefesa(Defesa defesa);
+  Juri findByDefesa(Defesa defesa);
 
-    Juri findByOrientadorInterno(OrientadorInterno orientadorInterno);
+  List<Juri> findByOrientadorInterno(Docente orientadorInterno);
 
-    Juri findByArguente(Arguente arguente);
+  List<Juri> findByArguente(Docente arguente);
 
-    Juri findByPresidente(Presidente presidente);
-
+  List<Juri> findByPresidente(Docente presidente);
 }

@@ -9,6 +9,7 @@ import pt.ul.fc.css.example.demo.business.repository.TemaRepository;
 import pt.ul.fc.css.example.demo.business.repository.TeseRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.DuplicateTitleException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.MaximoTemasException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.Aluno;
@@ -27,11 +28,11 @@ public class TemaAlunoHandler {
     Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
     Optional<Tema> tema = temaRepository.findByTitulo(temaDTO.getTitulo());
 
-    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found");
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found");
+    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found!");
+    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
 
     List<Tema> temasAluno = aluno.get().getTemasCandidatados();
-    if (temasAluno.size() == 5) throw new MaximoTemasException("Aluno atingiu maximo temas");
+    if (temasAluno.size() == 5) throw new MaximoTemasException("Maximum number of temas reached!");
 
     temasAluno.add(tema.get());
     tema.get().setAluno(aluno.get());
@@ -44,8 +45,8 @@ public class TemaAlunoHandler {
     Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
     Optional<Tema> tema = temaRepository.findByTitulo(temaDTO.getTitulo());
 
-    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found");
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found");
+    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found!");
+    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
 
     aluno.get().getTemasCandidatados().remove(tema.get());
     tema.get().setAluno(null);
@@ -53,16 +54,20 @@ public class TemaAlunoHandler {
     updateAlunoTema(aluno.get(), tema.get());
   }
 
-  public void atribuirTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws NotFoundException {
+  public void atribuirTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
+      throws NotFoundException, DuplicateTitleException {
     // "Com essa atribuição começa a tese" -> Ou seja, por decisão nossa, criar e atribuir a tese ao
     // aluno neste método
     Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
     Optional<Tema> tema = temaRepository.findById(temaDTO.getId());
 
-    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found");
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found");
+    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found!");
+    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
 
     Aluno alunoPresente = aluno.get();
+    if (alunoPresente.getTese() != null)
+      throw new DuplicateTitleException(
+          "Aluno " + alunoPresente.getNrConta() + " already has a tese!");
 
     // TODO: atribuir docente?
     Tese tese = new Tese();
