@@ -4,14 +4,12 @@ import java.sql.Time;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
 import pt.ul.fc.css.example.demo.business.repository.DefesaRepository;
 import pt.ul.fc.css.example.demo.business.repository.PropostaTeseRepository;
 import pt.ul.fc.css.example.demo.business.repository.TeseRepository;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
-import pt.ul.fc.css.example.demo.entities.Defesa;
-import pt.ul.fc.css.example.demo.entities.PropostaTese;
-import pt.ul.fc.css.example.demo.entities.Sala;
-import pt.ul.fc.css.example.demo.entities.Tese;
+import pt.ul.fc.css.example.demo.entities.*;
 
 @Component
 public class PropostaTeseHandler {
@@ -19,26 +17,26 @@ public class PropostaTeseHandler {
   @Autowired private PropostaTeseRepository propostaTeseRepository;
   @Autowired private TeseRepository teseRepository;
   @Autowired private DefesaRepository defesaRepository;
+  @Autowired private AlunoRepository alunoRepository;
 
-  public void submeterPropostaTese(Tese tese, int duracaoMinutos) throws NotFoundException {
-    Optional<Tese> repoTese = teseRepository.findById(tese.getId());
-
-    if (repoTese.isEmpty()) throw new NotFoundException("No tese found");
-
-    Tese foundTese = repoTese.get();
+  public void submeterPropostaTese(int nrAluno, int duracaoMinutos) throws NotFoundException {
+    Aluno aluno = alunoRepository.findByNrConta(nrAluno);
+    if (aluno == null) throw new NotFoundException("No aluno found");
+    Tese repoTese = teseRepository.findByAluno(aluno);
+    if (repoTese == null) throw new NotFoundException("No tese found");
 
     Defesa defesa = new Defesa();
     defesa.setDuracaoMinutos(duracaoMinutos);
     PropostaTese propostaTese = new PropostaTese();
 
-    propostaTese.setTese(foundTese);
+    propostaTese.setTese(repoTese);
     propostaTese.setDefesa(defesa);
     defesa.setPropostaTese(propostaTese);
-    foundTese.getPropostasTese().add(propostaTese);
+    repoTese.getPropostasTese().add(propostaTese);
 
     defesaRepository.save(defesa);
     propostaTeseRepository.save(propostaTese);
-    teseRepository.save(foundTese);
+    teseRepository.save(repoTese);
   }
 
   // Defesa Presencial
