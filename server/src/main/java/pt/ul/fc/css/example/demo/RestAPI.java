@@ -8,6 +8,7 @@ import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.MaximoTemasException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
+import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 
 @RestController
@@ -16,6 +17,7 @@ public class RestAPI {
 
   @Autowired private UtilizadorService utilizadorService;
   @Autowired private TemaService temaService;
+  @Autowired private TeseService teseService;
 
   @GetMapping("/aluno/{nrAluno}")
   public AlunoDTO getAluno(@PathVariable("nrAluno") int nrAluno) {
@@ -42,5 +44,16 @@ public class RestAPI {
     TemaDTO tema = new TemaDTO();
     tema.setTitulo(titulo);
     temaService.cancelarCandidaturaAluno(tema, utilizadorService.getAluno(nrAluno));
+  }
+
+  @PostMapping("/submeter-proposta")
+  public void submeterProposta(@RequestParam("nrAluno") int nrAluno) throws NotFoundException {
+    teseService.submeterPropostaTese(nrAluno);
+  }
+
+  @PostMapping("/submeter-documento-final")
+  public void submeterDocumentoFinal(@RequestParam("nrAluno") int nrAluno)
+      throws NotFoundException {
+    teseService.submeterDocumentoFinal(nrAluno);
   }
 }
