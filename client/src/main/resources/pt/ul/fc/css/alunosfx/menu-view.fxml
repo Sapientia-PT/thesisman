@@ -24,8 +24,9 @@
          </font>
       </Label>
       <ListView fx:id="listaTemas" layoutX="48.0" layoutY="148.0" prefHeight="200.0" prefWidth="497.0" />
-      <Button layoutX="248.0" layoutY="361.0" mnemonicParsing="false" onAction="#sendTemas" text="Candidatar" />
+      <Button layoutX="471.0" layoutY="361.0" mnemonicParsing="false" onAction="#sendTemas" text="Candidatar" />
       <Button layoutX="48.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelarTemas" text="Cancelar" textFill="RED" />
-      <Button layoutX="482.0" layoutY="361.0" mnemonicParsing="false" onAction="#getTemas" text="Atualizar" textFill="#1f2ce1" />
+      <Button layoutX="118.0" layoutY="361.0" mnemonicParsing="false" onAction="#getTemas" text="Atualizar" textFill="#1f2ce1" />
+      <Button layoutX="383.0" layoutY="361.0" mnemonicParsing="false" onAction="#onSubmissaoClick" text="Submissões" />
    </children>
 </Pane>

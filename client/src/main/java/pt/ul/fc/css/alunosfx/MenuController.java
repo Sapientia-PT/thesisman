@@ -2,18 +2,20 @@ package pt.ul.fc.css.alunosfx;
 
 import com.google.gson.Gson;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.Stage;
 import pt.ul.fc.css.alunosfx.presentation.model.AlunoRead;
 import pt.ul.fc.css.alunosfx.presentation.model.TemaRead;
 
@@ -122,10 +124,6 @@ public class MenuController {
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "application/json");
 
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-        writer.flush();
-        writer.close();
-
         System.out.println("Response: " + conn.getResponseCode());
       } catch (Exception e) {
         e.printStackTrace();
@@ -145,14 +143,26 @@ public class MenuController {
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "application/json");
 
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-        writer.flush();
-        writer.close();
-
         System.out.println("Response: " + conn.getResponseCode());
       } catch (Exception e) {
         e.printStackTrace();
       }
+    }
+  }
+
+  @FXML
+  protected void onSubmissaoClick() {
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("submit-view.fxml"));
+      Parent root = loader.load();
+      SubmitController submitController = loader.getController();
+      submitController.setNrAluno(nrAluno);
+      Stage stage = new Stage();
+      stage.setScene(new Scene(root));
+      stage.setResizable(false);
+      stage.show();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 }
