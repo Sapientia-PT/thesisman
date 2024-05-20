@@ -19,7 +19,6 @@ public class UtilizadorService {
   @Autowired private EmpresaRepository empresaRepository;
   @Autowired private OrientadorExternoRepository orientadorExternoRepository;
   @Autowired private AdministradorRepository administradorRepository;
-  @Autowired private PresidenteRepository presidenteRepository;
 
   @Autowired private UtilizadorHandler utilizadorHandler;
 
@@ -36,8 +35,10 @@ public class UtilizadorService {
     return generatedToken;
   }
 
-  public AlunoDTO getAluno(int nrAluno) {
-    return alunoToDTO(alunoRepository.findByNrConta(nrAluno));
+  public AlunoDTO getAluno(int nrAluno) throws NotFoundException {
+    Aluno aluno = alunoRepository.findByNrConta(nrAluno);
+    if (aluno == null) throw new NotFoundException("Aluno with number " + nrAluno + " not found!");
+    return alunoToDTO(aluno);
   }
 
   public String getToken(int nrConta) {
@@ -100,34 +101,12 @@ public class UtilizadorService {
     return administradorToDTO(administradorRepository.findById(id).orElse(null));
   }
 
-  public String createPresidente(String nome, int nrPresidente) {
-    String generatedToken = tokenService.generateToken();
-    utilizadorHandler.createPresidente(nome, generatedToken, nrPresidente);
-    return generatedToken;
-  }
-
-  public PresidenteDTO getPresidente(long id) {
-    return presidenteToDTO(presidenteRepository.findById(id).orElse(null));
-  }
-
   public boolean validateTokenForAdministrador(String token) {
     return utilizadorHandler.validateTokenForAdministrador(token);
   }
 
   public boolean validateTokenForEmpresarioOrDocente(String token) {
     return utilizadorHandler.validateTokenForEmpresarioOrDocente(token);
-  }
-
-  public boolean validateToken(String token) {
-    return utilizadorHandler.validateToken(token);
-  }
-
-  public void clearUtilizadores() {
-    alunoRepository.deleteAll();
-    docenteRepository.deleteAll();
-    orientadorExternoRepository.deleteAll();
-    administradorRepository.deleteAll();
-    presidenteRepository.deleteAll();
   }
 
   private AdministradorDTO administradorToDTO(Administrador a) {
@@ -137,15 +116,6 @@ public class UtilizadorService {
     administradorDTO.setNome(a.getNome());
     administradorDTO.setNrAdministrador(a.getNrConta());
     return administradorDTO;
-  }
-
-  private PresidenteDTO presidenteToDTO(Presidente p) {
-    if (p == null) return null;
-    PresidenteDTO presidenteDTO = new PresidenteDTO();
-    presidenteDTO.setId(p.getId());
-    presidenteDTO.setNome(p.getNome());
-    presidenteDTO.setNrPresidente(p.getNrConta());
-    return presidenteDTO;
   }
 
   private EmpresaDTO empresaToDTO(Empresa e) {

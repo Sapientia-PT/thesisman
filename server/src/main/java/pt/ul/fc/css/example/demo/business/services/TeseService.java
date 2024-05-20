@@ -8,6 +8,7 @@ import pt.ul.fc.css.example.demo.business.handlers.TemaAlunoHandler;
 import pt.ul.fc.css.example.demo.business.repository.DefesaRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.DuplicateTitleException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.Defesa;
 import pt.ul.fc.css.example.demo.entities.Sala;
@@ -19,7 +20,8 @@ public class TeseService {
   @Autowired private PropostaTeseHandler propostaTeseHandler;
   @Autowired private DefesaRepository defesaRepository;
 
-  public void atribuirTemaALuno(TemaDTO temaDTO, AlunoDTO alunoDTO) throws NotFoundException {
+  public void atribuirTemaALuno(TemaDTO temaDTO, AlunoDTO alunoDTO)
+      throws NotFoundException, DuplicateTitleException {
     temaAlunoHandler.atribuirTemaAluno(temaDTO, alunoDTO);
   }
 
