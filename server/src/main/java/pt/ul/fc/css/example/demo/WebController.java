@@ -42,10 +42,10 @@ public class WebController {
         model.addAttribute("token", userToken);
         return "redirect:/menu";
       }
-      redirectAttributes.addFlashAttribute("error", "Student does not exist!");
+      redirectAttributes.addFlashAttribute("error", "User does not exist!");
       return "redirect:/login";
     } catch (NumberFormatException e) {
-      redirectAttributes.addFlashAttribute("error", "Invalid student number!");
+      redirectAttributes.addFlashAttribute("error", "Invalid user number!");
       return "redirect:/login";
     }
   }

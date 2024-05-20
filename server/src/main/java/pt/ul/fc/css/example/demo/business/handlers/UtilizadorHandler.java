@@ -3,6 +3,7 @@ package pt.ul.fc.css.example.demo.business.handlers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.*;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.UserAlreadyExistsException;
 import pt.ul.fc.css.example.demo.entities.*;
 
 @Component
@@ -45,9 +46,15 @@ public class UtilizadorHandler {
     empresaRepository.save(empresa);
   }
 
-  public void createOrientadorExterno(
-      String nome, String token, int nrEmpresario, Empresa empresa) {
+  public void createOrientadorExterno(String nome, String token, int nrEmpresario, Empresa empresa)
+      throws UserAlreadyExistsException {
 
+    if (alunoRepository.findByNrConta(nrEmpresario) != null
+        || docenteRepository.findByNrConta(nrEmpresario) != null
+        || orientadorExternoRepository.findByNrConta(nrEmpresario) != null
+        || administradorRepository.findByNrConta(nrEmpresario) != null
+        || presidenteRepository.findByNrConta(nrEmpresario) != null)
+      throw new UserAlreadyExistsException("Account number " + nrEmpresario + " already exists!");
     OrientadorExterno orientadorExterno = new OrientadorExterno();
     orientadorExterno.setNome(nome);
     orientadorExterno.setToken(token);
@@ -76,9 +83,6 @@ public class UtilizadorHandler {
   }
 
   public String getToken(int nrConta) {
-    Aluno aluno = alunoRepository.findByNrConta(nrConta);
-    if (aluno != null) return aluno.getToken();
-
     Docente docente = docenteRepository.findByNrConta(nrConta);
     if (docente != null) return docente.getToken();
 
