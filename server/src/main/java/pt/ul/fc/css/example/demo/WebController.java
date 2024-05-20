@@ -137,33 +137,17 @@ public class WebController {
   }
 
   // TODO
-  @RequestMapping("/marcarDefesaProposta")
-  public String avaliarTema(Model model) {
+  @RequestMapping("/marcarDefesa")
+  public String marcarDefesa(Model model) {
     if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
-      return "marcarDefesaProposta";
+      return "marcarDefesa";
     else return "redirect:/menu";
   }
 
   // TODO
-  @RequestMapping("/registarNota")
-  public String registarNota(Model model) {
-    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
-      return "registarNota";
-    else return "redirect:/menu";
-  }
-
-  // TODO
-  @RequestMapping("/marcarDefesaFinal")
-  public String marcarDefesaFinal(Model model) {
-    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
-      return "marcarDefesaFinal";
-    else return "redirect:/menu";
-  }
-
-  // TODO
-  @RequestMapping("/registarNotaFinal")
-  public String registarNotaFinal(Model model) {
-    return "registarNotaFinal";
+  @PostMapping("/doRegistoNota")
+  public String doRegistoNota() {
+    return "redirect:/menu";
   }
 
   @RequestMapping("/estatisticas")
