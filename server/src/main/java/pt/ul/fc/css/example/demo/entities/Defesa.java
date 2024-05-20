@@ -2,7 +2,6 @@ package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
 import java.sql.Time;
-import java.util.List;
 
 @Entity
 public class Defesa {
@@ -25,12 +24,8 @@ public class Defesa {
 
   private int nota;
 
-  @ManyToMany
-  @JoinTable(
-      name = "defesa_juri",
-      joinColumns = @JoinColumn(name = "defesa_id"),
-      inverseJoinColumns = @JoinColumn(name = "docente_id"))
-  private List<Docente> juri;
+  @OneToOne(mappedBy = "defesa")
+  private Juri juri;
 
   public Defesa(PropostaTese propostaTese, int duracaoMinutos, Time hora, Sala sala, int nota) {
     this.propostaTese = propostaTese;
@@ -88,13 +83,5 @@ public class Defesa {
 
   public void setNota(int nota) {
     this.nota = nota;
-  }
-
-  public List<Docente> getJuri() {
-    return juri;
-  }
-
-  public void setJuri(List<Docente> juri) {
-    this.juri = juri;
   }
 }
