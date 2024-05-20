@@ -24,12 +24,12 @@ public class WebController {
   @Autowired EstatisticaService estatisticaService;
 
   @RequestMapping("/")
-  public String getIndex(Model model) {
+  public String getIndex() {
     return "redirect:/login";
   }
 
   @RequestMapping("/login")
-  public String login(Model model) {
+  public String login() {
     return "login";
   }
 
@@ -42,16 +42,16 @@ public class WebController {
         model.addAttribute("token", userToken);
         return "redirect:/menu";
       }
-      redirectAttributes.addFlashAttribute("error", "Student does not exist!");
+      redirectAttributes.addFlashAttribute("error", "User does not exist!");
       return "redirect:/login";
     } catch (NumberFormatException e) {
-      redirectAttributes.addFlashAttribute("error", "Invalid student number!");
+      redirectAttributes.addFlashAttribute("error", "Invalid user number!");
       return "redirect:/login";
     }
   }
 
   @RequestMapping("/registo")
-  public String registro(Model model) {
+  public String registro() {
     return "registo";
   }
 
@@ -65,7 +65,6 @@ public class WebController {
       utilizadorService.createOrientadorExterno(
           username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
       return "redirect:/login";
-      // TODO: Right now, the app will crash if the user already exists
     } catch (NumberFormatException e) {
       redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
       return "redirect:/registo";
@@ -76,7 +75,7 @@ public class WebController {
   }
 
   @RequestMapping("/menu")
-  public String menu(Model model) {
+  public String menu() {
     return "menu";
   }
 

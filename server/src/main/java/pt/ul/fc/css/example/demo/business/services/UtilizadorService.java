@@ -76,10 +76,10 @@ public class UtilizadorService {
   }
 
   public String createOrientadorExterno(String nome, int nrEmpresario, long nrEmpresa)
-      throws NotFoundException {
+      throws NotFoundException, UserAlreadyExistsException {
     Empresa empresa = empresaRepository.findByNrEmpresa(nrEmpresa);
     if (empresa == null)
-      throw new NotFoundException("Empresa with nrEmpresa " + nrEmpresa + " not found");
+      throw new NotFoundException("Empresa with number " + nrEmpresa + " not found!");
 
     String generatedToken = tokenService.generateToken();
     utilizadorHandler.createOrientadorExterno(nome, generatedToken, nrEmpresario, empresa);
