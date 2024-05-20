@@ -34,4 +34,13 @@ public class RestAPI {
     tema.setTitulo(titulo);
     temaService.candidatarTemaAluno(tema, utilizadorService.getAluno(nrAluno));
   }
+
+  @DeleteMapping("/tema")
+  public void cancelarTema(
+      @RequestParam("titulo") String titulo, @RequestParam("nrAluno") int nrAluno)
+      throws MaximoTemasException, NotFoundException {
+    TemaDTO tema = new TemaDTO();
+    tema.setTitulo(titulo);
+    temaService.cancelarCandidaturaAluno(tema, utilizadorService.getAluno(nrAluno));
+  }
 }

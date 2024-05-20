@@ -57,7 +57,7 @@ public class MenuController {
     }
   }
 
-  private void getTemas() {
+  public void getTemas() {
     String endpoint = "http://localhost:8080/api/temas";
 
     try {
@@ -75,6 +75,7 @@ public class MenuController {
 
       Gson gson = new Gson();
       TemaRead[] temas = gson.fromJson(responseContent.toString(), TemaRead[].class);
+      listaTemas.getItems().clear();
       listaTemas.getItems().addAll(temas);
     } catch (Exception e) {
       e.printStackTrace();
@@ -118,6 +119,29 @@ public class MenuController {
         URL url = new URL(endpoint + "?titulo=" + formattedTitulo + "&nrAluno=" + nrAluno);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Content-Type", "application/json");
+
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        writer.flush();
+        writer.close();
+
+        System.out.println("Response: " + conn.getResponseCode());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  public void cancelarTemas() {
+    String endpoint = "http://localhost:8080/api/tema";
+
+    for (String tema : nomesTemasEscolhidos) {
+      try {
+        String formattedTitulo = tema.replace(" ", "%20");
+        URL url = new URL(endpoint + "?titulo=" + formattedTitulo + "&nrAluno=" + nrAluno);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("DELETE");
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "application/json");
 
