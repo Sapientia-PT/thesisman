@@ -27,14 +27,12 @@ public class PropostaTeseHandler {
 
     Defesa defesa = new Defesa();
     defesa.setDuracaoMinutos(duracaoMinutos);
-    PropostaTese propostaTese = new PropostaTese();
+    defesaRepository.save(defesa);
 
-    propostaTese.setTese(repoTese);
-    propostaTese.setDefesa(defesa);
+    PropostaTese propostaTese = new PropostaTese(repoTese, defesa);
     defesa.setPropostaTese(propostaTese);
     repoTese.getPropostasTese().add(propostaTese);
 
-    defesaRepository.save(defesa);
     propostaTeseRepository.save(propostaTese);
     teseRepository.save(repoTese);
   }
