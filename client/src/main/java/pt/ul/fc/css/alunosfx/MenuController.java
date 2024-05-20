@@ -2,6 +2,7 @@ package pt.ul.fc.css.alunosfx;
 
 import com.google.gson.Gson;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -29,34 +30,30 @@ public class MenuController {
 
   private List<String> nomesTemasEscolhidos;
 
-  public void setNrAluno(int nrAluno) {
+  public void setNrAluno(int nrAluno) throws IOException {
     this.nrAluno = nrAluno;
     getNomeAluno();
     getTemas();
   }
 
-  private void getNomeAluno() {
+  private void getNomeAluno() throws IOException {
     String endpoint = "http://localhost:8080/api/aluno/" + nrAluno;
 
-    try {
-      URL url = new URL(endpoint);
-      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-      conn.setRequestMethod("GET");
+    URL url = new URL(endpoint);
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
 
-      BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-      String line;
-      StringBuilder responseContent = new StringBuilder();
-      while ((line = reader.readLine()) != null) {
-        responseContent.append(line);
-      }
-      reader.close();
-
-      Gson gson = new Gson();
-      AlunoRead aluno = gson.fromJson(responseContent.toString(), AlunoRead.class);
-      nomeAluno.setText(aluno.getNome());
-    } catch (Exception e) {
-      e.printStackTrace();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    String line;
+    StringBuilder responseContent = new StringBuilder();
+    while ((line = reader.readLine()) != null) {
+      responseContent.append(line);
     }
+    reader.close();
+
+    Gson gson = new Gson();
+    AlunoRead aluno = gson.fromJson(responseContent.toString(), AlunoRead.class);
+    nomeAluno.setText(aluno.getNome());
   }
 
   public void getTemas() {
@@ -152,6 +149,8 @@ public class MenuController {
 
   @FXML
   protected void onSubmissaoClick() {
+    if (nomesTemasEscolhidos.isEmpty()) return;
+
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("submit-view.fxml"));
       Parent root = loader.load();

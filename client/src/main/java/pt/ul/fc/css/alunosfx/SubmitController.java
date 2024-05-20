@@ -2,10 +2,16 @@ package pt.ul.fc.css.alunosfx;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 public class SubmitController {
 
   private int nrAluno;
+
+  @FXML private Label estadoSubmissao;
+
+  private boolean submittedFinal = false;
 
   public void setNrAluno(int nrAluno) {
     this.nrAluno = nrAluno;
@@ -16,7 +22,10 @@ public class SubmitController {
   }
 
   public void submeterDocumentoFinal() {
-    submeter("submeter-documento-final");
+    if (!submittedFinal) {
+      submeter("submeter-documento-final");
+      submittedFinal = true;
+    }
   }
 
   private void submeter(String suffix) {
@@ -29,8 +38,9 @@ public class SubmitController {
       conn.setDoOutput(true);
       conn.setRequestProperty("Content-Type", "application/json");
 
-      System.out.println("Response: " + conn.getResponseCode());
+      estadoSubmissao.setText("Submissão efetuada com sucesso!");
     } catch (Exception e) {
+      estadoSubmissao.setText("Erro ao submeter!");
       e.printStackTrace();
     }
   }

@@ -1,5 +1,6 @@
 package pt.ul.fc.css.alunosfx;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +26,8 @@ public class AuthController {
       stage.show();
     } catch (NumberFormatException e) {
       System.out.println("Invalid number format");
+    } catch (IOException e) {
+      System.out.println("Probably no aluno found");
     } catch (Exception e) {
       e.printStackTrace();
     }
