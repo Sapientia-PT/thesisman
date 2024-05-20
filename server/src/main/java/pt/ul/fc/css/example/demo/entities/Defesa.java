@@ -16,10 +16,6 @@ public class Defesa {
   @Column(nullable = false)
   private int duracaoMinutos;
 
-  @OneToOne
-  @JoinColumn(name = "juri_id")
-  private Juri juri;
-
   private Time hora;
 
   @ManyToOne
@@ -28,11 +24,12 @@ public class Defesa {
 
   private int nota;
 
-  public Defesa(
-      PropostaTese propostaTese, int duracaoMinutos, Juri juri, Time hora, Sala sala, int nota) {
+  @OneToOne(mappedBy = "defesa")
+  private Juri juri;
+
+  public Defesa(PropostaTese propostaTese, int duracaoMinutos, Time hora, Sala sala, int nota) {
     this.propostaTese = propostaTese;
     this.duracaoMinutos = duracaoMinutos;
-    this.juri = juri;
     this.hora = hora;
     this.sala = sala;
     this.nota = nota;
@@ -62,14 +59,6 @@ public class Defesa {
 
   public void setDuracaoMinutos(int duracaoMinutos) {
     this.duracaoMinutos = duracaoMinutos;
-  }
-
-  public Juri getJuri() {
-    return juri;
-  }
-
-  public void setJuri(Juri juri) {
-    this.juri = juri;
   }
 
   public Time getHora() {

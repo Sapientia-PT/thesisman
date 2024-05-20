@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.Defesa;
-import pt.ul.fc.css.example.demo.entities.Juri;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
 
 public interface DefesaRepository extends JpaRepository<Defesa, Long> {
@@ -14,6 +13,4 @@ public interface DefesaRepository extends JpaRepository<Defesa, Long> {
   Defesa findByPropostaTese(@Param("propostaTese") PropostaTese propostaTese);
 
   List<Defesa> findByDuracaoMinutos(int duracaoMinutos);
-
-  Defesa findByJuri(Juri juri);
 }

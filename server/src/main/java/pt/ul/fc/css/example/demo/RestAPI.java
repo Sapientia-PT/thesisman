@@ -20,7 +20,7 @@ public class RestAPI {
   @Autowired private TeseService teseService;
 
   @GetMapping("/aluno/{nrAluno}")
-  public AlunoDTO getAluno(@PathVariable("nrAluno") int nrAluno) {
+  public AlunoDTO getAluno(@PathVariable("nrAluno") int nrAluno) throws NotFoundException {
     return utilizadorService.getAluno(nrAluno);
   }
 

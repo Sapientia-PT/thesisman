@@ -10,6 +10,7 @@ public class Sala {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
+  @Column(unique = true, nullable = false)
   private long nrSala;
 
   @OneToMany(mappedBy = "sala")

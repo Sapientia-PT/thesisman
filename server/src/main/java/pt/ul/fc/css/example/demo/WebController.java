@@ -137,11 +137,26 @@ public class WebController {
   }
 
   // TODO
+  @RequestMapping("/listarPropostas")
+  public String listarPropostas(Model model) {
+    if (utilizadorService.validateTokenForEmpresarioOrDocente(
+        (String) model.getAttribute("token"))) {
+      model.addAttribute("propostas", teseService.getPropostas());
+      return "listarPropostas";
+    }
+    return "redirect:/menu";
+  }
+
+  // TODO
   @RequestMapping("/marcarDefesa")
   public String marcarDefesa(Model model) {
-    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
-      return "marcarDefesa";
-    else return "redirect:/menu";
+    return "marcarDefesa";
+  }
+
+  // TODO
+  @PostMapping("/doMarcarDefesa")
+  public String doMarcarDefesa() {
+    return "redirect:/menu";
   }
 
   // TODO
