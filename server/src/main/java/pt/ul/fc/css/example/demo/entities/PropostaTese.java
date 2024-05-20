@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 @Entity
 public class PropostaTese {
-  @Id private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
   @ManyToOne
   @JoinColumn(name = "tese_id")
