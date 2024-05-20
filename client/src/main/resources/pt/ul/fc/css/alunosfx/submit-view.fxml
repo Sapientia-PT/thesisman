@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ul.fc.css.alunosfx.SubmitController">
    <children>
       <Button layoutX="134.0" layoutY="71.0" mnemonicParsing="false" onAction="#submeterProposta" prefHeight="90.0" prefWidth="132.0" text="Submeter Documento Proposta" wrapText="true" />
       <Button layoutX="134.0" layoutY="215.0" mnemonicParsing="false" onAction="#submeterDocumentoFinal" prefHeight="90.0" prefWidth="132.0" text="Submeter Documento Final" wrapText="true" />
+      <Label fx:id="estadoSubmissao" layoutX="186.0" layoutY="27.0" textAlignment="CENTER" />
    </children>
 </Pane>
