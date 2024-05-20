@@ -136,7 +136,6 @@ public class WebController {
     }
   }
 
-  // TODO
   @RequestMapping("/listarPropostas")
   public String listarPropostas(Model model) {
     if (utilizadorService.validateTokenForEmpresarioOrDocente(
