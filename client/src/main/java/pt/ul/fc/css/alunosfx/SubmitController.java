@@ -11,6 +11,8 @@ public class SubmitController {
 
   @FXML private Label estadoSubmissao;
 
+  private boolean submittedFinal = false;
+
   public void setNrAluno(int nrAluno) {
     this.nrAluno = nrAluno;
   }
@@ -20,7 +22,10 @@ public class SubmitController {
   }
 
   public void submeterDocumentoFinal() {
-    submeter("submeter-documento-final");
+    if (!submittedFinal) {
+      submeter("submeter-documento-final");
+      submittedFinal = true;
+    }
   }
 
   private void submeter(String suffix) {
