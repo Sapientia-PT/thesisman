@@ -8,6 +8,6 @@
    <children>
       <Button layoutX="134.0" layoutY="71.0" mnemonicParsing="false" onAction="#submeterProposta" prefHeight="90.0" prefWidth="132.0" text="Submeter Documento Proposta" wrapText="true" />
       <Button layoutX="134.0" layoutY="215.0" mnemonicParsing="false" onAction="#submeterDocumentoFinal" prefHeight="90.0" prefWidth="132.0" text="Submeter Documento Final" wrapText="true" />
-      <Label fx:id="estadoSubmissao" layoutX="186.0" layoutY="27.0" textAlignment="CENTER" />
+      <Label fx:id="estadoSubmissao" layoutX="143.0" layoutY="14.0" prefHeight="39.0" prefWidth="114.0" textAlignment="CENTER" wrapText="true" />
    </children>
 </Pane>
