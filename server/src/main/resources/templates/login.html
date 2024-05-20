@@ -21,6 +21,9 @@
             <form action="/registo" method="get">
                 <button class="element-title">Registar Empresários</button>
             </form>
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red"></p>
+            </div>
         </div>
     </body>
 </html>

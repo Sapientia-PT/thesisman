@@ -22,8 +22,8 @@
             <form action="/login" method="get">
                 <button class="element-title">Voltar</button>
             </form>
-            <div th:if="${error}"> <!-- TODO Not working -->
-                <p th:text="${error}"></p>
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red"></p>
             </div>
         </div>
     </body>
