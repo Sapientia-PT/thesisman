@@ -129,7 +129,7 @@ public class WebController {
           temaService.getTema(titulo), utilizadorService.getAluno(Integer.parseInt(nrConta)));
       return "redirect:/menu";
     } catch (NumberFormatException e) {
-      redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
+      redirectAttributes.addFlashAttribute("error", "Aluno number must be a number!");
       return "redirect:/atribuirTema";
     } catch (ApplicationException e) {
       redirectAttributes.addFlashAttribute("error", e.getMessage());
