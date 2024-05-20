@@ -78,14 +78,7 @@ public class WebController {
     return "menu";
   }
 
-  // TODO Maybe remove later
-  @RequestMapping("/alunos")
-  public String alunos(Model model) {
-    model.addAttribute("alunos", utilizadorService.getAlunos());
-    return "alunos";
-  }
-
-  // TODO Maybe remove later
+  // TODO Good for debugging
   @RequestMapping("/temas")
   public String temas(Model model) {
     model.addAttribute("temas", temaService.getTemas());
@@ -104,16 +97,16 @@ public class WebController {
       @RequestParam("titulo") String titulo,
       @RequestParam("descricao") String descricao,
       @RequestParam("remMensal") String remMensal,
-      Model model) {
+      RedirectAttributes redirectAttributes) {
     try {
       temaService.submeterTema(titulo, descricao, Float.parseFloat(remMensal));
       return "redirect:/menu";
     } catch (ApplicationException e) {
-      model.addAttribute("error", "Error submitting theme!");
-      return "redirect:/submeterTema";
+      redirectAttributes.addFlashAttribute("error", "Error submitting theme!");
+      return "redirect:/proporTema";
     } catch (NumberFormatException e) {
-      model.addAttribute("error", "Monthly pay must be a number!");
-      return "redirect:/submeterTema";
+      redirectAttributes.addFlashAttribute("error", "Monthly pay must be a number!");
+      return "redirect:/proporTema";
     }
   }
 

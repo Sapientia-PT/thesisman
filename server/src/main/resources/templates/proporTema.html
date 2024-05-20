@@ -1,1 +1,33 @@
-proporTema
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO-8859-1" />
+        <link href="css/style.css" rel="stylesheet" />
+        <title>Propor Tema</title>
+    </head>
+    <body>
+        <h1>Proposta de Tema:</h1>
+        <div class="container">
+            <div class="object" style="justify-content: center; display: flex;">
+                <form action="/doProporTema" method="post">
+                    <label for="titulo" class="element">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required><br><br>
+
+                    <label for="descricao" class="element">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br><br>
+
+                    <label for="remMensal" class="element">Remuneração Mensal:</label>
+                    <input type="text" id="remMensal" name="remMensal" required><br><br>
+
+                    <input type="submit" value="Propor" class="element-title" style="width: 100px;">
+                </form>
+            </div>
+            <form action="/menu" method="get">
+                <button class="element-title">Voltar</button>
+            </form>
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red"></p>
+            </div>
+        </div>
+    </body>
+</html>
