@@ -19,7 +19,7 @@ import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 public class WebController {
 
   @Autowired TemaService temaService;
-  @Autowired TeseService teseSerrvice;
+  @Autowired TeseService teseService;
   @Autowired UtilizadorService utilizadorService;
   @Autowired EstatisticaService estatisticaService;
 
@@ -125,7 +125,7 @@ public class WebController {
       @RequestParam("titulo") String titulo,
       RedirectAttributes redirectAttributes) {
     try {
-      teseSerrvice.atribuirTemaALuno(
+      teseService.atribuirTemaALuno(
           temaService.getTema(titulo), utilizadorService.getAluno(Integer.parseInt(nrConta)));
       return "redirect:/menu";
     } catch (NumberFormatException e) {
@@ -182,9 +182,6 @@ public class WebController {
   @RequestMapping("/init")
   public String initTest() {
     try {
-      // clear existing data
-      temaService.clearTemas();
-      utilizadorService.clearUtilizadores();
       // create some initial data
       temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       temaService.submeterTema("Macacos", "Ooga Booga", 42);

@@ -1,6 +1,7 @@
 package pt.ul.fc.css.example.demo.business.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,10 @@ public class TemaService {
   @Autowired private SubmeterTemaHandler submeterTemaHandler;
   @Autowired private TemaAlunoHandler temaAlunoHandler;
 
-  public TemaDTO getTema(String titulo) {
-    return dtofy(temaRepository.findByTitulo(titulo));
+  public TemaDTO getTema(String titulo) throws NotFoundException {
+    Optional<Tema> tema = temaRepository.findByTitulo(titulo);
+    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
+    return dtofy(tema.get());
   }
 
   public List<TemaDTO> getTemas() {

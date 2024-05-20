@@ -49,4 +49,8 @@ public class TeseService {
               defesaRepository.save(d);
             });
   }
+
+  public void clearTeses() {
+    defesaRepository.deleteAll();
+  }
 }
