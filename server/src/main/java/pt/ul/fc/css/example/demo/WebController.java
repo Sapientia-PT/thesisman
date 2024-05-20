@@ -137,11 +137,23 @@ public class WebController {
   }
 
   // TODO
+  @RequestMapping("/listarDefesas")
+  public String listarDefesas(Model model) {
+    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
+      return "listarDefesas";
+    else return "redirect:/menu";
+  }
+
+  // TODO
   @RequestMapping("/marcarDefesa")
   public String marcarDefesa(Model model) {
-    if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
-      return "marcarDefesa";
-    else return "redirect:/menu";
+    return "marcarDefesa";
+  }
+
+  // TODO
+  @PostMapping("/doMarcarDefesa")
+  public String doMarcarDefesa() {
+    return "redirect:/menu";
   }
 
   // TODO

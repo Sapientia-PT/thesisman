@@ -35,10 +35,6 @@ public class TeseService {
     propostaTeseHandler.marcarDefesa(hora, sala, defesa);
   }
 
-  public void marcarDefesa(Time hora, Defesa defesa) throws NotFoundException {
-    propostaTeseHandler.marcarDefesa(hora, defesa);
-  }
-
   public void registaNotaDefesa(int nota, Defesa defesa) {
     defesaRepository
         .findById(defesa.getId())

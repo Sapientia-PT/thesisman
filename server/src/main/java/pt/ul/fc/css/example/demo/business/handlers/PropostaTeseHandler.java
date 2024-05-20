@@ -37,7 +37,6 @@ public class PropostaTeseHandler {
     teseRepository.save(repoTese);
   }
 
-  // Defesa Presencial
   public void marcarDefesa(Time hora, Sala sala, Defesa defesa) throws NotFoundException {
     Optional<Defesa> repoDefesa = defesaRepository.findById(defesa.getId());
 
@@ -45,19 +44,8 @@ public class PropostaTeseHandler {
 
     // TODO: Fazer verificaco dos horarios da sala
     Defesa foundDefesa = repoDefesa.get();
-    defesa.setSala(sala);
-    defesa.setHora(hora);
-    defesaRepository.save(foundDefesa);
-  }
-
-  // Defesa Remota
-  public void marcarDefesa(Time hora, Defesa defesa) throws NotFoundException {
-    Optional<Defesa> repoDefesa = defesaRepository.findById(defesa.getId());
-
-    if (repoDefesa.isEmpty()) throw new NotFoundException("No defesa found");
-
-    Defesa foundDefesa = repoDefesa.get();
-    defesa.setHora(hora);
+    if (sala != null) foundDefesa.setSala(sala); // Presencial|Remoto
+    foundDefesa.setHora(hora);
     defesaRepository.save(foundDefesa);
   }
 }
