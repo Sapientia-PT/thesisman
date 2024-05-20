@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
@@ -31,18 +32,18 @@ public class WebController {
   }
 
   @PostMapping("/doLogin")
-  public String doLogin(@RequestParam("nrConta") String nrConta, Model model) {
+  public String doLogin(
+      @RequestParam("nrConta") String nrConta, Model model, RedirectAttributes redirectAttributes) {
     try {
       String userToken = utilizadorService.getToken(Integer.parseInt(nrConta));
       if (userToken != null) {
         model.addAttribute("token", userToken);
         return "redirect:/menu";
       }
-      // If the student doesn't exist
-      model.addAttribute("error", "Student does not exist!");
+      redirectAttributes.addFlashAttribute("error", "Student does not exist!");
       return "redirect:/login";
     } catch (NumberFormatException e) {
-      model.addAttribute("error", "Invalid student number!");
+      redirectAttributes.addFlashAttribute("error", "Invalid student number!");
       return "redirect:/login";
     }
   }
@@ -57,17 +58,17 @@ public class WebController {
       @RequestParam("username") String username,
       @RequestParam("nrConta") String nrConta,
       @RequestParam("nrEmpresa") String nrEmpresa,
-      Model model) {
+      RedirectAttributes redirectAttributes) {
     try {
       utilizadorService.createOrientadorExterno(
           username, Integer.parseInt(nrConta), Long.parseLong(nrEmpresa));
       return "redirect:/login";
       // TODO: Right now, the app will crash if the user already exists
     } catch (ApplicationException e) {
-      model.addAttribute("error", "Error registrating user!");
+      redirectAttributes.addFlashAttribute("error", "Enterprise does not exist!");
       return "redirect:/registo";
     } catch (NumberFormatException e) {
-      model.addAttribute("error", "Enterprise number must be a number!");
+      redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
       return "redirect:/registo";
     }
   }

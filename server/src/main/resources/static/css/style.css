@@ -55,4 +55,5 @@ h1 {
 
 .element-title:hover {
     background-color: #005f5f;
+    cursor: pointer;
 }
