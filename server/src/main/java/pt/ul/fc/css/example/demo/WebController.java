@@ -113,7 +113,9 @@ public class WebController {
   // TODO
   @RequestMapping("/atribuirTema")
   public String atribuirTema(Model model) {
-    return "atribuirTema";
+    if (utilizadorService.validateTokenForAdministrador((String) model.getAttribute("token")))
+      return "atribuirTema";
+    else return "redirect:/menu";
   }
 
   // TODO
@@ -169,6 +171,7 @@ public class WebController {
       temaService.submeterTema("Macacos", "Ooga Booga", 42);
       utilizadorService.createAluno("João", 58195, 20.0f);
       utilizadorService.createEmpresa("Empresa", 12345);
+      utilizadorService.createAdministrador("Carlos", 1);
       // associate the tema with the aluno
       return "redirect:/login";
     } catch (ApplicationException e) {

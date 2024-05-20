@@ -94,6 +94,10 @@ public class UtilizadorHandler {
     return null;
   }
 
+  public boolean validateTokenForAdministrador(String token) {
+    return administradorRepository.findByToken(token) != null;
+  }
+
   public boolean validateTokenForEmpresarioOrDocente(String token) {
     return orientadorExternoRepository.findByToken(token) != null
         || docenteRepository.findByToken(token) != null;
