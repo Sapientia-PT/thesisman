@@ -1,7 +1,6 @@
 package pt.ul.fc.css.example.demo.business.handlers;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
@@ -25,58 +24,55 @@ public class TemaAlunoHandler {
 
   public void candidatarTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
       throws NotFoundException, MaximoTemasException {
-    Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
-    Optional<Tema> tema = temaRepository.findByTitulo(temaDTO.getTitulo());
+    Aluno aluno = alunoRepository.findByNrConta(alunoDTO.getNrConta());
+    Tema tema = temaRepository.findByTitulo(temaDTO.getTitulo());
 
-    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found!");
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
+    if (aluno == null) throw new NotFoundException("Aluno not found!");
+    if (tema == null) throw new NotFoundException("Tema not found!");
 
-    List<Tema> temasAluno = aluno.get().getTemasCandidatados();
+    List<Tema> temasAluno = aluno.getTemasCandidatados();
     if (temasAluno.size() == 5) throw new MaximoTemasException("Maximum number of temas reached!");
 
-    temasAluno.add(tema.get());
-    tema.get().setAluno(aluno.get());
+    temasAluno.add(tema);
+    tema.setAluno(aluno);
 
-    updateAlunoTema(aluno.get(), tema.get());
+    updateAlunoTema(aluno, tema);
   }
 
   public void cancelarCandidaturaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
       throws NotFoundException {
-    Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
-    Optional<Tema> tema = temaRepository.findByTitulo(temaDTO.getTitulo());
+    Aluno aluno = alunoRepository.findByNrConta(alunoDTO.getNrConta());
+    Tema tema = temaRepository.findByTitulo(temaDTO.getTitulo());
 
-    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found!");
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
+    if (aluno == null) throw new NotFoundException("Aluno not found!");
+    if (tema == null) throw new NotFoundException("Tema not found!");
 
-    aluno.get().getTemasCandidatados().remove(tema.get());
-    tema.get().setAluno(null);
+    aluno.getTemasCandidatados().remove(tema);
+    tema.setAluno(null);
 
-    updateAlunoTema(aluno.get(), tema.get());
+    updateAlunoTema(aluno, tema);
   }
 
   public void atribuirTemaAluno(TemaDTO temaDTO, AlunoDTO alunoDTO)
       throws NotFoundException, DuplicateTitleException {
     // "Com essa atribuição começa a tese" -> Ou seja, por decisão nossa, criar e atribuir a tese ao
     // aluno neste método
-    Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.getId());
-    Optional<Tema> tema = temaRepository.findById(temaDTO.getId());
+    Aluno aluno = alunoRepository.findByNrConta(alunoDTO.getNrConta());
+    Tema tema = temaRepository.findByTitulo(temaDTO.getTitulo());
 
-    if (aluno.isEmpty()) throw new NotFoundException("Aluno not found!");
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
+    if (aluno == null) throw new NotFoundException("Aluno not found!");
+    if (tema == null) throw new NotFoundException("Tema not found!");
 
-    Aluno alunoPresente = aluno.get();
-    if (alunoPresente.getTese() != null)
-      throw new DuplicateTitleException(
-          "Aluno " + alunoPresente.getNrConta() + " already has a tese!");
+    if (aluno.getTese() != null)
+      throw new DuplicateTitleException("Aluno " + aluno.getNrConta() + " already has a tese!");
 
     // We do not associate with Docente (no time)
     Tese tese = new Tese();
-    tese.setAluno(alunoPresente);
-    tese.setTema(tema.get());
-    tese = teseRepository.save(tese);
-
-    alunoPresente.setTese(tese);
-    alunoRepository.save(alunoPresente);
+    tese.setAluno(aluno);
+    tese.setTema(tema);
+    aluno.setTese(tese);
+    teseRepository.save(tese);
+    alunoRepository.save(aluno);
   }
 
   private void updateAlunoTema(Aluno aluno, Tema tema) {

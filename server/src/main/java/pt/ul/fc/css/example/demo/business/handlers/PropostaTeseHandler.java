@@ -19,22 +19,23 @@ public class PropostaTeseHandler {
   @Autowired private DefesaRepository defesaRepository;
   @Autowired private AlunoRepository alunoRepository;
 
-  public void submeterPropostaTese(int nrAluno, int duracaoMinutos) throws NotFoundException {
-    Aluno aluno = alunoRepository.findByNrConta(nrAluno);
+  public void submeterPropostaTese(int nrConta, int duracaoMinutos) throws NotFoundException {
+    Aluno aluno = alunoRepository.findByNrConta(nrConta);
+    Tese tese = teseRepository.findByAluno(aluno);
     if (aluno == null) throw new NotFoundException("No aluno found");
-    Tese repoTese = teseRepository.findByAluno(aluno);
-    if (repoTese == null) throw new NotFoundException("No tese found");
+    if (tese == null) throw new NotFoundException("No tese found");
 
     Defesa defesa = new Defesa();
     defesa.setDuracaoMinutos(duracaoMinutos);
     defesaRepository.save(defesa);
 
-    PropostaTese propostaTese = new PropostaTese(repoTese, defesa);
+    PropostaTese propostaTese = new PropostaTese(tese, defesa);
     defesa.setPropostaTese(propostaTese);
-    repoTese.getPropostasTese().add(propostaTese);
+    tese.getPropostasTese().add(propostaTese);
 
     propostaTeseRepository.save(propostaTese);
-    teseRepository.save(repoTese);
+    defesaRepository.save(defesa);
+    teseRepository.save(tese);
   }
 
   public void marcarDefesa(Horario horario, Sala sala, Juri juri, Defesa defesa)
