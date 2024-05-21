@@ -85,7 +85,6 @@ public class MenuController {
   public void initialize() {
     nomesTemasEscolhidos = new LinkedList<>();
     nomeAluno.setText("");
-    // TODO: listaTemas.getItems().clear(); ??
 
     listaTemas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -115,7 +114,7 @@ public class MenuController {
     for (String tema : nomesTemasEscolhidos) {
       try {
         String formattedTitulo = tema.replace(" ", "%20");
-        URL url = new URL(endpoint + "?titulo=" + formattedTitulo + "&nrAluno=" + nrAluno);
+        URL url = new URL(endpoint + "?titulo=" + formattedTitulo + "&nrConta=" + nrAluno);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -134,7 +133,7 @@ public class MenuController {
     for (String tema : nomesTemasEscolhidos) {
       try {
         String formattedTitulo = tema.replace(" ", "%20");
-        URL url = new URL(endpoint + "?titulo=" + formattedTitulo + "&nrAluno=" + nrAluno);
+        URL url = new URL(endpoint + "?titulo=" + formattedTitulo + "&nrConta=" + nrAluno);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("DELETE");
         conn.setDoOutput(true);

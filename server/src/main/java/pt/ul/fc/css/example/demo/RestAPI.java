@@ -30,11 +30,11 @@ public class RestAPI {
   }
 
   @PostMapping("/tema")
-  public void addTema(@RequestParam("titulo") String titulo, @RequestParam("nrAluno") int nrAluno)
+  public void addTema(@RequestParam("titulo") String titulo, @RequestParam("nrConta") int nrConta)
       throws MaximoTemasException, NotFoundException {
     TemaDTO tema = new TemaDTO();
     tema.setTitulo(titulo);
-    temaService.candidatarTemaAluno(tema, utilizadorService.getAluno(nrAluno));
+    temaService.candidatarTemaAluno(tema, utilizadorService.getAluno(nrConta));
   }
 
   @DeleteMapping("/tema")
