@@ -148,7 +148,6 @@ public class WebController {
     return "redirect:/menu";
   }
 
-  // TODO
   @RequestMapping("/marcarDefesa")
   public String marcarDefesa(@RequestParam("propostaId") Long propostaId, Model model) {
     try {
@@ -166,7 +165,8 @@ public class WebController {
   @PostMapping("/doMarcarDefesa")
   public String doMarcarDefesa(
       @RequestParam("propostaId") Long propostaId,
-      @RequestParam(value = "nrSala", required = false) int nrSala,
+      @RequestParam(value = "nrSala", required = false)
+          String nrSala, // need string for the case of remote
       @RequestParam("dataInicial") String dataInicial,
       @RequestParam("dataFinal") String dataFinal,
       @RequestParam("arguente") int nrArguente,
@@ -209,17 +209,22 @@ public class WebController {
   @RequestMapping("/init")
   public String initTest() {
     try {
-      // create some initial data
+      // create mock-up temas
       temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       temaService.submeterTema("Macacos", "Ooga Booga", 42);
+      // create mock-up utilizadores
       utilizadorService.createAluno("João", 58195, 20.0f);
       utilizadorService.createAluno("Guilherme", 58176, 10.0f);
       utilizadorService.createAluno("Rafael", 58236, 0.0f);
       utilizadorService.createDocente("Manuel", 10);
       utilizadorService.createDocente("João", 11);
-      utilizadorService.createEmpresa("Empresa", 12345);
+      utilizadorService.createEmpresa("EmpresaSuperFixe", 12345);
       utilizadorService.createAdministrador("Carlos", 1);
-      // associate the tema with the aluno
+      // create mock-up salas
+      teseService.createSala(100);
+      teseService.createSala(101);
+      teseService.createSala(102);
+      teseService.createSala(103);
       return "redirect:/login";
     } catch (ApplicationException e) {
       throw new RuntimeException(e);

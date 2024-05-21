@@ -25,6 +25,7 @@
                     <!-- Sala -->
                     <label for="sala" class="element">Sala:</label>
                     <select id="sala" name="nrSala">
+                        <option value=""></option>
                         <option th:each="sala : ${salas}" th:value="${sala.getId()}" th:text="${sala.getNrSala()}"></option>
                     </select><br><br>
 

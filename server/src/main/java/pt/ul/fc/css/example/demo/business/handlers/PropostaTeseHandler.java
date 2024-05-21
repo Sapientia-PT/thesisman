@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
 import pt.ul.fc.css.example.demo.business.repository.DefesaRepository;
 import pt.ul.fc.css.example.demo.business.repository.PropostaTeseRepository;
+import pt.ul.fc.css.example.demo.business.repository.SalaRepository;
 import pt.ul.fc.css.example.demo.business.repository.TeseRepository;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.HorarioInUseException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
@@ -18,6 +19,7 @@ public class PropostaTeseHandler {
   @Autowired private TeseRepository teseRepository;
   @Autowired private DefesaRepository defesaRepository;
   @Autowired private AlunoRepository alunoRepository;
+  @Autowired private SalaRepository salaRepository;
 
   public void submeterPropostaTese(int nrConta, int duracaoMinutos) throws NotFoundException {
     Aluno aluno = alunoRepository.findByNrConta(nrConta);
@@ -55,5 +57,11 @@ public class PropostaTeseHandler {
 
   private boolean isHorarioInUse(Sala sala, Horario horario) {
     return sala.getDefesas().stream().anyMatch(d -> d.getHorario().equals(horario));
+  }
+
+  public void createSala(int nrSala) {
+    Sala sala = new Sala();
+    sala.setNrSala(nrSala);
+    salaRepository.save(sala);
   }
 }

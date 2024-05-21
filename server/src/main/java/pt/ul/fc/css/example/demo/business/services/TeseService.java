@@ -82,4 +82,8 @@ public class TeseService {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'createJuri'");
   }
+
+  public void createSala(int nrSala) {
+    propostaTeseHandler.createSala(nrSala);
+  }
 }
