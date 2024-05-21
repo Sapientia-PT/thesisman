@@ -1,6 +1,5 @@
 package pt.ul.fc.css.example.demo.business.handlers;
 
-import java.sql.Time;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,7 +36,7 @@ public class PropostaTeseHandler {
     teseRepository.save(repoTese);
   }
 
-  public void marcarDefesa(Time hora, Sala sala, Defesa defesa) throws NotFoundException {
+  public void marcarDefesa(Horario hora, Sala sala, Defesa defesa) throws NotFoundException {
     Optional<Defesa> repoDefesa = defesaRepository.findById(defesa.getId());
 
     if (repoDefesa.isEmpty()) throw new NotFoundException("No defesa found");
@@ -45,7 +44,7 @@ public class PropostaTeseHandler {
     // TODO: Fazer verificaco dos horarios da sala
     Defesa foundDefesa = repoDefesa.get();
     if (sala != null) foundDefesa.setSala(sala); // Presencial|Remoto
-    foundDefesa.setHora(hora);
+    foundDefesa.setHorario(hora);
     defesaRepository.save(foundDefesa);
   }
 }

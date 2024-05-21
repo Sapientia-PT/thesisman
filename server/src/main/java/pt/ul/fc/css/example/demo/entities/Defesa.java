@@ -1,7 +1,6 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
-import java.sql.Time;
 
 @Entity
 public class Defesa {
@@ -16,7 +15,7 @@ public class Defesa {
   @Column(nullable = false)
   private int duracaoMinutos;
 
-  private Time hora;
+  @Embedded private Horario horario;
 
   @ManyToOne
   @JoinColumn(name = "sala_id")
@@ -27,10 +26,11 @@ public class Defesa {
   @OneToOne(mappedBy = "defesa")
   private Juri juri;
 
-  public Defesa(PropostaTese propostaTese, int duracaoMinutos, Time hora, Sala sala, int nota) {
+  public Defesa(
+      PropostaTese propostaTese, int duracaoMinutos, Horario horario, Sala sala, int nota) {
     this.propostaTese = propostaTese;
     this.duracaoMinutos = duracaoMinutos;
-    this.hora = hora;
+    this.horario = horario;
     this.sala = sala;
     this.nota = nota;
   }
@@ -61,12 +61,12 @@ public class Defesa {
     this.duracaoMinutos = duracaoMinutos;
   }
 
-  public Time getHora() {
-    return hora;
+  public Horario getHorario() {
+    return horario;
   }
 
-  public void setHora(Time hora) {
-    this.hora = hora;
+  public void setHorario(Horario horario) {
+    this.horario = horario;
   }
 
   public Sala getSala() {

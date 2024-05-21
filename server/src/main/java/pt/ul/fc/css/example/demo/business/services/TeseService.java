@@ -1,6 +1,5 @@
 package pt.ul.fc.css.example.demo.business.services;
 
-import java.sql.Time;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.DuplicateTitleException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.Defesa;
+import pt.ul.fc.css.example.demo.entities.Horario;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
 import pt.ul.fc.css.example.demo.entities.Sala;
 
@@ -42,7 +42,7 @@ public class TeseService {
     return propostaTeseRepository.findAll();
   }
 
-  public void marcarDefesa(Time hora, Sala sala, Defesa defesa) throws NotFoundException {
+  public void marcarDefesa(Horario hora, Sala sala, Defesa defesa) throws NotFoundException {
     propostaTeseHandler.marcarDefesa(hora, sala, defesa);
   }
 

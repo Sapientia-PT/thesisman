@@ -14,14 +14,10 @@ public class Sala {
   private long nrSala;
 
   @OneToMany(mappedBy = "sala")
-  private List<Horario> horarios;
-
-  @OneToMany(mappedBy = "sala")
   private List<Defesa> defesas;
 
-  public Sala(long nrSala, List<Horario> horarios, List<Defesa> defesas) {
+  public Sala(long nrSala, List<Defesa> defesas) {
     this.nrSala = nrSala;
-    this.horarios = horarios;
     this.defesas = defesas;
   }
 
@@ -41,14 +37,6 @@ public class Sala {
 
   public void setNrSala(long nrSala) {
     this.nrSala = nrSala;
-  }
-
-  public List<Horario> getHorarios() {
-    return horarios;
-  }
-
-  public void setHorarios(List<Horario> horarios) {
-    this.horarios = horarios;
   }
 
   public List<Defesa> getDefesas() {
