@@ -166,13 +166,11 @@ public class WebController {
   @PostMapping("/doMarcarDefesa")
   public String doMarcarDefesa(
       @RequestParam("propostaId") Long propostaId,
-      @RequestParam("duracao") int duracao,
-      @RequestParam("sala") int nrSala,
-      @RequestParam("data") String dataInicial,
-      @RequestParam("hora") String dataFinal,
-      @RequestParam("orientadorInterno") String orientadorInterno,
-      @RequestParam("arguente") String arguente,
-      @RequestParam("presidente") String presidente,
+      @RequestParam(value = "nrSala", required = false) int nrSala,
+      @RequestParam("dataInicial") String dataInicial,
+      @RequestParam("dataFinal") String dataFinal,
+      @RequestParam("arguente") int nrArguente,
+      @RequestParam(value = "presidente", required = false) int nrPresidente,
       Model model) {
     try {
       // Horario horario = teseService.createHorario(dataInicial, dataFinal);

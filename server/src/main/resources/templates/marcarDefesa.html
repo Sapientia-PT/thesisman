@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt_PT">
     <head>
-        <meta charset="ISO-8859-1" />
+        <!-- Include jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Include jQuery UI library -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <!-- Include jQuery UI Timepicker Addon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+        <!-- Include your custom CSS file -->
         <link href="css/style.css" rel="stylesheet" />
-        <title>Marcar Defesa</title>
+        <!-- Title and other meta tags -->
     </head>
     <body>
         <h1>Marcar Defesa:</h1>
@@ -16,15 +24,15 @@
 
                     <!-- Sala -->
                     <label for="sala" class="element">Sala:</label>
-                    <select id="sala" name="sala">
+                    <select id="sala" name="nrSala">
                         <option th:each="sala : ${salas}" th:value="${sala.getId()}" th:text="${sala.getNrSala()}"></option>
                     </select><br><br>
 
                     <!-- Horario -->
-                    <label for="data" class="element">Data Inicial:</label>
-                    <input type="text" id="data" name="data" placeholder="dd/mm/yyyy" required><br><br>
-                    <label for="hora" class="element">Data Final:</label>
-                    <input type="text" id="hora" name="hora" placeholder="dd/mm/yyyy" required><br><br>
+                    <label for="dataInicial" class="element">Data Inicial:</label>
+                    <input type="text" id="dataInicial" name="dataInicial" placeholder="dd/mm/yyyy" required><br><br>
+                    <label for="dataFinal" class="element">Data Final:</label>
+                    <input type="text" id="dataFinal" name="dataFinal" placeholder="dd/mm/yyyy" required><br><br>
 
                     <!-- Juri -->
                     <label for="orientadorInterno" class="element">Orientador Interno:</label> <!-- No time, it shows nothing -->
@@ -49,4 +57,21 @@
             </div>
         </div>
     </body>
+    <script>
+        $(function() {
+            // Initialize datetime picker for dataInicial input
+            $("#dataInicial").datetimepicker({
+                dateFormat: "dd/mm/yy", // Date format
+                timeFormat: "HH:mm", // Time format
+                minDate: 0, // Minimum date allowed (today)
+            });
+
+            // Initialize datetime picker for dataFinal input
+            $("#dataFinal").datetimepicker({
+                dateFormat: "dd/mm/yy", // Date format
+                timeFormat: "HH:mm", // Time format
+                minDate: 0, // Minimum date allowed (today)
+            });
+        });
+    </script>
 </html>
