@@ -2,6 +2,7 @@ package pt.ul.fc.css.example.demo.business.services;
 
 import java.sql.Time;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ul.fc.css.example.demo.business.handlers.PropostaTeseHandler;
@@ -45,6 +46,12 @@ public class TeseService {
 
   public List<PropostaTese> getPropostas() {
     return propostaTeseRepository.findAll();
+  }
+
+  public PropostaTese getProposta(long id) throws NotFoundException {
+    Optional<PropostaTese> proposta = propostaTeseRepository.findById(id);
+    if (!proposta.isPresent()) throw new NotFoundException("Proposta não encontrada");
+    return proposta.get();
   }
 
   public List<Sala> getSalas() {

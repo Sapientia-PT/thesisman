@@ -12,7 +12,7 @@
                 <form action="/doMarcarDefesa" method="post">
                     <!-- Duração -->
                     <label for="duracao" class="element">Duração (minutos):</label>
-                    <input type="number" id="duracao" name="duracao" th:value="${proposta.getDefesa().getDuracao()}" readonly><br><br>
+                    <input type="number" id="duracao" name="duracao" th:value="${proposta.getDefesa().getDuracaoMinutos()}" readonly><br><br>
 
                     <!-- Sala -->
                     <label for="sala" class="element">Sala:</label>
@@ -27,7 +27,7 @@
                     <input type="text" id="hora" name="hora" placeholder="dd/mm/yyyy" required><br><br>
 
                     <!-- Juri -->
-                    <label for="orientadorInterno" class="element">Orientador Interno:</label>
+                    <label for="orientadorInterno" class="element">Orientador Interno:</label> <!-- No time, it shows nothing -->
                     <input type="text" id="orientadorInterno" name="orientadorInterno" th:value="${proposta.getTese().getDocente()}" readonly><br><br>
 
                     <label for="arguente" class="element">Arguente:</label>
@@ -37,11 +37,11 @@
                     <input type="text" id="presidente" name="presidente"><br><br>
 
                     <!-- Proposta -->
-                    <input type="hidden" name="proposta" th:value="${proposta}" />
+                    <input type="hidden" name="propostaId" th:value="${proposta.getId()}" />
                     <input type="submit" value="Marcar Defesa" class="element-title" style="width: 150px;">
                 </form>
             </div>
-            <form action="/menu" method="get">
+            <form action="/listarPropostas" method="get">
                 <button class="element-title" style="background-color: rgb(171, 171, 171);">Voltar</button>
             </form>
             <div th:if="${error}">

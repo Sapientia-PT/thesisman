@@ -14,7 +14,7 @@
                 <p th:text="${proposta.getDefesa().getDuracaoMinutos()} + ' minutos'" class="element"></p><hr>
                 <p th:text="${proposta.getTese().getTema().getTitulo()}" class="element"></p><hr>
                 <form action="/marcarDefesa" method="get">
-                    <input type="hidden" name="proposta" th:value="${proposta}"/>
+                    <input type="hidden" name="propostaId" th:value="${proposta.id}"/>
                     <button class="element-title" type="submit">Marcar Defesa</button>
                 </form>
             </div>

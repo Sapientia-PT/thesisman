@@ -1,6 +1,5 @@
 package pt.ul.fc.css.example.demo;
 
-import java.sql.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,14 +10,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pt.ul.fc.css.example.demo.business.services.EstatisticaService;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationException;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
-import pt.ul.fc.css.example.demo.entities.Defesa;
-import pt.ul.fc.css.example.demo.entities.Horario;
-import pt.ul.fc.css.example.demo.entities.Juri;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
-import pt.ul.fc.css.example.demo.entities.Sala;
 
 @Controller
 @SessionAttributes("token")
@@ -154,35 +150,43 @@ public class WebController {
 
   // TODO
   @RequestMapping("/marcarDefesa")
-  public String marcarDefesa(@RequestParam("proposta") PropostaTese proposta, Model model) {
-    model.addAttribute("salas", teseService.getSalas());
-    model.addAttribute("proposta", proposta);
-    return "marcarDefesa";
+  public String marcarDefesa(@RequestParam("propostaId") Long propostaId, Model model) {
+    try {
+      PropostaTese proposta = teseService.getProposta(propostaId);
+      model.addAttribute("salas", teseService.getSalas());
+      model.addAttribute("proposta", proposta);
+      return "marcarDefesa";
+    } catch (NotFoundException e) {
+      model.addAttribute("error", e.getMessage());
+      return "redirect:/listarPropostas";
+    }
   }
 
   // TODO
   @PostMapping("/doMarcarDefesa")
   public String doMarcarDefesa(
-      @RequestParam PropostaTese proposta,
-      @RequestParam Sala sala,
-      @RequestParam Time dataInicial,
-      @RequestParam Time dataFinal,
-      @RequestParam String nrArguente,
-      @RequestParam String nrPresidente,
+      @RequestParam("propostaId") Long propostaId,
+      @RequestParam("duracao") int duracao,
+      @RequestParam("sala") int nrSala,
+      @RequestParam("data") String dataInicial,
+      @RequestParam("hora") String dataFinal,
+      @RequestParam("orientadorInterno") String orientadorInterno,
+      @RequestParam("arguente") String arguente,
+      @RequestParam("presidente") String presidente,
       Model model) {
     try {
-      Horario horario = teseService.createHorario(dataInicial, dataFinal);
-      Juri juri =
-          teseService.createJuri(Integer.parseInt(nrArguente), Integer.parseInt(nrPresidente));
-      Defesa defesa = new Defesa(proposta, 60, horario, sala, 0);
-      teseService.marcarDefesa(horario, sala, juri, defesa);
+      // Horario horario = teseService.createHorario(dataInicial, dataFinal);
+      // Juri juri =
+      //    teseService.createJuri(Integer.parseInt(nrArguente), Integer.parseInt(nrPresidente));
+      // Defesa defesa = new Defesa(proposta, 60, horario, sala, 0);
+      // teseService.marcarDefesa(horario, sala, juri, defesa);
       return "redirect:/menu";
     } catch (NumberFormatException e) {
       model.addAttribute("error", "The numbers must be numbers!");
       return "redirect:/marcarDefesa";
-    } catch (ApplicationException e) {
-      model.addAttribute("error", e.getMessage());
-      return "redirect:/marcarDefesa";
+      // } catch (ApplicationException e) {
+      //  model.addAttribute("error", e.getMessage());
+      //  return "redirect:/marcarDefesa";
     }
   }
 
@@ -211,6 +215,10 @@ public class WebController {
       temaService.submeterTema("Republica das bananas", "Bananas!", 1000);
       temaService.submeterTema("Macacos", "Ooga Booga", 42);
       utilizadorService.createAluno("João", 58195, 20.0f);
+      utilizadorService.createAluno("Guilherme", 58176, 10.0f);
+      utilizadorService.createAluno("Rafael", 58236, 0.0f);
+      utilizadorService.createDocente("Manuel", 10);
+      utilizadorService.createDocente("João", 11);
       utilizadorService.createEmpresa("Empresa", 12345);
       utilizadorService.createAdministrador("Carlos", 1);
       // associate the tema with the aluno
