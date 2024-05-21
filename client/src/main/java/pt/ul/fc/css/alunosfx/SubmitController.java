@@ -39,6 +39,7 @@ public class SubmitController {
       conn.setRequestProperty("Content-Type", "application/json");
 
       estadoSubmissao.setText("Submissão efetuada com sucesso!");
+      System.out.println(conn.getResponseCode());
     } catch (Exception e) {
       estadoSubmissao.setText("Erro ao submeter!");
       e.printStackTrace();
