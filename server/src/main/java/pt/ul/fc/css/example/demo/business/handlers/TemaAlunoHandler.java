@@ -69,7 +69,7 @@ public class TemaAlunoHandler {
       throw new DuplicateTitleException(
           "Aluno " + alunoPresente.getNrConta() + " already has a tese!");
 
-    // TODO: atribuir docente?
+    // We do not associate with Docente (no time)
     Tese tese = new Tese();
     tese.setAluno(alunoPresente);
     tese.setTema(tema.get());

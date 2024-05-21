@@ -8,8 +8,6 @@ public interface JuriRepository extends JpaRepository<Juri, Long> {
 
   Juri findByDefesa(Defesa defesa);
 
-  List<Juri> findByOrientadorInterno(Docente orientadorInterno);
-
   List<Juri> findByArguente(Docente arguente);
 
   List<Juri> findByPresidente(Docente presidente);

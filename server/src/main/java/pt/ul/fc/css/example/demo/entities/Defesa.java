@@ -84,4 +84,12 @@ public class Defesa {
   public void setNota(int nota) {
     this.nota = nota;
   }
+
+  public Juri getJuri() {
+    return juri;
+  }
+
+  public void setJuri(Juri juri) {
+    this.juri = juri;
+  }
 }

@@ -1,5 +1,6 @@
 package pt.ul.fc.css.example.demo.business.services;
 
+import java.sql.Time;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,12 +8,15 @@ import pt.ul.fc.css.example.demo.business.handlers.PropostaTeseHandler;
 import pt.ul.fc.css.example.demo.business.handlers.TemaAlunoHandler;
 import pt.ul.fc.css.example.demo.business.repository.DefesaRepository;
 import pt.ul.fc.css.example.demo.business.repository.PropostaTeseRepository;
+import pt.ul.fc.css.example.demo.business.repository.SalaRepository;
 import pt.ul.fc.css.example.demo.business.services.DTOs.AlunoDTO;
 import pt.ul.fc.css.example.demo.business.services.DTOs.TemaDTO;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.DuplicateTitleException;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.HorarioInUseException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.Defesa;
 import pt.ul.fc.css.example.demo.entities.Horario;
+import pt.ul.fc.css.example.demo.entities.Juri;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
 import pt.ul.fc.css.example.demo.entities.Sala;
 
@@ -22,6 +26,7 @@ public class TeseService {
   @Autowired private TemaAlunoHandler temaAlunoHandler;
   @Autowired private PropostaTeseHandler propostaTeseHandler;
 
+  @Autowired private SalaRepository salaRepository;
   @Autowired private DefesaRepository defesaRepository;
   @Autowired private PropostaTeseRepository propostaTeseRepository;
 
@@ -42,8 +47,13 @@ public class TeseService {
     return propostaTeseRepository.findAll();
   }
 
-  public void marcarDefesa(Horario hora, Sala sala, Defesa defesa) throws NotFoundException {
-    propostaTeseHandler.marcarDefesa(hora, sala, defesa);
+  public List<Sala> getSalas() {
+    return salaRepository.findAll();
+  }
+
+  public void marcarDefesa(Horario horario, Sala sala, Juri juri, Defesa defesa)
+      throws NotFoundException, HorarioInUseException {
+    propostaTeseHandler.marcarDefesa(horario, sala, juri, defesa);
   }
 
   public void registaNotaDefesa(int nota, Defesa defesa) {
@@ -54,5 +64,15 @@ public class TeseService {
               d.setNota(nota);
               defesaRepository.save(d);
             });
+  }
+
+  public Horario createHorario(Time dataInicial, Time dataFinal) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'createHorario'");
+  }
+
+  public Juri createJuri(int int1, int int2) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'createJuri'");
   }
 }

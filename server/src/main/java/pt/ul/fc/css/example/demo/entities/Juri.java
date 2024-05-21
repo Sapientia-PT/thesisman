@@ -14,10 +14,6 @@ public class Juri {
   @OneToOne private Defesa defesa;
 
   @ManyToOne
-  @JoinColumn(name = "orientador_id")
-  private Docente orientadorInterno;
-
-  @ManyToOne
   @JoinColumn(name = "arguente_id")
   private Docente arguente;
 
@@ -25,19 +21,10 @@ public class Juri {
   @JoinColumn(name = "presidente_id")
   private Docente presidente;
 
-  // Defesa de Tese (final)
-  public Juri(Defesa defesa, Docente orientadorInterno, Docente arguente, Docente presidente) {
+  public Juri(Defesa defesa, Docente arguente, Docente presidente) {
     this.defesa = defesa;
-    this.orientadorInterno = orientadorInterno;
     this.arguente = arguente;
-    this.presidente = presidente;
-  }
-
-  // Defesa de Proposta de Tese
-  public Juri(Defesa defesa, Docente orientadorInterno, Docente arguente) {
-    this.defesa = defesa;
-    this.orientadorInterno = orientadorInterno;
-    this.arguente = arguente;
+    this.presidente = presidente; // it can be null
   }
 
   public Juri() {}
@@ -56,14 +43,6 @@ public class Juri {
 
   public void setDefesa(Defesa defesa) {
     this.defesa = defesa;
-  }
-
-  public Docente getOrientadorInterno() {
-    return orientadorInterno;
-  }
-
-  public void setOrientadorInterno(Docente orientadorInterno) {
-    this.orientadorInterno = orientadorInterno;
   }
 
   public Docente getArguente() {

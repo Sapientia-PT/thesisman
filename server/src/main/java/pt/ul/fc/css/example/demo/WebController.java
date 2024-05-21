@@ -1,5 +1,6 @@
 package pt.ul.fc.css.example.demo;
 
+import java.sql.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,11 @@ import pt.ul.fc.css.example.demo.business.services.Exceptions.ApplicationExcepti
 import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
+import pt.ul.fc.css.example.demo.entities.Defesa;
+import pt.ul.fc.css.example.demo.entities.Horario;
+import pt.ul.fc.css.example.demo.entities.Juri;
+import pt.ul.fc.css.example.demo.entities.PropostaTese;
+import pt.ul.fc.css.example.demo.entities.Sala;
 
 @Controller
 @SessionAttributes("token")
@@ -148,14 +154,36 @@ public class WebController {
 
   // TODO
   @RequestMapping("/marcarDefesa")
-  public String marcarDefesa(Model model) {
+  public String marcarDefesa(@RequestParam("proposta") PropostaTese proposta, Model model) {
+    model.addAttribute("salas", teseService.getSalas());
+    model.addAttribute("proposta", proposta);
     return "marcarDefesa";
   }
 
   // TODO
   @PostMapping("/doMarcarDefesa")
-  public String doMarcarDefesa() {
-    return "redirect:/menu";
+  public String doMarcarDefesa(
+      @RequestParam PropostaTese proposta,
+      @RequestParam Sala sala,
+      @RequestParam Time dataInicial,
+      @RequestParam Time dataFinal,
+      @RequestParam String nrArguente,
+      @RequestParam String nrPresidente,
+      Model model) {
+    try {
+      Horario horario = teseService.createHorario(dataInicial, dataFinal);
+      Juri juri =
+          teseService.createJuri(Integer.parseInt(nrArguente), Integer.parseInt(nrPresidente));
+      Defesa defesa = new Defesa(proposta, 60, horario, sala, 0);
+      teseService.marcarDefesa(horario, sala, juri, defesa);
+      return "redirect:/menu";
+    } catch (NumberFormatException e) {
+      model.addAttribute("error", "The numbers must be numbers!");
+      return "redirect:/marcarDefesa";
+    } catch (ApplicationException e) {
+      model.addAttribute("error", e.getMessage());
+      return "redirect:/marcarDefesa";
+    }
   }
 
   // TODO

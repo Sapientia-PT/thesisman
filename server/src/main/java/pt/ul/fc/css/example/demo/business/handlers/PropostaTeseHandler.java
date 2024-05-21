@@ -7,6 +7,7 @@ import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
 import pt.ul.fc.css.example.demo.business.repository.DefesaRepository;
 import pt.ul.fc.css.example.demo.business.repository.PropostaTeseRepository;
 import pt.ul.fc.css.example.demo.business.repository.TeseRepository;
+import pt.ul.fc.css.example.demo.business.services.Exceptions.HorarioInUseException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.*;
 
@@ -36,15 +37,22 @@ public class PropostaTeseHandler {
     teseRepository.save(repoTese);
   }
 
-  public void marcarDefesa(Horario hora, Sala sala, Defesa defesa) throws NotFoundException {
+  public void marcarDefesa(Horario horario, Sala sala, Juri juri, Defesa defesa)
+      throws NotFoundException, HorarioInUseException {
     Optional<Defesa> repoDefesa = defesaRepository.findById(defesa.getId());
 
-    if (repoDefesa.isEmpty()) throw new NotFoundException("No defesa found");
+    if (repoDefesa.isEmpty()) throw new NotFoundException("No defesa found!");
 
-    // TODO: Fazer verificaco dos horarios da sala
     Defesa foundDefesa = repoDefesa.get();
-    if (sala != null) foundDefesa.setSala(sala); // Presencial|Remoto
-    foundDefesa.setHorario(hora);
+    if (sala != null && isHorarioInUse(sala, horario))
+      throw new HorarioInUseException("Horario is already in use!");
+    foundDefesa.setSala(sala); // If null -> Remoto, else -> Presencial
+    foundDefesa.setHorario(horario);
+    foundDefesa.setJuri(juri);
     defesaRepository.save(foundDefesa);
+  }
+
+  private boolean isHorarioInUse(Sala sala, Horario horario) {
+    return sala.getDefesas().stream().anyMatch(d -> d.getHorario().equals(horario));
   }
 }

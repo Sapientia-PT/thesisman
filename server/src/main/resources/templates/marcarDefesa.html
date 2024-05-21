@@ -1,1 +1,52 @@
-marcarDefesaFinal
+<!DOCTYPE html>
+<html lang="pt_PT">
+    <head>
+        <meta charset="ISO-8859-1" />
+        <link href="css/style.css" rel="stylesheet" />
+        <title>Marcar Defesa</title>
+    </head>
+    <body>
+        <h1>Marcar Defesa:</h1>
+        <div class="container">
+            <div class="object" style="justify-content: center; display: flex;">
+                <form action="/doMarcarDefesa" method="post">
+                    <!-- Duração -->
+                    <label for="duracao" class="element">Duração (minutos):</label>
+                    <input type="number" id="duracao" name="duracao" th:value="${proposta.getDefesa().getDuracao()}" readonly><br><br>
+
+                    <!-- Sala -->
+                    <label for="sala" class="element">Sala:</label>
+                    <select id="sala" name="sala">
+                        <option th:each="sala : ${salas}" th:value="${sala.getId()}" th:text="${sala.getNrSala()}"></option>
+                    </select><br><br>
+
+                    <!-- Horario -->
+                    <label for="data" class="element">Data Inicial:</label>
+                    <input type="text" id="data" name="data" placeholder="dd/mm/yyyy" required><br><br>
+                    <label for="hora" class="element">Data Final:</label>
+                    <input type="text" id="hora" name="hora" placeholder="dd/mm/yyyy" required><br><br>
+
+                    <!-- Juri -->
+                    <label for="orientadorInterno" class="element">Orientador Interno:</label>
+                    <input type="text" id="orientadorInterno" name="orientadorInterno" th:value="${proposta.getTese().getDocente()}" readonly><br><br>
+
+                    <label for="arguente" class="element">Arguente:</label>
+                    <input type="text" id="arguente" name="arguente" required><br><br>
+
+                    <label for="presidente" class="element">Presidente:</label>
+                    <input type="text" id="presidente" name="presidente"><br><br>
+
+                    <!-- Proposta -->
+                    <input type="hidden" name="proposta" th:value="${proposta}" />
+                    <input type="submit" value="Marcar Defesa" class="element-title" style="width: 150px;">
+                </form>
+            </div>
+            <form action="/menu" method="get">
+                <button class="element-title" style="background-color: rgb(171, 171, 171);">Voltar</button>
+            </form>
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red"></p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -9,9 +9,6 @@ public class Docente extends Utilizador {
   @OneToMany(mappedBy = "docente")
   private List<Tese> teses;
 
-  @OneToMany(mappedBy = "orientadorInterno")
-  private List<Juri> juriAsOrientadorInterno;
-
   @OneToMany(mappedBy = "arguente")
   private List<Juri> juriAsArguente;
 
@@ -33,14 +30,6 @@ public class Docente extends Utilizador {
 
   public void setTeses(List<Tese> teses) {
     this.teses = teses;
-  }
-
-  public List<Juri> getJuriAsOrientadorInterno() {
-    return juriAsOrientadorInterno;
-  }
-
-  public void setJuriAsOrientadorInterno(List<Juri> juriAsOrientadorInterno) {
-    this.juriAsOrientadorInterno = juriAsOrientadorInterno;
   }
 
   public List<Juri> getJuriAsArguente() {

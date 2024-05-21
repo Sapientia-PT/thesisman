@@ -9,13 +9,12 @@
         <h1>Propostas de Tese:</h1>
 
         <div class="container">
-            <div th:each="proposta, stat : ${propostas}" th:if="${proposta.getDefesa().getHora()} == null" class="object"
+            <div th:each="proposta : ${propostas}" class="object"
                 style="justify-content: center; display: flex; padding: 10px;">
-                <!-- Proposta Number -->
-                <p th:text="'Proposta ' + ${stat.count}" class="element"></p><hr>
-                <p th:text="${proposta.getDefesa().getDuracaoMinutos()} + ' ' + minutos" class="element"></p><hr>
+                <p th:text="${proposta.getDefesa().getDuracaoMinutos()} + ' minutos'" class="element"></p><hr>
                 <p th:text="${proposta.getTese().getTema().getTitulo()}" class="element"></p><hr>
                 <form action="/marcarDefesa" method="get">
+                    <input type="hidden" name="proposta" th:value="${proposta}"/>
                     <button class="element-title" type="submit">Marcar Defesa</button>
                 </form>
             </div>

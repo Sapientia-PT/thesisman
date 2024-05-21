@@ -6,29 +6,33 @@ import java.sql.Time;
 @Embeddable
 public class Horario {
 
-  private Time horaInicio;
-  private Time horaFim;
+  private Time dataInicio;
+  private Time dataFim;
 
-  public Horario(Time horaInicio, Time horaFim) {
-    this.horaInicio = horaInicio;
-    this.horaFim = horaFim;
+  public Horario(Time dataInicio, Time dataFim) {
+    this.dataInicio = dataInicio;
+    this.dataFim = dataFim;
   }
 
   public Horario() {}
 
-  public Time getHoraInicio() {
-    return horaInicio;
+  public Time getDataInicio() {
+    return dataInicio;
   }
 
-  public void setHoraInicio(Time horaInicio) {
-    this.horaInicio = horaInicio;
+  public void setDataInicio(Time data) {
+    this.dataInicio = data;
   }
 
-  public Time getHoraFim() {
-    return horaFim;
+  public Time getDataFim() {
+    return dataFim;
   }
 
-  public void setHoraFim(Time horaFim) {
-    this.horaFim = horaFim;
+  public void setDataFim(Time data) {
+    this.dataFim = data;
+  }
+
+  public boolean equals(Horario h) {
+    return this.dataInicio.equals(h.getDataInicio()) && this.dataFim.equals(h.getDataFim());
   }
 }
