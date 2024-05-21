@@ -19,7 +19,6 @@ public final class Aluno extends Utilizador {
       int nrConta,
       String nome,
       String token,
-      int nrAluno,
       float media,
       Tese tese,
       List<Tema> temasCandidatados) {

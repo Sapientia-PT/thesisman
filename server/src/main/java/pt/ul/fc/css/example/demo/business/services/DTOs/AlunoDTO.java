@@ -5,28 +5,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class AlunoDTO {
 
-  private long Id;
-
-  public long getId() {
-    return Id;
-  }
-
-  public void setId(long id) {
-    Id = id;
-  }
-
-  private int nrAluno;
+  private int nrConta;
 
   private String nome;
 
   private float media;
 
-  public int getNrAluno() {
-    return nrAluno;
+  public int getNrConta() {
+    return nrConta;
   }
 
-  public void setNrAluno(int nrAluno) {
-    this.nrAluno = nrAluno;
+  public void setNrConta(int nrConta) {
+    this.nrConta = nrConta;
   }
 
   public String getNome() {
