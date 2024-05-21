@@ -35,12 +35,12 @@ public class TeseService {
     temaAlunoHandler.atribuirTemaAluno(temaDTO, alunoDTO);
   }
 
-  public void submeterPropostaTese(int nrAluno) throws NotFoundException {
-    propostaTeseHandler.submeterPropostaTese(nrAluno, 60);
+  public void submeterPropostaTese(int nrConta) throws NotFoundException {
+    propostaTeseHandler.submeterPropostaTese(nrConta, 60);
   }
 
-  public void submeterDocumentoFinal(int nrAluno) throws NotFoundException {
-    propostaTeseHandler.submeterPropostaTese(nrAluno, 90);
+  public void submeterDocumentoFinal(int nrConta) throws NotFoundException {
+    propostaTeseHandler.submeterPropostaTese(nrConta, 90);
   }
 
   public List<PropostaTese> getPropostas() {

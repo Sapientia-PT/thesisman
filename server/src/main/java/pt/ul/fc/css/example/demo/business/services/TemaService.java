@@ -1,7 +1,6 @@
 package pt.ul.fc.css.example.demo.business.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +24,9 @@ public class TemaService {
   @Autowired private TemaAlunoHandler temaAlunoHandler;
 
   public TemaDTO getTema(String titulo) throws NotFoundException {
-    Optional<Tema> tema = temaRepository.findByTitulo(titulo);
-    if (tema.isEmpty()) throw new NotFoundException("Tema not found!");
-    return dtofy(tema.get());
+    Tema tema = temaRepository.findByTitulo(titulo);
+    if (tema == null) throw new NotFoundException("Tema not found!");
+    return dtofy(tema);
   }
 
   public List<TemaDTO> getTemas() {
@@ -57,7 +56,7 @@ public class TemaService {
     AlunoDTO alunoDTO = null;
     if (c.getAluno() != null) {
       alunoDTO = new AlunoDTO();
-      alunoDTO.setNrAluno(c.getAluno().getNrConta());
+      alunoDTO.setNrConta(c.getAluno().getNrConta());
       alunoDTO.setNome(c.getAluno().getNome());
       alunoDTO.setMedia(c.getAluno().getMedia());
     }
@@ -67,7 +66,7 @@ public class TemaService {
     temaDTO.setTitulo(c.getTitulo());
     temaDTO.setDescricao(c.getDescricao());
     temaDTO.setRemunMensal(c.getRemunMensal());
-    if (alunoDTO != null) temaDTO.setAluno(alunoDTO);
+    temaDTO.setAluno(alunoDTO);
     return temaDTO;
   }
 }

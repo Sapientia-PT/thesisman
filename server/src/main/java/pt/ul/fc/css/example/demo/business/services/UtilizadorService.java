@@ -148,9 +148,8 @@ public class UtilizadorService {
 
   private AlunoDTO alunoToDTO(Aluno a) {
     AlunoDTO alunoDTO = new AlunoDTO();
-    alunoDTO.setId(a.getId());
+    alunoDTO.setNrConta(a.getNrConta());
     alunoDTO.setNome(a.getNome());
-    alunoDTO.setNrAluno(a.getNrConta());
     alunoDTO.setMedia(a.getMedia());
     return alunoDTO;
   }
