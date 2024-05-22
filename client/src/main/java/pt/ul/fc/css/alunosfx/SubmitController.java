@@ -25,7 +25,7 @@ public class SubmitController {
     if (!submittedFinal) {
       submeter("submeter-documento-final");
       submittedFinal = true;
-    }
+    } else estadoSubmissao.setText("Documento final já foi submetido!");
   }
 
   private void submeter(String suffix) {
