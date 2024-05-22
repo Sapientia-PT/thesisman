@@ -16,6 +16,13 @@ import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
 
+/**
+ * This is the main controller for the web application. Handling all requests
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Controller
 @SessionAttributes("token")
 public class WebController {
