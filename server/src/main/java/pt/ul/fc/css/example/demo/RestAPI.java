@@ -27,10 +27,10 @@ public class RestAPI {
   @Autowired private TeseService teseService;
 
   /**
-   * This method handles the request to get a specific aluno.
+   * This method handles the get request to get a specific aluno.
    *
    * @param nrAluno The number of the aluno to retrieve.
-   * @return AlunoDTO object that represents the aluno.
+   * @return AlunoDTO object.
    * @throws NotFoundException If the aluno does not exist.
    */
   @GetMapping("/aluno/{nrAluno}")
@@ -38,11 +38,24 @@ public class RestAPI {
     return utilizadorService.getAluno(nrAluno);
   }
 
+  /**
+   * This method handles the get request to get temas.
+   *
+   * @return A list of TemaDTO objects.
+   */
   @GetMapping("/temas")
   public List<TemaDTO> getTemas() {
     return temaService.getTemas();
   }
 
+  /**
+   * This method handles the post request to add a new tema.
+   *
+   * @param titulo The title of the tema.
+   * @param nrConta The number of the conta.
+   * @throws MaximoTemasException If the maximum number of temas is exceeded.
+   * @throws NotFoundException If the conta does not exist.
+   */
   @PostMapping("/tema")
   public void addTema(@RequestParam("titulo") String titulo, @RequestParam("nrConta") int nrConta)
       throws MaximoTemasException, NotFoundException {
@@ -51,6 +64,14 @@ public class RestAPI {
     temaService.candidatarTemaAluno(tema, utilizadorService.getAluno(nrConta));
   }
 
+  /**
+   * This method handles the delete request to cancel a tema.
+   *
+   * @param titulo The title of the tema.
+   * @param nrAluno The number of the aluno.
+   * @throws MaximoTemasException If the maximum number of temas is exceeded.
+   * @throws NotFoundException If the aluno does not exist.
+   */
   @DeleteMapping("/tema")
   public void cancelarTema(
       @RequestParam("titulo") String titulo, @RequestParam("nrAluno") int nrAluno)
