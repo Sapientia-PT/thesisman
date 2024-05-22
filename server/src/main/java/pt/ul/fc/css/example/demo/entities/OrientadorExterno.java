@@ -3,6 +3,13 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 import java.util.List;
 
+/**
+ * This class represents an OrientadorExterno entity.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Entity
 public class OrientadorExterno extends Utilizador {
 
