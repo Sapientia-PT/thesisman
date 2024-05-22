@@ -4,6 +4,13 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class reprents the Token Service. Responsible to generate a token for the user
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Service
 public class TokenService {
 
