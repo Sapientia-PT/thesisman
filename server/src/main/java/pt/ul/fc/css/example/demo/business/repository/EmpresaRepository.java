@@ -6,6 +6,13 @@ import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.Empresa;
 import pt.ul.fc.css.example.demo.entities.OrientadorExterno;
 
+/**
+ * This class reprents the Empresa Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
   Empresa findByNrEmpresa(long nrEmpresa);

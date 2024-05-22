@@ -2,6 +2,14 @@ package pt.ul.fc.css.example.demo.business.services.DTOs;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * This class represents a DTO for an Presidente enabling the secure data transfer between
+ * endpoints.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Component
 public class PresidenteDTO {
   private long Id;

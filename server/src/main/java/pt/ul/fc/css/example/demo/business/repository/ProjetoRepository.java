@@ -6,6 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.*;
 
+/**
+ * This class reprents the Projeto Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface ProjetoRepository extends JpaRepository<Projeto, Long> {
 
   Tese findByTema(Tema tema);

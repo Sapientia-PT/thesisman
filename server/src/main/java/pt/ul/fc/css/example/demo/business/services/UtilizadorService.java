@@ -11,6 +11,14 @@ import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.UserAlreadyExistsException;
 import pt.ul.fc.css.example.demo.entities.*;
 
+/**
+ * This class reprents the Utilizador Service. Handles the logic for calling all the handlers
+ * related to the repositories.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Service
 public class UtilizadorService {
 

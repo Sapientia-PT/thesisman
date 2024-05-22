@@ -5,6 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import pt.ul.fc.css.example.demo.entities.Tema;
 
+/**
+ * This class reprents the Tema Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface TemaRepository extends JpaRepository<Tema, Long> {
 
   @Query("SELECT t FROM Tema t WHERE t.titulo = ?1")

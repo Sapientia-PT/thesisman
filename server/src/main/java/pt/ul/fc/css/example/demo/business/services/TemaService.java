@@ -15,6 +15,14 @@ import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.entities.Tema;
 
+/**
+ * This class reprents the Tema Service. Handles the logic for calling all the handlers related to
+ * Tema.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Service
 public class TemaService {
 

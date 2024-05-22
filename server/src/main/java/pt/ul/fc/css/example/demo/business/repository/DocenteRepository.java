@@ -6,6 +6,13 @@ import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.Docente;
 import pt.ul.fc.css.example.demo.entities.Tese;
 
+/**
+ * This class reprents the Docente Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface DocenteRepository extends JpaRepository<Docente, Long> {
 
   Docente findByNrConta(long nrDocente);

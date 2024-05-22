@@ -51,9 +51,8 @@ Este comando vai iniciar dois containers:
 Abrir http://localhost:8080 num browser e verificar que aparece uma página com os temas com alunos que se candidataram ao mesmo.
 
 Pode ainda confirmar que consegue ver:
-* http://localhost:8080/alunos Lista de todos os alunos
-* http://localhost:8080/aprovados Número de Alunos aprovados (média > 10)
-* http://localhost:8080/reprovados Número de Alunos reprovados (média < 10)
+* http://localhost:8080/temas Lista de todos os temas
+* http://localhost:8080/estatisticas Estatísticas relativas à taxa de sucesso dos alunos
 
 # FAQ
 
