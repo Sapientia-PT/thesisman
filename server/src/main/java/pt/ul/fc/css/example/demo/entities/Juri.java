@@ -1,6 +1,8 @@
 package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -16,7 +18,9 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Juri {
 
-  @Id private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
   @OneToOne private Defesa defesa;
 
