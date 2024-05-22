@@ -6,6 +6,13 @@ import pt.ul.fc.css.example.demo.business.repository.*;
 import pt.ul.fc.css.example.demo.business.services.Exceptions.UserAlreadyExistsException;
 import pt.ul.fc.css.example.demo.entities.*;
 
+/**
+ * This class reprents the handler for utilizador.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Component
 public class UtilizadorHandler {
 
