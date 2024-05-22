@@ -24,6 +24,8 @@ public class MenuController {
 
   @FXML private Label nomeAluno;
 
+  @FXML private Label info;
+
   @FXML private ListView<TemaRead> listaTemas;
 
   private int nrAluno;
@@ -76,6 +78,9 @@ public class MenuController {
       TemaRead[] temas = gson.fromJson(responseContent.toString(), TemaRead[].class);
       listaTemas.getItems().clear();
       listaTemas.getItems().addAll(temas);
+
+      if (conn.getResponseCode() == 200) info.setText("Temas carregados com sucesso!");
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -120,7 +125,10 @@ public class MenuController {
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "application/json");
 
-        System.out.println("Response: " + conn.getResponseCode());
+        int responseCode = conn.getResponseCode();
+        if (responseCode == 200) info.setText("Tema(s) escolhido com sucesso!");
+
+        System.out.println("Response: " + responseCode);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -139,7 +147,10 @@ public class MenuController {
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "application/json");
 
-        System.out.println("Response: " + conn.getResponseCode());
+        int responseCode = conn.getResponseCode();
+        if (responseCode == 200) info.setText("Tema cancelado com sucesso!");
+
+        System.out.println("Response: " + responseCode);
       } catch (Exception e) {
         e.printStackTrace();
       }

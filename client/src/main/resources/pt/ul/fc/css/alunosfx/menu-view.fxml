@@ -28,5 +28,6 @@
       <Button layoutX="48.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelarTemas" text="Cancelar" textFill="RED" />
       <Button layoutX="118.0" layoutY="361.0" mnemonicParsing="false" onAction="#getTemas" text="Atualizar" textFill="#1f2ce1" />
       <Button layoutX="383.0" layoutY="361.0" mnemonicParsing="false" onAction="#onSubmissaoClick" text="Submissões" />
+      <Label fx:id="info" layoutX="200.0" layoutY="365.0" />
    </children>
 </Pane>
