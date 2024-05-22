@@ -68,17 +68,17 @@ public class RestAPI {
    * This method handles the delete request to cancel a tema.
    *
    * @param titulo The title of the tema.
-   * @param nrAluno The number of the aluno.
+   * @param nrConta The number of the aluno.
    * @throws MaximoTemasException If the maximum number of temas is exceeded.
    * @throws NotFoundException If the aluno does not exist.
    */
   @DeleteMapping("/tema")
   public void cancelarTema(
-      @RequestParam("titulo") String titulo, @RequestParam("nrAluno") int nrAluno)
+      @RequestParam("titulo") String titulo, @RequestParam("nrConta") int nrConta)
       throws MaximoTemasException, NotFoundException {
     TemaDTO tema = new TemaDTO();
     tema.setTitulo(titulo);
-    temaService.cancelarCandidaturaAluno(tema, utilizadorService.getAluno(nrAluno));
+    temaService.cancelarCandidaturaAluno(tema, utilizadorService.getAluno(nrConta));
   }
 
   /**
