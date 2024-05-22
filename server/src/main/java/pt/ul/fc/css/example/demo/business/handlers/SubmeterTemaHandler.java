@@ -8,6 +8,13 @@ import pt.ul.fc.css.example.demo.business.services.Exceptions.DuplicateTitleExce
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NullTitleException;
 import pt.ul.fc.css.example.demo.entities.Tema;
 
+/**
+ * This class reprents the handler for submition of temas.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Component
 public class SubmeterTemaHandler {
 
