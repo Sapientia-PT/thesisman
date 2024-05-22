@@ -46,7 +46,7 @@
                     <input type="text" id="presidente" name="presidente"><br><br>
 
                     <!-- Proposta -->
-                    <input type="text" name="propostaId" th:value="${proposta.getId()}" />
+                    <input type="hidden" name="propostaId" th:value="${proposta.getId()}" />
                     <button class="element-title" type="submit">Marcar Defesa</button>
                 </form>
             </div>
