@@ -175,7 +175,8 @@ public class WebController {
     try {
       // Horario horario = teseService.createHorario(dataInicial, dataFinal);
       // Juri juri =
-      //    teseService.createJuri(Integer.parseInt(nrArguente), Integer.parseInt(nrPresidente));
+      // teseService.createJuri(Integer.parseInt(nrArguente),
+      // Integer.parseInt(nrPresidente));
       // Defesa defesa = new Defesa(proposta, 60, horario, sala, 0);
       // teseService.marcarDefesa(horario, sala, juri, defesa);
       return "redirect:/menu";
@@ -183,8 +184,8 @@ public class WebController {
       model.addAttribute("error", "The numbers must be numbers!");
       return "redirect:/marcarDefesa";
       // } catch (ApplicationException e) {
-      //  model.addAttribute("error", e.getMessage());
-      //  return "redirect:/marcarDefesa";
+      // model.addAttribute("error", e.getMessage());
+      // return "redirect:/marcarDefesa";
     }
   }
 
