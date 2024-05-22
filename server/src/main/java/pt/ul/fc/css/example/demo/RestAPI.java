@@ -11,6 +11,13 @@ import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
 
+/**
+ * This is the main controller for the Rest Api. Handling all rest requests.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @RestController
 @RequestMapping("/api")
 public class RestAPI {
