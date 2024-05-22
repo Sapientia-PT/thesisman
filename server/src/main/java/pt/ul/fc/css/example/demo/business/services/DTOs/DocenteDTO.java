@@ -4,6 +4,13 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.entities.Tese;
 
+/**
+ * This class represents a DTO for an docente enabling the secure data transfer between endpoints.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Component
 public class DocenteDTO {
 
