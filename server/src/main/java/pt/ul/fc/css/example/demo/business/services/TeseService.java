@@ -22,7 +22,7 @@ import pt.ul.fc.css.example.demo.entities.PropostaTese;
 import pt.ul.fc.css.example.demo.entities.Sala;
 
 /**
- * This class reprents the Tema Service. Handles the logic for calling all the handlers related to
+ * This class reprents the Tese Service. Handles the logic for calling all the handlers related to
  * Tese.
  *
  * @author Joao Miguel
