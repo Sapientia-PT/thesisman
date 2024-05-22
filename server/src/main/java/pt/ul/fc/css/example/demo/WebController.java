@@ -208,23 +208,18 @@ public class WebController {
     return "redirect:/menu";
   }
 
-  // TODO
-  @RequestMapping("/registoNota")
-  public String registoNota(
-      @RequestParam("defesaId") Long defesaId, Model model, RedirectAttributes redirectAttributes) {
-    // try {
-    // model.addAttribute("defesa", teseService.getDefesa(defesaId));
-    return "registoNota";
-    // } catch (NotFoundException e) {
-    //  redirectAttributes.addFlashAttribute("error", e.getMessage());
-    //  return "redirect:/listarDefesas";
-    // }
-  }
-
-  // TODO
   @PostMapping("/doRegistoNota")
-  public String doRegistoNota() {
-    return "redirect:/menu";
+  public String doRegistoNota(
+      @RequestParam("defesaId") Long defesaId,
+      @RequestParam("nota") int nota,
+      RedirectAttributes redirectAttributes) {
+    try {
+      teseService.updateNota(defesaId, nota);
+      redirectAttributes.addFlashAttribute("success", "Nota atualizada com sucesso!");
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("error", "Erro ao atualizar a nota.");
+    }
+    return "redirect:/listarDefesas";
   }
 
   @RequestMapping("/estatisticas")

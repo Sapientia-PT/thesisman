@@ -102,4 +102,13 @@ public class TeseService {
   public void createSala(int nrSala) {
     propostaTeseHandler.createSala(nrSala);
   }
+
+  public void updateNota(Long defesaId, int nota) {
+    Defesa defesa =
+        defesaRepository
+            .findById(defesaId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid defesa Id: " + defesaId));
+    defesa.setNota(nota);
+    defesaRepository.save(defesa);
+  }
 }

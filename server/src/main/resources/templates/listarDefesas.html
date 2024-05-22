@@ -4,20 +4,47 @@
         <meta charset="ISO-8859-1" />
         <title>Defesas</title>
         <link href="css/style.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(".avaliar-button").click(function(event) {
+                    event.preventDefault();
+                    $(this).closest(".object").find(".avaliar-form").toggle();
+                });
+
+                $(".submit-avaliar").click(function(event) {
+                    event.preventDefault();
+                    var defesaId = $(this).data("defesa-id");
+                    var nota = $(this).closest(".avaliar-form").find(".nota-input").val();
+
+                    $.post("/registoNota", { defesaId: defesaId, nota: nota }, function(response) {
+                        alert("Nota atualizada com sucesso!");
+                    }).fail(function() {
+                        alert("Erro ao atualizar a nota.");
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <h1>Defesas Concluídas:</h1>
 
         <div class="container">
-            <div th:each="defesa : ${defesas}" class="object"
-                style="justify-content: center; display: flex; padding: 10px;">
-                <p th:text="${defesa.getDuracaoMinutos()} + ' minutos'" class="element"></p><hr>
-                <p th:text="'Título: ' + ${defesa.getPropostaTese().getTese().getTema().getTitulo()}" class="element"></p><hr>
-                <p th:text="'Nota: ' + ${defesa.getNota()}" class="element"></p><hr>
-                <form action="/registoNota" method="get">
-                    <input type="hidden" name="defesaId" th:value="${defesa.getId()}"/>
-                    <button class="element-title" type="submit">Avaliar</button>
-                </form>
+            <div th:each="defesa : ${defesas}" class="object" style="justify-content: center; display: flex; padding: 10px;">
+                <p th:text="${defesa.getDuracaoMinutos()} + ' minutos'" class="element"></p>
+                <hr>
+                <p th:text="'Título: ' + ${defesa.getPropostaTese().getTese().getTema().getTitulo()}" class="element"></p>
+                <hr>
+                <p th:text="'Nota: ' + ${defesa.getNota()}" class="element"></p>
+                <hr>
+                <button class="element-title avaliar-button">Avaliar</button>
+                <div class="avaliar-form" style="display: none;">
+                    <form action="/doRegistoNota" method="post" style="justify-content: center; display: flex; padding: 10px;">
+                        <input type="hidden" name="defesaId" th:value="${defesa.getId()}"/>
+                        <input type="number" name="nota" min="0" max="20" required>
+                        <button type="submit" class="element">Submeter</button>
+                    </form>
+                </div>
             </div>
             <form action="/menu" method="get">
                 <button class="element-title" style="background-color: rgb(171, 171, 171);">Voltar</button>
