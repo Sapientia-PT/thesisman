@@ -26,6 +26,13 @@ public class RestAPI {
   @Autowired private TemaService temaService;
   @Autowired private TeseService teseService;
 
+  /**
+   * This method handles the request to get a specific aluno.
+   *
+   * @param nrAluno The number of the aluno to retrieve.
+   * @return AlunoDTO object that represents the aluno.
+   * @throws NotFoundException If the aluno does not exist.
+   */
   @GetMapping("/aluno/{nrAluno}")
   public AlunoDTO getAluno(@PathVariable("nrAluno") int nrAluno) throws NotFoundException {
     return utilizadorService.getAluno(nrAluno);
