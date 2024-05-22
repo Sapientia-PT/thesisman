@@ -13,7 +13,7 @@ Este projeto vai usar Java17+ e Postgres, mas esses vão estar disponíveis dent
 
 ## Build steps
 
-Deve correr os seguintes comando:
+Deve correr os seguintes comando num terminal:
 * `cd server`
 * `docker compose up --build`
 
@@ -23,7 +23,7 @@ Abrir outro terminal e, ainda na pasta server, correr:
 * `mvn spring-boot:run`
 
 Agora, com o PostgreSQL e o ThesismanApp a correr,
-podemos correr o JavaFX através do jar presente
+podemos correr o JavaFX, noutro terminal, através do jar presente
 na raíz do projeto, da seguinte forma:
 
 * `java -jar client.jar`
