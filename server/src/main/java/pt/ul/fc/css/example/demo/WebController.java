@@ -14,7 +14,6 @@ import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.business.services.TemaService;
 import pt.ul.fc.css.example.demo.business.services.TeseService;
 import pt.ul.fc.css.example.demo.business.services.UtilizadorService;
-import pt.ul.fc.css.example.demo.entities.PropostaTese;
 
 /**
  * This is the main controller for the web application. Handling all requests
@@ -149,51 +148,73 @@ public class WebController {
   public String listarPropostas(Model model) {
     if (utilizadorService.validateTokenForEmpresarioOrDocente(
         (String) model.getAttribute("token"))) {
-      model.addAttribute("propostas", teseService.getPropostas());
+      model.addAttribute("propostas", teseService.getPropostasWithoutHorario());
       return "listarPropostas";
     }
     return "redirect:/menu";
   }
 
   @RequestMapping("/marcarDefesa")
-  public String marcarDefesa(@RequestParam("propostaId") Long propostaId, Model model) {
+  public String marcarDefesa(
+      @RequestParam("propostaId") Long propostaId,
+      Model model,
+      RedirectAttributes redirectAttributes) {
     try {
-      PropostaTese proposta = teseService.getProposta(propostaId);
       model.addAttribute("salas", teseService.getSalas());
-      model.addAttribute("proposta", proposta);
+      model.addAttribute("proposta", teseService.getProposta(propostaId));
       return "marcarDefesa";
     } catch (NotFoundException e) {
-      model.addAttribute("error", e.getMessage());
+      redirectAttributes.addFlashAttribute("error", e.getMessage());
       return "redirect:/listarPropostas";
     }
   }
 
-  // TODO
   @PostMapping("/doMarcarDefesa")
   public String doMarcarDefesa(
       @RequestParam("propostaId") Long propostaId,
-      @RequestParam(value = "nrSala", required = false)
+      @RequestParam(
+              value = "nrSala",
+              required = false) // TODO: bug if you don't select a sala it will crash
           String nrSala, // need string for the case of remote
       @RequestParam("dataInicial") String dataInicial,
       @RequestParam("dataFinal") String dataFinal,
       @RequestParam("arguente") int nrArguente,
-      @RequestParam(value = "presidente", required = false) int nrPresidente,
-      Model model) {
+      @RequestParam(value = "presidente", required = false, defaultValue = "-1") int nrPresidente,
+      RedirectAttributes redirectAttributes) {
     try {
-      // Horario horario = teseService.createHorario(dataInicial, dataFinal);
-      // Juri juri =
-      // teseService.createJuri(Integer.parseInt(nrArguente),
-      // Integer.parseInt(nrPresidente));
-      // Defesa defesa = new Defesa(proposta, 60, horario, sala, 0);
-      // teseService.marcarDefesa(horario, sala, juri, defesa);
+      teseService.marcarDefesa(
+          teseService.createHorario(dataInicial, dataFinal),
+          teseService.getSala((nrSala == null || nrSala.isEmpty()) ? -1 : Integer.parseInt(nrSala)),
+          teseService.createJuri(nrArguente, nrPresidente),
+          teseService.getProposta(propostaId).getDefesa());
       return "redirect:/menu";
     } catch (NumberFormatException e) {
-      model.addAttribute("error", "The numbers must be numbers!");
+      redirectAttributes.addFlashAttribute("error", "The numbers must be numbers!");
       return "redirect:/marcarDefesa";
-      // } catch (ApplicationException e) {
-      // model.addAttribute("error", e.getMessage());
-      // return "redirect:/marcarDefesa";
+    } catch (ApplicationException e) {
+      redirectAttributes.addFlashAttribute("error", e.getMessage());
+      return "redirect:/marcarDefesa";
     }
+  }
+
+  // TODO
+  @RequestMapping("/listarDefesas")
+  public String listarDefesas(Model model) {
+    model.addAttribute("defesas", teseService.getDefesas());
+    return "listarDefesas";
+  }
+
+  // TODO
+  @RequestMapping("/registoNota")
+  public String registoNota(
+      @RequestParam("defesaId") Long defesaId, Model model, RedirectAttributes redirectAttributes) {
+    // try {
+    // model.addAttribute("defesa", teseService.getDefesa(defesaId));
+    return "registoNota";
+    // } catch (NotFoundException e) {
+    //  redirectAttributes.addFlashAttribute("error", e.getMessage());
+    //  return "redirect:/listarDefesas";
+    // }
   }
 
   // TODO

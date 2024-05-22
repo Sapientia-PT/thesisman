@@ -13,33 +13,33 @@ import java.sql.Time;
 @Embeddable
 public class Horario {
 
-  private Time dataInicio;
-  private Time dataFim;
+  private Time dataInicial;
+  private Time dataFinal;
 
-  public Horario(Time dataInicio, Time dataFim) {
-    this.dataInicio = dataInicio;
-    this.dataFim = dataFim;
+  public Horario(Time dataInicial, Time dataFinal) {
+    this.dataInicial = dataInicial;
+    this.dataFinal = dataFinal;
   }
 
   public Horario() {}
 
-  public Time getDataInicio() {
-    return dataInicio;
+  public Time getDataInicial() {
+    return dataInicial;
   }
 
-  public void setDataInicio(Time data) {
-    this.dataInicio = data;
+  public void setDataInicial(Time data) {
+    this.dataInicial = data;
   }
 
-  public Time getDataFim() {
-    return dataFim;
+  public Time getDataFinal() {
+    return dataFinal;
   }
 
-  public void setDataFim(Time data) {
-    this.dataFim = data;
+  public void setDataFinal(Time data) {
+    this.dataFinal = data;
   }
 
   public boolean equals(Horario h) {
-    return this.dataInicio.equals(h.getDataInicio()) && this.dataFim.equals(h.getDataFim());
+    return this.dataInicial.equals(h.getDataInicial()) && this.dataFinal.equals(h.getDataFinal());
   }
 }

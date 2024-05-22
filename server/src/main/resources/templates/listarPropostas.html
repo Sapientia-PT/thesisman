@@ -12,9 +12,9 @@
             <div th:each="proposta : ${propostas}" class="object"
                 style="justify-content: center; display: flex; padding: 10px;">
                 <p th:text="${proposta.getDefesa().getDuracaoMinutos()} + ' minutos'" class="element"></p><hr>
-                <p th:text="${proposta.getTese().getTema().getTitulo()}" class="element"></p><hr>
+                <p th:text="'Título: ' + ${proposta.getTese().getTema().getTitulo()}" class="element"></p><hr>
                 <form action="/marcarDefesa" method="get">
-                    <input type="hidden" name="propostaId" th:value="${proposta.id}"/>
+                    <input type="hidden" name="propostaId" th:value="${proposta.getId()}"/>
                     <button class="element-title" type="submit">Marcar Defesa</button>
                 </form>
             </div>

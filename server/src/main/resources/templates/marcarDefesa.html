@@ -25,15 +25,15 @@
                     <!-- Sala -->
                     <label for="sala" class="element">Sala:</label>
                     <select id="sala" name="nrSala">
-                        <option value=""></option>
+                        <option value=null></option> <!-- For Remota -->
                         <option th:each="sala : ${salas}" th:value="${sala.getId()}" th:text="${sala.getNrSala()}"></option>
                     </select><br><br>
 
                     <!-- Horario -->
                     <label for="dataInicial" class="element">Data Inicial:</label>
-                    <input type="text" id="dataInicial" name="dataInicial" placeholder="dd/mm/yyyy" required><br><br>
+                    <input type="text" id="dataInicial" name="dataInicial" placeholder="dd/mm/yyyy hh:mm" required><br><br>
                     <label for="dataFinal" class="element">Data Final:</label>
-                    <input type="text" id="dataFinal" name="dataFinal" placeholder="dd/mm/yyyy" required><br><br>
+                    <input type="text" id="dataFinal" name="dataFinal" placeholder="dd/mm/yyyy hh:mm" required><br><br>
 
                     <!-- Juri -->
                     <label for="orientadorInterno" class="element">Orientador Interno:</label> <!-- No time, it shows nothing -->
@@ -46,8 +46,8 @@
                     <input type="text" id="presidente" name="presidente"><br><br>
 
                     <!-- Proposta -->
-                    <input type="hidden" name="propostaId" th:value="${proposta.getId()}" />
-                    <input type="submit" value="Marcar Defesa" class="element-title" style="width: 150px;">
+                    <input type="text" name="propostaId" th:value="${proposta.getId()}" />
+                    <button class="element-title" type="submit">Marcar Defesa</button>
                 </form>
             </div>
             <form action="/listarPropostas" method="get">

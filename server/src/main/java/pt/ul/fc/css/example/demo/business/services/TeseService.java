@@ -1,8 +1,8 @@
 package pt.ul.fc.css.example.demo.business.services;
 
-import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ul.fc.css.example.demo.business.handlers.PropostaTeseHandler;
@@ -44,18 +44,36 @@ public class TeseService {
     propostaTeseHandler.submeterPropostaTese(nrConta, 90);
   }
 
-  public List<PropostaTese> getPropostas() {
-    return propostaTeseRepository.findAll();
+  public List<PropostaTese> getPropostasWithoutHorario() {
+    List<PropostaTese> allPropostas = propostaTeseRepository.findAll();
+    return allPropostas.stream()
+        .filter(
+            proposta -> proposta.getDefesa() != null && proposta.getDefesa().getHorario() == null)
+        .collect(Collectors.toList());
+  }
+
+  public List<Defesa> getDefesas() {
+    List<Defesa> allDefesas = defesaRepository.findAll();
+    return allDefesas.stream()
+        .filter(
+            defesa ->
+                defesa.getHorario() != null) // it should be the defesas that have been concluded
+        .collect(Collectors.toList()); // but for evaluation purposes we will consider all defesas
+    // that have a horario
   }
 
   public PropostaTese getProposta(long id) throws NotFoundException {
     Optional<PropostaTese> proposta = propostaTeseRepository.findById(id);
-    if (!proposta.isPresent()) throw new NotFoundException("Proposta não encontrada");
+    if (!proposta.isPresent()) throw new NotFoundException("Proposta not found!");
     return proposta.get();
   }
 
   public List<Sala> getSalas() {
     return salaRepository.findAll();
+  }
+
+  public Sala getSala(int nrSala) throws NotFoundException {
+    return salaRepository.findByNrSala(nrSala); // it can be null (defesa remota)
   }
 
   public void marcarDefesa(Horario horario, Sala sala, Juri juri, Defesa defesa)
@@ -73,14 +91,12 @@ public class TeseService {
             });
   }
 
-  public Horario createHorario(Time dataInicial, Time dataFinal) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'createHorario'");
+  public Horario createHorario(String dataInicial, String dataFinal) {
+    return propostaTeseHandler.createHorario(dataInicial, dataFinal);
   }
 
-  public Juri createJuri(int int1, int int2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'createJuri'");
+  public Juri createJuri(int nrArguente, int nrPresidente) {
+    return propostaTeseHandler.createJuri(nrArguente, nrPresidente);
   }
 
   public void createSala(int nrSala) {

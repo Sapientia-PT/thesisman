@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt_PT">
+    <head>
+        <meta charset="ISO-8859-1" />
+        <title>Defesas</title>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Defesas Concluídas:</h1>
+
+        <div class="container">
+            <div th:each="defesa : ${defesas}" class="object"
+                style="justify-content: center; display: flex; padding: 10px;">
+                <p th:text="${defesa.getDuracaoMinutos()} + ' minutos'" class="element"></p><hr>
+                <p th:text="'Título: ' + ${defesa.getPropostaTese().getTese().getTema().getTitulo()}" class="element"></p><hr>
+                <p th:text="'Nota: ' + ${defesa.getNota()}" class="element"></p><hr>
+                <form action="/registoNota" method="get">
+                    <input type="hidden" name="defesaId" th:value="${defesa.getId()}"/>
+                    <button class="element-title" type="submit">Avaliar</button>
+                </form>
+            </div>
+            <form action="/menu" method="get">
+                <button class="element-title" style="background-color: rgb(171, 171, 171);">Voltar</button>
+            </form>
+        </div>
+    </body>
+</html>

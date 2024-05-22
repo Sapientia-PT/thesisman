@@ -1,10 +1,16 @@
 package pt.ul.fc.css.example.demo.business.handlers;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pt.ul.fc.css.example.demo.business.repository.AlunoRepository;
 import pt.ul.fc.css.example.demo.business.repository.DefesaRepository;
+import pt.ul.fc.css.example.demo.business.repository.DocenteRepository;
+import pt.ul.fc.css.example.demo.business.repository.JuriRepository;
 import pt.ul.fc.css.example.demo.business.repository.PropostaTeseRepository;
 import pt.ul.fc.css.example.demo.business.repository.SalaRepository;
 import pt.ul.fc.css.example.demo.business.repository.TeseRepository;
@@ -25,8 +31,10 @@ public class PropostaTeseHandler {
   @Autowired private PropostaTeseRepository propostaTeseRepository;
   @Autowired private TeseRepository teseRepository;
   @Autowired private DefesaRepository defesaRepository;
+  @Autowired private DocenteRepository docenteRepository;
   @Autowired private AlunoRepository alunoRepository;
   @Autowired private SalaRepository salaRepository;
+  @Autowired private JuriRepository juriRepository;
 
   public void submeterPropostaTese(int nrConta, int duracaoMinutos) throws NotFoundException {
     Aluno aluno = alunoRepository.findByNrConta(nrConta);
@@ -70,5 +78,27 @@ public class PropostaTeseHandler {
     Sala sala = new Sala();
     sala.setNrSala(nrSala);
     salaRepository.save(sala);
+  }
+
+  public Horario createHorario(String dataInicial, String dataFinal) {
+    Horario horario = new Horario();
+    horario.setDataInicial(parseTime(dataInicial));
+    horario.setDataFinal(parseTime(dataFinal));
+    return horario;
+  }
+
+  private Time parseTime(String time) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    LocalDateTime localDateTime = LocalDateTime.parse(time, formatter);
+    LocalTime localTime = localDateTime.toLocalTime();
+    return Time.valueOf(localTime);
+  }
+
+  public Juri createJuri(int nrArguente, int nrPresidente) {
+    Juri juri = new Juri();
+    juri.setArguente(docenteRepository.findByNrConta(nrArguente));
+    juri.setPresidente(docenteRepository.findByNrConta(nrPresidente));
+    juriRepository.save(juri);
+    return juri;
   }
 }
