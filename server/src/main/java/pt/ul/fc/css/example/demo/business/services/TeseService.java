@@ -21,6 +21,14 @@ import pt.ul.fc.css.example.demo.entities.Juri;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
 import pt.ul.fc.css.example.demo.entities.Sala;
 
+/**
+ * This class reprents the Tema Service. Handles the logic for calling all the handlers related to
+ * Tese.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Service
 public class TeseService {
 
