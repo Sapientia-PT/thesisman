@@ -8,6 +8,13 @@ import pt.ul.fc.css.example.demo.entities.Empresa;
 import pt.ul.fc.css.example.demo.entities.OrientadorExterno;
 import pt.ul.fc.css.example.demo.entities.Projeto;
 
+/**
+ * This class reprents the Orientador Externo Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface OrientadorExternoRepository extends JpaRepository<OrientadorExterno, Long> {
 
   OrientadorExterno findByNrConta(long nrOrientadorExterno);
