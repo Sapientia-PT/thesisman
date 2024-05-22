@@ -87,7 +87,6 @@ public class WebController {
     return "menu";
   }
 
-  // TODO Good for debugging
   @RequestMapping("/temas")
   public String temas(Model model) {
     model.addAttribute("temas", temaService.getTemas());
