@@ -4,6 +4,13 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents an tese entity.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Tese {
