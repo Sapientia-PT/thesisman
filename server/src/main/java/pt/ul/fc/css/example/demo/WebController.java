@@ -95,10 +95,11 @@ public class WebController {
   }
 
   @RequestMapping("/proporTema")
-  public String proporTema(Model model) {
+  public String proporTema(Model model, RedirectAttributes redirectAttributes) {
     if (utilizadorService.validateTokenForEmpresarioOrDocente((String) model.getAttribute("token")))
       return "proporTema";
-    else return "redirect:/menu";
+    redirectAttributes.addFlashAttribute("error", "You don't have permission to access this page!");
+    return "redirect:/menu";
   }
 
   @PostMapping("/doProporTema")
@@ -120,10 +121,11 @@ public class WebController {
   }
 
   @RequestMapping("/atribuirTema")
-  public String atribuirTema(Model model) {
+  public String atribuirTema(Model model, RedirectAttributes redirectAttributes) {
     if (utilizadorService.validateTokenForAdministrador((String) model.getAttribute("token")))
       return "atribuirTema";
-    else return "redirect:/menu";
+    redirectAttributes.addFlashAttribute("error", "You don't have permission to access this page!");
+    return "redirect:/menu";
   }
 
   @PostMapping("/doAtribuirTema")
@@ -145,12 +147,13 @@ public class WebController {
   }
 
   @RequestMapping("/listarPropostas")
-  public String listarPropostas(Model model) {
+  public String listarPropostas(Model model, RedirectAttributes redirectAttributes) {
     if (utilizadorService.validateTokenForEmpresarioOrDocente(
         (String) model.getAttribute("token"))) {
       model.addAttribute("propostas", teseService.getPropostasWithoutHorario());
       return "listarPropostas";
     }
+    redirectAttributes.addFlashAttribute("error", "You don't have permission to access this page!");
     return "redirect:/menu";
   }
 
@@ -197,11 +200,15 @@ public class WebController {
     }
   }
 
-  // TODO
   @RequestMapping("/listarDefesas")
-  public String listarDefesas(Model model) {
-    model.addAttribute("defesas", teseService.getDefesas());
-    return "listarDefesas";
+  public String listarDefesas(Model model, RedirectAttributes redirectAttributes) {
+    if (utilizadorService.validateTokenForEmpresarioOrDocente(
+        (String) model.getAttribute("token"))) {
+      model.addAttribute("defesas", teseService.getDefesas());
+      return "listarDefesas";
+    }
+    redirectAttributes.addFlashAttribute("error", "You don't have permission to access this page!");
+    return "redirect:/menu";
   }
 
   // TODO
