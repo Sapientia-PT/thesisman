@@ -6,6 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.*;
 
+/**
+ * This class reprents the Tese Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface TeseRepository extends JpaRepository<Tese, Long> {
 
   Tese findByTema(Tema tema);
