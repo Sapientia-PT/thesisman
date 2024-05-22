@@ -15,6 +15,13 @@ import pt.ul.fc.css.example.demo.entities.Aluno;
 import pt.ul.fc.css.example.demo.entities.Tema;
 import pt.ul.fc.css.example.demo.entities.Tese;
 
+/**
+ * This class reprents the handler for temas.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Component
 public class TemaAlunoHandler {
 
