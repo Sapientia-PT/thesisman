@@ -24,22 +24,5 @@ services:
       - POSTGRES_DB=testdb
     restart: unless-stopped
 
-  # APP*****************************************
-  springbootapp:
-    image: springbootapp:latest
-    build:
-      context: .
-    container_name: springbootapp
-    expose:
-      - 8080
-    ports:
-      - 8080:8080
-    restart: unless-stopped
-    depends_on:
-      - pgserver
-    networks:
-      - dbnet
-    command: /bin/bash
-
 volumes:
   postgres-data:
