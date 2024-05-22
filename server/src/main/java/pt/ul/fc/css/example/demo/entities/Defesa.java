@@ -2,6 +2,13 @@ package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
 
+/**
+ * This class represents an defesa entity.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Entity
 public class Defesa {
 
