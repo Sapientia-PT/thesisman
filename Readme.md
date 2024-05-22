@@ -19,7 +19,7 @@ Deve correr os seguintes comando:
 
 Este comando vai iniciar o container PostgreSQL.
 
-Abrir outro terminal e, na raíz do projeto, correr:
+Abrir outro terminal e, ainda na pasta server, correr:
 * `mvn spring-boot:run`
 
 Agora, com o PostgreSQL e o ThesismanApp a correr,
