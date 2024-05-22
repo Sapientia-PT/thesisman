@@ -3,6 +3,13 @@ package pt.ul.fc.css.example.demo.entities;
 import jakarta.persistence.*;
 import java.sql.Time;
 
+/**
+ * This class represents an horario entity.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Embeddable
 public class Horario {
 
