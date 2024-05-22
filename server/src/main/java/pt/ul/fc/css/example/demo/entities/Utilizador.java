@@ -2,6 +2,13 @@ package pt.ul.fc.css.example.demo.entities;
 
 import jakarta.persistence.*;
 
+/**
+ * This class represents an utilizador entity.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Utilizador {
