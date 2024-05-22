@@ -12,6 +12,13 @@ import pt.ul.fc.css.example.demo.business.services.Exceptions.HorarioInUseExcept
 import pt.ul.fc.css.example.demo.business.services.Exceptions.NotFoundException;
 import pt.ul.fc.css.example.demo.entities.*;
 
+/**
+ * This class reprents the handler for proposta.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 @Component
 public class PropostaTeseHandler {
 
