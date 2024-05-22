@@ -81,11 +81,23 @@ public class RestAPI {
     temaService.cancelarCandidaturaAluno(tema, utilizadorService.getAluno(nrAluno));
   }
 
+  /**
+   * This method handles the post request to submit a proposal.
+   *
+   * @param nrAluno The number of the aluno.
+   * @throws NotFoundException If the aluno does not exist.
+   */
   @PostMapping("/submeter-proposta")
   public void submeterProposta(@RequestParam("nrAluno") int nrAluno) throws NotFoundException {
     teseService.submeterPropostaTese(nrAluno);
   }
 
+  /**
+   * This method handles the post request to submit the final document.
+   *
+   * @param nrAluno The number of the aluno.
+   * @throws NotFoundException If the aluno does not exist.
+   */
   @PostMapping("/submeter-documento-final")
   public void submeterDocumentoFinal(@RequestParam("nrAluno") int nrAluno)
       throws NotFoundException {
