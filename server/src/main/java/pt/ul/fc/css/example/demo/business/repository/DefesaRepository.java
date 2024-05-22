@@ -7,6 +7,13 @@ import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.Defesa;
 import pt.ul.fc.css.example.demo.entities.PropostaTese;
 
+/**
+ * This class reprents the Defesa Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface DefesaRepository extends JpaRepository<Defesa, Long> {
 
   @Query("SELECT p.defesa FROM PropostaTese p where p = :propostaTese")
