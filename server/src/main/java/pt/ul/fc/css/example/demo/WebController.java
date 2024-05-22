@@ -175,19 +175,16 @@ public class WebController {
   @PostMapping("/doMarcarDefesa")
   public String doMarcarDefesa(
       @RequestParam("propostaId") Long propostaId,
-      @RequestParam(
-              value = "nrSala",
-              required = false) // TODO: bug if you don't select a sala it will crash
-          String nrSala, // need string for the case of remote
+      @RequestParam(value = "nrSala", required = false) int nrSala,
       @RequestParam("dataInicial") String dataInicial,
       @RequestParam("dataFinal") String dataFinal,
       @RequestParam("arguente") int nrArguente,
-      @RequestParam(value = "presidente", required = false, defaultValue = "-1") int nrPresidente,
+      @RequestParam(value = "nrPresidente", required = false, defaultValue = "-1") int nrPresidente,
       RedirectAttributes redirectAttributes) {
     try {
       teseService.marcarDefesa(
           teseService.createHorario(dataInicial, dataFinal),
-          teseService.getSala((nrSala == null || nrSala.isEmpty()) ? -1 : Integer.parseInt(nrSala)),
+          teseService.getSala(nrSala),
           teseService.createJuri(nrArguente, nrPresidente),
           teseService.getProposta(propostaId).getDefesa());
       return "redirect:/menu";

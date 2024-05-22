@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt_PT">
     <head>
-        <!-- Include jQuery library -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Include jQuery UI library -->
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-        <!-- Include jQuery UI Timepicker Addon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
-        <!-- Include your custom CSS file -->
         <link href="css/style.css" rel="stylesheet" />
-        <!-- Title and other meta tags -->
+        <script>
+            $(function() {
+                // Initialize datetime picker for dataInicial input
+                $("#dataInicial").datetimepicker({
+                    dateFormat: "dd/mm/yy", // Date format
+                    timeFormat: "HH:mm", // Time format
+                    minDate: 0, // Minimum date allowed (today)
+                });
+
+                // Initialize datetime picker for dataFinal input
+                $("#dataFinal").datetimepicker({
+                    dateFormat: "dd/mm/yy", // Date format
+                    timeFormat: "HH:mm", // Time format
+                    minDate: 0, // Minimum date allowed (today)
+                });
+
+                // Toggle the sala input based on the selected option
+                $("input[name='defesaTipo']").change(function() {
+                    if ($(this).val() === 'presencial') $("#salaContainer").show();
+                    else $("#salaContainer").hide();
+                });
+
+                // Set default selection to "Remota"
+                $("input[name='defesaTipo'][value='remota']").prop('checked', true);
+                $("#salaContainer").hide();
+            });
+        </script>
     </head>
     <body>
         <h1>Marcar Defesa:</h1>
@@ -22,18 +44,26 @@
                     <label for="duracao" class="element">Duração (minutos):</label>
                     <input type="number" id="duracao" name="duracao" th:value="${proposta.getDefesa().getDuracaoMinutos()}" readonly><br><br>
 
-                    <!-- Sala -->
-                    <label for="sala" class="element">Sala:</label>
-                    <select id="sala" name="nrSala">
-                        <option value=null></option> <!-- For Remota -->
-                        <option th:each="sala : ${salas}" th:value="${sala.getId()}" th:text="${sala.getNrSala()}"></option>
-                    </select><br><br>
+                    <!-- Tipo de Defesa -->
+                    <label for="defesaTipo" class="element">Tipo de Defesa:</label>
+                    <input type="radio" id="remota" name="defesaTipo" value="remota" checked> Remota
+                    <input type="radio" id="presencial" name="defesaTipo" value="presencial"> Presencial<br><br>
+
+                    <!-- Sala (conditional) -->
+                    <div id="salaContainer">
+                        <label for="sala" class="element">Sala:</label>
+                        <select id="sala" name="nrSala">
+                            <option th:each="sala : ${salas}" th:value="${sala.getId()}" th:text="${sala.getNrSala()}"></option>
+                        </select><br><br>
+                    </div>
 
                     <!-- Horario -->
                     <label for="dataInicial" class="element">Data Inicial:</label>
-                    <input type="text" id="dataInicial" name="dataInicial" placeholder="dd/mm/yyyy hh:mm" required><br><br>
+                    <input type="text" id="dataInicial" name="dataInicial"
+                            placeholder="dd/mm/yyyy hh:mm" required autocomplete="off"><br><br>
                     <label for="dataFinal" class="element">Data Final:</label>
-                    <input type="text" id="dataFinal" name="dataFinal" placeholder="dd/mm/yyyy hh:mm" required><br><br>
+                    <input type="text" id="dataFinal" name="dataFinal"
+                            placeholder="dd/mm/yyyy hh:mm" required autocomplete="off"><br><br>
 
                     <!-- Juri -->
                     <label for="orientadorInterno" class="element">Orientador Interno:</label> <!-- No time, it shows nothing -->
@@ -41,9 +71,11 @@
 
                     <label for="arguente" class="element">Arguente:</label>
                     <input type="text" id="arguente" name="arguente" required><br><br>
-
-                    <label for="presidente" class="element">Presidente:</label>
-                    <input type="text" id="presidente" name="presidente"><br><br>
+                    <!-- presidente only in the documento final defense (90 minutes) -->
+                    <div th:if="${proposta.getDefesa().getDuracaoMinutos()} == 90">
+                        <label for="presidente" class="element">Presidente:</label>
+                        <input type="text" id="presidente" name="presidente" required><br><br>
+                    </div>
 
                     <!-- Proposta -->
                     <input type="hidden" name="propostaId" th:value="${proposta.getId()}" />
@@ -58,21 +90,4 @@
             </div>
         </div>
     </body>
-    <script>
-        $(function() {
-            // Initialize datetime picker for dataInicial input
-            $("#dataInicial").datetimepicker({
-                dateFormat: "dd/mm/yy", // Date format
-                timeFormat: "HH:mm", // Time format
-                minDate: 0, // Minimum date allowed (today)
-            });
-
-            // Initialize datetime picker for dataFinal input
-            $("#dataFinal").datetimepicker({
-                dateFormat: "dd/mm/yy", // Date format
-                timeFormat: "HH:mm", // Time format
-                minDate: 0, // Minimum date allowed (today)
-            });
-        });
-    </script>
 </html>
