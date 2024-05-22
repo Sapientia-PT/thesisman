@@ -27,6 +27,7 @@ public class AuthController {
     } catch (NumberFormatException e) {
       System.out.println("Invalid number format");
     } catch (IOException e) {
+      input.setStyle("-fx-text-fill: red;");
       System.out.println("Probably no aluno found");
     } catch (Exception e) {
       e.printStackTrace();
@@ -39,5 +40,12 @@ public class AuthController {
         event -> {
           if (event.getCode() == KeyCode.ENTER) onLoginClick();
         });
+
+    input
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              input.setStyle("-fx-text-inner-color: black;");
+            });
   }
 }
