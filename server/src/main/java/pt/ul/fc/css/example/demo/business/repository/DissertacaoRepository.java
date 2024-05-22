@@ -6,6 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pt.ul.fc.css.example.demo.entities.*;
 
+/**
+ * This class reprents the Dissertacao Repository.
+ *
+ * @author Joao Miguel
+ * @author Guilherme Gouveia
+ * @author Rafael Correia
+ */
 public interface DissertacaoRepository extends JpaRepository<Dissertacao, Long> {
 
   Tese findByTema(Tema tema);
