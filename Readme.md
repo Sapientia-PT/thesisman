@@ -9,7 +9,7 @@ Rafael Correia      - 58236
 
 ## Dependências
 
-Este projeto vai usar Java17+ e Postgres, mas esses vão estar disponíveis dentro dos containers Docker. Só são necessários se quiser correr a aplicação nativamente.
+Este projeto vai usar Java17+ e Postgres, mas esses vão estar disponíveis dentro dos containers Docker. Só são necessários se quiser correr a aplicação nativamente. Será necessário o maven.
 
 ## Build steps
 
@@ -19,14 +19,13 @@ Deve correr os seguintes comando:
 
 Este comando vai iniciar o container PostgreSQL.
 
-Depois, no mesmo diretório, correr:
+Abrir outro terminal e, na raíz do projeto, correr:
 * `mvn spring-boot:run`
 
 Agora, com o PostgreSQL e o ThesismanApp a correr,
 podemos correr o JavaFX através do jar presente
 na raíz do projeto, da seguinte forma:
 
-* `cd ..`
 * `java -jar client.jar`
 
 ## Testar
